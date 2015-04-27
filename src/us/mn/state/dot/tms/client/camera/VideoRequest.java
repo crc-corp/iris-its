@@ -176,8 +176,8 @@ public class VideoRequest {
 			/* showlength parameter needed to force ancient (2401)
 			 * servers to provide Content-Length headers */
 			return "http://" + ip + "/axis-cgi/mjpg/video.cgi" +
-				"?camera=" + chan +
-				"&resolution=" + size.getResolution() +
+				"?camera=" + chan + 
+				"&resolution=CIF" + //hard setting to CIF allows us to use current NDOT encoders
 				"&showlength=1";
 		case AXIS_MPEG4:
 			ip = parseEncoderIp(cam);	// throws IOE
@@ -193,8 +193,9 @@ public class VideoRequest {
 			return "axrtsphttp://" + enc + "/mpeg4/" + chan +
 				"/media.amp";
 		case GENERIC_MMS:
-			if (!URIUtils.checkScheme(enc, "mms"))
-				throw new IOException("Invalid encoder field");
+			// Disabling URL validity test for testing 
+			//if (!URIUtils.checkScheme(enc, "mms"))
+			//	throw new IOException("Invalid encoder field");
 			return enc;
 		default:
 			throw new IOException("Unsupported Encoder");
