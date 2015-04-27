@@ -23,6 +23,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import us.mn.state.dot.tms.CommProtocol;
 import us.mn.state.dot.tms.server.ModemImpl;
+import us.mn.state.dot.tms.server.comm.axisptz.AxisPTZPoller;
 import us.mn.state.dot.tms.server.comm.canoga.CanogaPoller;
 import us.mn.state.dot.tms.server.comm.cohuptz.CohuPTZPoller;
 import us.mn.state.dot.tms.server.comm.dinrelay.DinRelayPoller;
@@ -127,6 +128,8 @@ public class DevicePollerFactory {
 			return createSTCPoller();
 		case COHU_PTZ:
 			return createCohuPTZPoller();
+		case AXIS_PTZ:
+			return createAxisPTZPoller();
 		default:
 			throw new ProtocolException("INVALID PROTOCOL");
 		}
@@ -319,5 +322,10 @@ public class DevicePollerFactory {
 	/** Create a Cohu PTZ poller */
 	private DevicePoller createCohuPTZPoller() throws IOException {
 		return new CohuPTZPoller(name, createSocketMessenger(TCP));
+	}
+
+	/** Create an Axis PTZ poller */
+	private DevicePoller createAxisPTZPoller() throws IOException {
+		return new AxisPTZPoller(name, createSocketMessenger(TCP));
 	}
 }
