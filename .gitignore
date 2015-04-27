@@ -1,0 +1,9 @@
+lib
+maps/osm-mapnik*
+build
+iris-server-*
+iris-client-*
+*.rej
+*.orig
+.hg*
+
