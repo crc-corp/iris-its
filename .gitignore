@@ -7,3 +7,4 @@ iris-client-*
 *.orig
 .hg*
 
+.idea

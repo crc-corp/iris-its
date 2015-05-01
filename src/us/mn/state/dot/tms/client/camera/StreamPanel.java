@@ -16,6 +16,7 @@
 package us.mn.state.dot.tms.client.camera;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -24,9 +25,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.lang.Exception;
+import java.net.URI;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -119,7 +120,7 @@ public class StreamPanel extends JPanel {
 	private VideoStream stream = null;
 
 	/** External viewer from user/client properties.  Null means none. */
-	private final String external_viewer;
+	//private final String external_viewer;
 
 	/** Most recent streaming state.  State variable for event FSM. */
 	private boolean stream_state = false;
@@ -153,8 +154,8 @@ public class StreamPanel extends JPanel {
 	{
 		super(new GridBagLayout());
 		video_req = req;
-		external_viewer = (s == null) ? null
-			: UserProperty.getExternalVideoViewer(s.getProperties());
+		//external_viewer = (s == null) ? null
+		//	: UserProperty.getExternalVideoViewer(s.getProperties());
 		autoplay = auto;
 		VideoRequest.Size vsz = req.getSize();
 		Dimension sz = UI.dimension(vsz.width, vsz.height);
@@ -448,6 +449,11 @@ public class StreamPanel extends JPanel {
 	private void launchExternalViewer(Camera c) {
 		if (c == null)
 			return;
+
+		// CRC- Sam Olsen: Removing external viewer requirement.
+		// Send the camera URL to the desktop and hope for the best.
+	   //
+		/*
 		if (external_viewer == null) {
 			setStatusText("Error: no external viewer defined.");
 			return;
@@ -473,5 +479,26 @@ public class StreamPanel extends JPanel {
 		OSUtils.spawnProcess(cmd);
 		setStatusText("External viewer launched.");
 		return;
+		*/
+		
+		try
+		{
+			String url = video_req.getCameraUrl(c);
+         if (url == null) {
+            setStatusText("Error: cannot determine URL.");
+            return;
+         }
+			Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+			if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE))
+			{
+            URI uri = new URI( url );
+            desktop.browse(uri);
+            setStatusText("External viewer launched.");
+			}
+		}
+		catch(Exception e)
+		{
+			setStatusText("Error: " + e.getMessage());
+		}
 	}
 }
