@@ -16,7 +16,6 @@
 package us.mn.state.dot.tms.client.camera;
 
 import java.awt.BorderLayout;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -24,24 +23,19 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.lang.Exception;
-import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import us.mn.state.dot.sched.Job;
 import us.mn.state.dot.sched.Scheduler;
 import us.mn.state.dot.tms.Camera;
 import us.mn.state.dot.tms.client.Session;
-import us.mn.state.dot.tms.client.UserProperty;
 import us.mn.state.dot.tms.client.widget.IAction;
 import us.mn.state.dot.tms.client.widget.Icons;
 import us.mn.state.dot.tms.utils.I18N;
@@ -200,7 +194,7 @@ public class StreamPanel extends JPanel {
 	/** Create the status panel */
 	private JPanel createStatusPanel(VideoRequest.Size vsz) {
 		JPanel p = new JPanel(new BorderLayout());
-		p.add(status_lbl, BorderLayout.WEST);
+		p.add( status_lbl, BorderLayout.WEST );
 		p.setPreferredSize(UI.dimension(vsz.width, HEIGHT_STATUS_PNL));
 		p.setMinimumSize(UI.dimension(vsz.width, HEIGHT_STATUS_PNL));
 		return p;
@@ -389,7 +383,7 @@ public class StreamPanel extends JPanel {
 
 	/** Are we currently streaming? */
 	public boolean isStreaming() {
-		return (stream!=null) ? true : false;
+		return stream!=null;
 	}
 
 	/**
@@ -488,17 +482,45 @@ public class StreamPanel extends JPanel {
             setStatusText("Error: cannot determine URL.");
             return;
          }
-			Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-			if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE))
-			{
-            URI uri = new URI( url );
-            desktop.browse(uri);
-            setStatusText("External viewer launched.");
+
+			final JFileChooser fc = new JFileChooser();
+
+			int value = fc.showOpenDialog( playext_button );
+			if (value == JFileChooser.APPROVE_OPTION) {
+            // Get application path
+            File file = fc.getSelectedFile();
+				String applicationPath = file.getAbsolutePath();
+
+				List<String> cmd = getExternalViewerSystemCommand( applicationPath, url );
+				OSUtils.spawnProcess( cmd );
+				setStatusText("External viewer launched.");
 			}
 		}
 		catch(Exception e)
 		{
 			setStatusText("Error: " + e.getMessage());
 		}
+	}
+	
+	private List<String> getExternalViewerSystemCommand(String applicationPath, String cameraUrl)
+	{
+		List<String> cmd = new ArrayList<String>();
+		if (isWindows())
+		{
+			cmd.add( "cmd" );
+			cmd.add( "/C" );
+			cmd.add( "start" );
+		}
+		
+		cmd.add( applicationPath );
+		cmd.add( cameraUrl );
+		
+		return cmd;
+	}
+	
+	private boolean isWindows()
+	{
+		String osName = System.getProperty( "os.name" );
+		return osName != null && osName.toLowerCase().contains( "win" );
 	}
 }
