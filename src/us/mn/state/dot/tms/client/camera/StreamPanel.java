@@ -509,7 +509,7 @@ public class StreamPanel extends JPanel {
 		{
 			cmd.add( "cmd" );
 			cmd.add( "/C" );
-			cmd.add( "start" );
+			// cmd.add( "start" );
 		}
 		
 		cmd.add( applicationPath );
