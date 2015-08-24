@@ -1,0 +1,142 @@
+# HG changeset patch
+# User Travis Swanston <trav@t-s.net>
+# Date 1439171060 25200
+# Node ID 89b620d3dfcdbe01db7d5da63263c1f9226c64a4
+# Parent  a4447b183a760f62034f13c06824a40ba4661620
+DO NOT MERGE: temp debug logging
+
+diff -r a4447b183a76 -r 89b620d3dfcd src/us/mn/state/dot/tms/DMSHelper.java
+--- a/src/us/mn/state/dot/tms/DMSHelper.java	Sat Aug 08 13:19:38 2015 -0700
++++ b/src/us/mn/state/dot/tms/DMSHelper.java	Sun Aug 09 18:44:20 2015 -0700
+@@ -312,6 +312,10 @@
+ 	 *         the DMS, else false
+ 	 */
+ 	static public boolean singleVarBindsOnly(DMS proxy) {
++		System.err.println("DMSHelper.singleVarBindsOnly("
++			+ proxy + "): " + "getConfigure()=="
++			+ proxy.getConfigure() + "\t\t"
++			+ new java.util.Date());
+ 		if (!proxy.getConfigure())
+ 			return true;
+ 		String make = proxy.getMake();
+diff -r a4447b183a76 -r 89b620d3dfcd src/us/mn/state/dot/tms/server/comm/ntcip/OpNtcip.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpNtcip.java	Sat Aug 08 13:19:38 2015 -0700
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpNtcip.java	Sun Aug 09 18:44:20 2015 -0700
+@@ -165,9 +165,15 @@
+ 	protected void addForQuery(CommMessage mess, ControllerProperty cp)
+ 		throws IOException
+ 	{
++		if (NTCIP_LOG.isOpen())
++			NTCIP_LOG.log(device.getName() + "] addForQuery("
++			+ mess + "," + cp + ")");
+ 		mess.add(cp);
+-		if ((single_varbinds_only) && (mess instanceof SNMP.Message))
++		if ((single_varbinds_only) && (mess instanceof SNMP.Message)) {
++			if (NTCIP_LOG.isOpen())
++				NTCIP_LOG.log(device.getName() + "] queryProps()");
+ 			mess.queryProps();
++		}
+ 	}
+ 
+ 	/**
+@@ -177,9 +183,15 @@
+ 	protected void addForStore(CommMessage mess, ControllerProperty cp)
+ 		throws IOException
+ 	{
++		if (NTCIP_LOG.isOpen())
++			NTCIP_LOG.log(device.getName() + "] addForStore("
++			+ mess + "," + cp + ")");
+ 		mess.add(cp);
+-		if ((single_varbinds_only) && (mess instanceof SNMP.Message))
++		if ((single_varbinds_only) && (mess instanceof SNMP.Message)) {
++			if (NTCIP_LOG.isOpen())
++				NTCIP_LOG.log(device.getName() + "] storeProps()");
+ 			mess.storeProps();
++		}
+ 	}
+ 
+ 	/** Log an error msg */
+@@ -210,5 +222,8 @@
+ 				(DMSHelper.singleVarBindsOnly((DMS)d));
+ 		else
+ 			single_varbinds_only = false;
++		if (NTCIP_LOG.isOpen())
++			NTCIP_LOG.log("Constructed " + this + " :: ("+p+","+d+"); "
++				+ "single_varbinds_only=="+single_varbinds_only);
+ 	}
+ }
+diff -r a4447b183a76 -r 89b620d3dfcd src/us/mn/state/dot/tms/server/comm/snmp/SNMP.java
+--- a/src/us/mn/state/dot/tms/server/comm/snmp/SNMP.java	Sat Aug 08 13:19:38 2015 -0700
++++ b/src/us/mn/state/dot/tms/server/comm/snmp/SNMP.java	Sun Aug 09 18:44:20 2015 -0700
+@@ -146,15 +146,21 @@
+ 				return;
+ 			if (mos.isEmpty())
+ 				return;
+-			is.skip(is.available());
+-			encodeVarBindList(false);
+-			encodeRequestPDU(SNMPTag.GET_REQUEST);
+-			encodeSNMPMessage(community);
+-			encoder.writeTo(os);
+-			encoder.reset();
+-			os.flush();
+-			decodeResponse();
+-			initialize();
++			try {
++				is.skip(is.available());
++				encodeVarBindList(false);
++				encodeRequestPDU(SNMPTag.GET_REQUEST);
++				encodeSNMPMessage(community);
++				encoder.writeTo(os);
++				encoder.reset();
++				os.flush();
++				decodeResponse();
++				initialize();
++			}
++			catch (IOException e) {
++				SNMP_LOG.log("IOEXCEPTION in queryProps(): " + e.getMessage());
++				throw e;
++			}
+ 		}
+ 
+ 		/** Store the controller properties.  This is accomplished with
+@@ -166,15 +172,23 @@
+ 				return;
+ 			if (mos.isEmpty())
+ 				return;
+-			is.skip(is.available());
+-			encodeVarBindList(true);
+-			encodeRequestPDU(SNMPTag.SET_REQUEST);
+-			encodeSNMPMessage(community);
+-			encoder.writeTo(os);
+-			encoder.reset();
+-			os.flush();
+-			decodeResponse();
+-			initialize();
++			SNMP_LOG.log("SNMP.storeProps():");
++			try {
++				is.skip(is.available());
++				encodeVarBindList(true);
++				encodeRequestPDU(SNMPTag.SET_REQUEST);
++				encodeSNMPMessage(community);
++				SNMP_LOG.log("\tSNMP.storeProps(): writing...");
++				encoder.writeTo(os);
++				encoder.reset();
++				os.flush();
++				decodeResponse();
++				initialize();
++			}
++			catch (IOException e) {
++				SNMP_LOG.log("IOEXCEPTION in storeProps(): " + e.getMessage());
++				throw e;
++			}
+ 		}
+ 
+ 		/** Decode a response to a SET or GET request */
+@@ -199,6 +213,7 @@
+ 		protected void encodeVarBind(ASN1Object mo, boolean set)
+ 			throws IOException
+ 		{
++			SNMP_LOG.log("\t\tSNMP.encodeVarBind("+mo+", "+set+")");
+ 			encodeObjectIdentifier(mo.oid());
+ 			if (set)
+ 				mo.encode(SNMP.this);

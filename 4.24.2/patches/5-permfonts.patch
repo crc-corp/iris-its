@@ -1,0 +1,94 @@
+# HG changeset patch
+# User Travis Swanston <trav@t-s.net>
+# Date 1439183702 25200
+# Node ID 119aed70df1c8326b80390c987c63420c93c5b6a
+# Parent  89b620d3dfcdbe01db7d5da63263c1f9226c64a4
+Handle GenErr errors when attempting to modify permanent fonts on 1203v1 devices.
+Note that this means that these fonts will not be uploaded.  Thus, this is not
+a permanent solution because this means that IRIS has no way to synchronize
+fonts with these devices.  Discussion with MnDOT is needed to determine how
+they'd best like this to be handled.
+
+diff -r 89b620d3dfcd -r 119aed70df1c src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java	Sun Aug 09 18:44:20 2015 -0700
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java	Sun Aug 09 22:15:02 2015 -0700
+@@ -412,26 +412,40 @@
+ 			height.setInteger(font.getHeight());
+ 			char_spacing.setInteger(font.getCharSpacing());
+ 			line_spacing.setInteger(font.getLineSpacing());
+-			addForStore(mess, number);
+-			addForStore(mess, name);
+-			addForStore(mess, height);
+-			logStore(number);
+-			logStore(name);
+-			logStore(height);
+-			// Don't configure char. spacing for char. matrix DMS,
+-			// and don't configure line spacing for either char.
+-			// matrix or line-matrix DMS.  This is needed for
+-			// compatibility with a 2003 Ver-Mac PCMS-1210.
+-			DMSType dt = DMSType.fromOrdinal(dms.getDmsType());
+-			if (dt != DMSType.VMS_CHAR) {
+-				addForStore(mess, char_spacing);
+-				logStore(char_spacing);
+-				if (dt != DMSType.VMS_LINE) {
+-					addForStore(mess, line_spacing);
+-					logStore(line_spacing);
++
++			try {
++				addForStore(mess, number);
++				addForStore(mess, name);
++				addForStore(mess, height);
++				logStore(number);
++				logStore(name);
++				logStore(height);
++				// Don't configure char. spacing for char. matrix DMS,
++				// and don't configure line spacing for either char.
++				// matrix or line-matrix DMS.  This is needed for
++				// compatibility with a 2003 Ver-Mac PCMS-1210.
++				DMSType dt = DMSType.fromOrdinal(dms.getDmsType());
++				if (dt != DMSType.VMS_CHAR) {
++					addForStore(mess, char_spacing);
++					logStore(char_spacing);
++					if (dt != DMSType.VMS_LINE) {
++						addForStore(mess, line_spacing);
++						logStore(line_spacing);
++					}
+ 				}
++				mess.storeProps();
+ 			}
+-			mess.storeProps();
++			catch (GenError e) {
++				// Some (all?) 1203v1 devices (e.g., Ver-Mac)
++				// respond with GenError if attempts are made
++				// to modify a permanent font (see NTCIP 1203
++				// v03.04 section 5.4.2.8).
++				if (version2)
++					return new ValidateFontV2();
++				else
++					return new ValidateFontV1();
++			}
++
+ 			Collection<Glyph> glyphs =FontHelper.lookupGlyphs(font);
+ 			if (glyphs.isEmpty()) {
+ 				if (version2)
+@@ -501,9 +515,17 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer height = fontHeight.makeInt(row);
+ 			height.setInteger(font.getHeight());
+-			addForStore(mess, height);
+-			logStore(height);
+-			mess.storeProps();
++			try {
++				addForStore(mess, height);
++				logStore(height);
++				mess.storeProps();
++			}
++			catch (GenError e) {
++				// Some (all?) 1203v1 devices (e.g., Ver-Mac)
++				// respond with GenError if attempts are made
++				// to modify a permanent font (see NTCIP 1203
++				// v03.04 section 5.4.2.8).
++			}
+ 			if (font == dms.getDefaultFont())
+ 				return new SetDefaultFont();
+ 			else

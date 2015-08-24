@@ -1,0 +1,51 @@
+H1 {
+	text-align: center;
+}
+H2 {
+	page-break-after: avoid;
+}
+BODY {
+	background: #cccccc;
+	text-align: justify;
+	orphans: 3;
+	windows: 4;
+}
+P {
+	page-break-inside: avoid;
+}
+TABLE {
+	page-break-inside: avoid;
+	border-collapse: collapse;
+	border: 3px solid black;
+	background: #f0f0f0;
+}
+TH {
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	background: lightgreen;
+	text-align: left;
+	vertical-align: middle;
+}
+TD {
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	background: white;
+	text-align: left;
+	vertical-align: middle;
+}
+.stamp {
+	text-align: right;
+	clear: both;
+}
+.left {
+	float: left;
+	width: 33%;
+}
+.right {
+	float: right;
+	width: 33%;
+}
+.all {
+	clear: both;
+}

@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!-- ant build file for mapbean project
+     Copyright (C) 2000-2013  Minnesota Department of Transportation
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 2 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.  -->
+
+<project name="mapbean" default="jar" basedir=".">
+
+	<!-- Base directory configuration -->
+	<property name="src.dir" value="src" />
+	<property name="images.dir" value="images" />
+	<property name="lib.dir" value="lib" />
+
+	<!-- Property configuration -->
+	<property file="project.properties"/>
+	<property file="${user.home}/.ant.properties"/>
+
+	<!-- Build directory configuration -->
+	<property name="build.dir" value="build" />
+	<property name="build.lib" value="${build.dir}/lib" />
+ 	<property name="build.deps" value="${build.dir}/deps"/>
+	<property name="build.classes" value="${build.dir}/classes" />
+	<property name="build.javadocs" value="${build.dir}/javadocs" />
+	<property name="dist.dir" value="${name}-${version}" />
+
+	<!-- Dependent jar configuration -->
+	<property name="geokit.jar" value="geokit-${geokit.version}.jar"/>
+
+	<!-- Compiler configuration -->
+	<property name="build.compiler" value="modern" />
+	<property name="build.compiler.pedantic" value="true" />
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="${geokit.jar}"/>
+		</fileset>
+	</path>
+
+	<!-- Check for one file dependancy -->
+	<target name="check-dep">
+		<available property="file.exists"
+			   file="${lib.dir}/${file.dep}"/>
+		<fail unless="file.exists"
+		      message="Missing dependency: ${lib.dir}/${file.dep}"/>
+	</target>
+
+	<!-- Check for one subproject dependancy -->
+	<target name="check-subproject">
+		<available property="file.exists"
+			   file="${lib.dir}/${file.dep}"/>
+		<antcall target="build-subproject"/>
+	</target>
+
+	<!-- Build a subproject -->
+	<target name="build-subproject" unless="file.exists">
+		<antcall target="hg-check"/>
+		<copy todir="${build.deps}/${repo.name}/lib">
+			<fileset dir="${lib.dir}"/>
+		</copy>
+		<ant dir="${build.deps}/${repo.name}"
+		     target="jar" inheritAll="false"/>
+		<copy todir="${lib.dir}">
+			<fileset dir="${build.deps}/${repo.name}/build/lib/"/>
+		</copy>
+	</target>
+
+	<!-- Check a mercurial subproject -->
+	<target name="hg-check" unless="file.exists">
+		<available property="dir.exists"
+		           file="${build.deps}/${repo.name}"/>
+		<antcall target="hg-clone"/>
+	</target>
+
+	<!-- Clone a mercurial subproject -->
+	<target name="hg-clone" unless="dir.exists">
+		<mkdir dir="${build.deps}"/>
+		<exec executable="hg" dir="${build.deps}" failonerror="true">
+			<arg value="clone"/>
+			<arg value="-r${repo.version}"/>
+			<arg value="${hgbase.url}${repo.name}"/>
+		</exec>
+	</target>
+
+	<!-- Check for dependencies -->
+	<target name="check">
+		<antcall target="check-subproject">
+			<param name="file.dep" value="${geokit.jar}"/>
+			<param name="repo.name" value="geokit"/>
+			<param name="repo.version" value="${geokit.version}"/>
+		</antcall>
+	</target>
+
+	<!-- Prepare the build directory -->
+	<target name="prepare">
+		<copy todir="${build.classes}/images">
+			<fileset dir="${images.dir}" />
+		</copy>
+	</target>
+
+	<!-- Compile the source code -->
+	<target name="compile"
+		depends="check, prepare"
+	        description="Compile the source code">
+		<javac srcdir="${src.dir}"
+		       destdir="${build.classes}"
+		       debug="${debug}"
+		       deprecation="on"
+		       includeantruntime="false"
+		       source="1.6"
+		       target="1.6">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	<!-- Create the jar archive -->
+	<target name="jar"
+		depends="compile"
+		description="Generate the jar file">
+		<mkdir dir="${build.lib}"/>
+		<jar jarfile="${build.lib}/${name}-${version}.jar">
+			<fileset dir="${build.classes}" />
+		</jar>
+	</target>
+
+	<!-- Create the API documentation -->
+	<target name="docs"
+		description="Create the API documentation">
+		<mkdir dir="${build.javadocs}"/>
+		<javadoc packagenames="${packages}"
+		         sourcepath="${basedir}/${src.dir}"
+		         destdir="${build.javadocs}"
+		         author="true"
+		         version="true"
+		         windowtitle="${name} API"
+		         doctitle="${name}"
+		         bottom="Copyright &#169; Minnesota Department of
+		                 Transportation. All Rights Reserved.">
+		</javadoc>
+	</target>
+
+	<!-- Create the full distribution -->
+	<target name="dist"
+	        depends="jar, docs"
+	        description="Create the binary distribution">
+		<mkdir dir="${dist.dir}"/>
+		<mkdir dir="${dist.dir}/lib"/>
+		<copy file="COPYING" todir="${dist.dir}"/>
+		<copy todir="${dist.dir}/lib">
+			<fileset dir="${build.lib}" />
+		</copy>
+		<copy todir="${dist.dir}/docs/api">
+			<fileset dir="${build.javadocs}" />
+		</copy>
+	</target>
+
+	<!-- Clean up generated stuff -->
+	<target name="clean"
+		description="Clean up the created directories">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+</project>

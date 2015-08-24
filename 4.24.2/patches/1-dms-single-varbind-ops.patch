@@ -1,0 +1,1488 @@
+# HG changeset patch
+# User Travis Swanston <trav@t-s.net>
+# Date 1439164222 25200
+# Node ID e4a33a2ec52d64dd704bb9c2884915b4f3c27537
+# Parent  c66e564da94ca94d8d551fdba8d2f138137e0882
+Allow for NTCIP ops for some DMS to have a maximum var-bind list size of 1, and default to this mode for unconfigured DMS.
+This functionality is used in a subsequent changeset in which the var-bind
+list size decision is made with respect to the make/model of configured DMS.
+
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/DMS.java
+--- a/src/us/mn/state/dot/tms/DMS.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/DMS.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2000-2014  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -20,12 +21,16 @@
+  * DMS -- Dynamic Message Sign
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public interface DMS extends Device {
+ 
+ 	/** SONAR type name */
+ 	String SONAR_TYPE = "dms";
+ 
++	/** Get the configure flag */
++	boolean getConfigure();
++
+ 	/** Get the device location */
+ 	GeoLoc getGeoLoc();
+ 
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/DMSHelper.java
+--- a/src/us/mn/state/dot/tms/DMSHelper.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/DMSHelper.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -2,6 +2,7 @@
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2008-2014  Minnesota Department of Transportation
+  * Copyright (C) 2009-2010  AHMCT, University of California
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -23,6 +24,7 @@
+  *
+  * @author Douglas Lau
+  * @author Michael Darter
++ * @author Travis Swanston
+  */
+ public class DMSHelper extends BaseHelper {
+ 
+@@ -301,4 +303,18 @@
+ 		}
+ 		return true;
+ 	}
++
++	/**
++	 * Check if var-bind lists should be limited to length 1 for a DMS.
++	 * Always returns true for unconfigured DMS.
++	 * This is a stub for a subsequent changeset.
++	 * @param dms The DMS
++	 * @return True if var-bind lists should be limited to length 1 for
++	 *         the DMS, else false
++	 */
++	static public boolean singleVarBindsOnly(DMS proxy) {
++		if (!proxy.getConfigure())
++			return true;
++		return false;
++	}
+ }
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/DMSImpl.java
+--- a/src/us/mn/state/dot/tms/server/DMSImpl.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/DMSImpl.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -3,6 +3,7 @@
+  * Copyright (C) 2000-2015  Minnesota Department of Transportation
+  * Copyright (C) 2010 AHMCT, University of California
+  * Copyright (C) 2012  Iteris Inc.
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -72,6 +73,7 @@
+  *
+  * @author Douglas Lau
+  * @author Michael Darter
++ * @author Travis Swanston
+  */
+ public class DMSImpl extends DeviceImpl implements DMS {
+ 
+@@ -215,6 +217,7 @@
+ 
+ 	/** Get the configure flag.
+ 	 *  @return True to indicate the DMS is configured else false. */
++	@Override
+ 	public boolean getConfigure() {
+ 		return configure;
+ 	}
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpNtcip.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpNtcip.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpNtcip.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2013-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -18,6 +19,8 @@
+ import java.util.Iterator;
+ import java.util.regex.Pattern;
+ import us.mn.state.dot.sched.DebugLog;
++import us.mn.state.dot.tms.DMS;
++import us.mn.state.dot.tms.DMSHelper;
+ import us.mn.state.dot.tms.Graphic;
+ import us.mn.state.dot.tms.GraphicHelper;
+ import us.mn.state.dot.tms.LaneUseIndication;
+@@ -28,22 +31,30 @@
+ import us.mn.state.dot.tms.QuickMessage;
+ import us.mn.state.dot.tms.SignMessage;
+ import us.mn.state.dot.tms.server.DeviceImpl;
++import us.mn.state.dot.tms.server.comm.CommMessage;
++import us.mn.state.dot.tms.server.comm.ControllerProperty;
+ import us.mn.state.dot.tms.server.comm.OpDevice;
+ import us.mn.state.dot.tms.server.comm.PriorityLevel;
+ import us.mn.state.dot.tms.server.comm.ntcip.mib1203.GraphicInfoList;
+ import us.mn.state.dot.tms.server.comm.snmp.ASN1Object;
++import us.mn.state.dot.tms.server.comm.snmp.SNMP;
+ import us.mn.state.dot.tms.utils.HexString;
+ 
+ /**
+  * Operation for NTCIP device.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ abstract public class OpNtcip extends OpDevice {
+ 
+ 	/** NTCIP debug log */
+ 	static private final DebugLog NTCIP_LOG = new DebugLog("ntcip");
+ 
++	/** Whether var-bind lists should be limited to length 1 for this
++	 *  op's device */
++	private final boolean single_varbinds_only;
++
+ 	/** Lookup a sign message number */
+ 	static protected int lookupMsgNum(String ms) {
+ 		LaneUseMulti lum = findLaneUseMulti(ms);
+@@ -147,6 +158,30 @@
+ 		return null;
+ 	}
+ 
++	/**
++	 * Add a property to a CommMessage, and, for single-varbind-only DMS,
++	 * query the message's properties.
++	 */
++	protected void addForQuery(CommMessage mess, ControllerProperty cp)
++		throws IOException
++	{
++		mess.add(cp);
++		if ((single_varbinds_only) && (mess instanceof SNMP.Message))
++			mess.queryProps();
++	}
++
++	/**
++	 * Add a property to a CommMessage, and, for single-varbind-only DMS,
++	 * store the message's properties.
++	 */
++	protected void addForStore(CommMessage mess, ControllerProperty cp)
++		throws IOException
++	{
++		mess.add(cp);
++		if ((single_varbinds_only) && (mess instanceof SNMP.Message))
++			mess.storeProps();
++	}
++
+ 	/** Log an error msg */
+ 	protected void logError(String msg) {
+ 		if (NTCIP_LOG.isOpen())
+@@ -168,5 +203,12 @@
+ 	/** Create a new NTCIP operation */
+ 	protected OpNtcip(PriorityLevel p, DeviceImpl d) {
+ 		super(p, d);
++		// determine this in constructor so that the state is
++		// constant for the entire op
++		if (d instanceof DMS)
++			single_varbinds_only =
++				(DMSHelper.singleVarBindsOnly((DMS)d));
++		else
++			single_varbinds_only = false;
+ 	}
+ }
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSConfiguration.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSConfiguration.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSConfiguration.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2000-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -34,6 +35,7 @@
+  * Operation to query the configuration of a DMS.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpQueryDMSConfiguration extends OpDMS {
+ 
+@@ -64,7 +66,7 @@
+ 		/** Query the number of modules */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer modules = globalMaxModules.makeInt();
+-			mess.add(modules);
++			addForQuery(mess, modules);
+ 			mess.queryProps();
+ 			logQuery(modules);
+ 			return new QueryModules(modules.getInteger());
+@@ -92,10 +94,10 @@
+ 			ASN1String version = moduleVersion.makeStr(mod);
+ 			ASN1Enum<ModuleType> m_type = new ASN1Enum<ModuleType>(
+ 				ModuleType.class, moduleType.node, mod);
+-			mess.add(make);
+-			mess.add(model);
+-			mess.add(version);
+-			mess.add(m_type);
++			addForQuery(mess, make);
++			addForQuery(mess, model);
++			addForQuery(mess, version);
++			addForQuery(mess, m_type);
+ 			mess.queryProps();
+ 			logQuery(make);
+ 			logQuery(model);
+@@ -135,15 +137,15 @@
+ 			ASN1Flags<DmsSignTechnology> tech = new ASN1Flags<
+ 				DmsSignTechnology>(DmsSignTechnology.class,
+ 				dmsSignTechnology.node);
+-			mess.add(access);
+-			mess.add(type);
+-			mess.add(height);
+-			mess.add(width);
+-			mess.add(h_border);
+-			mess.add(v_border);
+-			mess.add(legend);
+-			mess.add(beacon);
+-			mess.add(tech);
++			addForQuery(mess, access);
++			addForQuery(mess, type);
++			addForQuery(mess, height);
++			addForQuery(mess, width);
++			addForQuery(mess, h_border);
++			addForQuery(mess, v_border);
++			addForQuery(mess, legend);
++			addForQuery(mess, beacon);
++			addForQuery(mess, tech);
+ 			mess.queryProps();
+ 			logQuery(access);
+ 			logQuery(type);
+@@ -179,12 +181,12 @@
+ 			ASN1Integer c_height =
+ 				vmsCharacterHeightPixels.makeInt();
+ 			ASN1Integer c_width = vmsCharacterWidthPixels.makeInt();
+-			mess.add(s_height);
+-			mess.add(s_width);
+-			mess.add(h_pitch);
+-			mess.add(v_pitch);
+-			mess.add(c_height);
+-			mess.add(c_width);
++			addForQuery(mess, s_height);
++			addForQuery(mess, s_width);
++			addForQuery(mess, h_pitch);
++			addForQuery(mess, v_pitch);
++			addForQuery(mess, c_height);
++			addForQuery(mess, c_width);
+ 			mess.queryProps();
+ 			logQuery(s_height);
+ 			logQuery(s_width);
+@@ -215,12 +217,12 @@
+ 			DmsSupportedMultiTags tags =new DmsSupportedMultiTags();
+ 			ASN1Integer pages = dmsMaxNumberPages.makeInt();
+ 			ASN1Integer m_len = dmsMaxMultiStringLength.makeInt();
+-			mess.add(m_color);
+-			mess.add(color_scheme);
+-			mess.add(tags);
+-			mess.add(pages);
+-			mess.add(m_len);
+ 			try {
++				addForQuery(mess, m_color);
++				addForQuery(mess, color_scheme);
++				addForQuery(mess, tags);
++				addForQuery(mess, pages);
++				addForQuery(mess, m_len);
+ 				mess.queryProps();
+ 				logQuery(m_color);
+ 				logQuery(color_scheme);
+@@ -241,10 +243,10 @@
+ 
+ 		/** Query graphics objects */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(num_graphics);
+-			mess.add(max_size);
+-			mess.add(available_memory);
+ 			try {
++				addForQuery(mess, num_graphics);
++				addForQuery(mess, max_size);
++				addForQuery(mess, available_memory);
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSMessage.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSMessage.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSMessage.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2000-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -33,6 +34,7 @@
+  * Operation to query the current message on a DMS.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpQueryDMSMessage extends OpDMS {
+ 
+@@ -108,7 +110,7 @@
+ 
+ 		/** Query the current message source */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(source);
++			addForQuery(mess, source);
+ 			mess.queryProps();
+ 			logQuery(source);
+ 			return processMessageSource();
+@@ -134,11 +136,11 @@
+ 				dmsMessageStatus.node,
+ 				DmsMessageMemoryType.currentBuffer.ordinal(),1);
+ 			ASN1Integer time = dmsMessageTimeRemaining.makeInt();
+-			mess.add(ms);
+-			mess.add(beacon);
+-			mess.add(prior);
+-			mess.add(status);
+-			mess.add(time);
++			addForQuery(mess, ms);
++			addForQuery(mess, beacon);
++			addForQuery(mess, prior);
++			addForQuery(mess, status);
++			addForQuery(mess, time);
+ 			mess.queryProps();
+ 			logQuery(ms);
+ 			logQuery(beacon);
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSStatus.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSStatus.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpQueryDMSStatus.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2000-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -39,6 +40,7 @@
+  * failure information.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpQueryDMSStatus extends OpDMS {
+ 
+@@ -104,10 +106,10 @@
+ 			ASN1Enum<DmsIllumControl> control = new ASN1Enum<
+ 				DmsIllumControl>(DmsIllumControl.class,
+ 				dmsIllumControl.node);
+-			mess.add(p_level);
+-			mess.add(b_level);
+-			mess.add(light);
+-			mess.add(control);
++			addForQuery(mess, p_level);
++			addForQuery(mess, b_level);
++			addForQuery(mess, light);
++			addForQuery(mess, control);
+ 			mess.queryProps();
+ 			logQuery(p_level);
+ 			logQuery(b_level);
+@@ -130,13 +132,13 @@
+ 			ASN1Integer vol_num = dmsNumVolatileMsg.makeInt();
+ 			ASN1Integer vol_max = dmsMaxVolatileMsg.makeInt();
+ 			ASN1Integer vol_mem = dmsFreeVolatileMemory.makeInt();
+-			mess.add(perm_num);
+-			mess.add(chg_num);
+-			mess.add(chg_max);
+-			mess.add(chg_mem);
+-			mess.add(vol_num);
+-			mess.add(vol_max);
+-			mess.add(vol_mem);
++			addForQuery(mess, perm_num);
++			addForQuery(mess, chg_num);
++			addForQuery(mess, chg_max);
++			addForQuery(mess, chg_mem);
++			addForQuery(mess, vol_num);
++			addForQuery(mess, vol_max);
++			addForQuery(mess, vol_mem);
+ 			mess.queryProps();
+ 			logQuery(perm_num);
+ 			logQuery(chg_num);
+@@ -156,8 +158,8 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer min_cab = tempMinCtrlCabinet.makeInt();
+ 			ASN1Integer max_cab = tempMaxCtrlCabinet.makeInt();
+-			mess.add(min_cab);
+-			mess.add(max_cab);
++			addForQuery(mess, min_cab);
++			addForQuery(mess, max_cab);
+ 			mess.queryProps();
+ 			logQuery(min_cab);
+ 			logQuery(max_cab);
+@@ -181,9 +183,9 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer min_amb = tempMinAmbient.makeInt();
+ 			ASN1Integer max_amb = tempMaxAmbient.makeInt();
+-			mess.add(min_amb);
+-			mess.add(max_amb);
+ 			try {
++				addForQuery(mess, min_amb);
++				addForQuery(mess, max_amb);
+ 				mess.queryProps();
+ 				logQuery(min_amb);
+ 				logQuery(max_amb);
+@@ -213,8 +215,8 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer min_hou = tempMinSignHousing.makeInt();
+ 			ASN1Integer max_hou = tempMaxSignHousing.makeInt();
+-			mess.add(min_hou);
+-			mess.add(max_hou);
++			addForQuery(mess, min_hou);
++			addForQuery(mess, max_hou);
+ 			mess.queryProps();
+ 			logQuery(min_hou);
+ 			logQuery(max_hou);
+@@ -236,7 +238,7 @@
+ 
+ 		/** Query the DMS failure status */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(shortError);
++			addForQuery(mess, shortError);
+ 			mess.queryProps();
+ 			logQuery(shortError);
+ 			return new MoreFailures();
+@@ -256,11 +258,11 @@
+ 				.class, controllerErrorStatus.node);
+ 			int se = shortError.getInteger();
+ 			if (ShortErrorStatus.MESSAGE.isSet(se))
+-				mess.add(msg_err);
++				addForQuery(mess, msg_err);
+ 			if (ShortErrorStatus.CONTROLLER.isSet(se))
+-				mess.add(con);
++				addForQuery(mess, con);
+ 			if (ShortErrorStatus.PIXEL.isSet(se))
+-				mess.add(pix_rows);
++				addForQuery(mess, pix_rows);
+ 			mess.queryProps();
+ 			if (ShortErrorStatus.MESSAGE.isSet(se))
+ 				logQuery(msg_err);
+@@ -277,9 +279,9 @@
+ 
+ 		/** Query test/message rows in pixel failure table */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(test_rows);
+-			mess.add(message_rows);
+ 			try {
++				addForQuery(mess, test_rows);
++				addForQuery(mess, message_rows);
+ 				mess.queryProps();
+ 				logQuery(test_rows);
+ 				logQuery(message_rows);
+@@ -300,8 +302,8 @@
+ 		/** Query number of power supplies */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer n_pwr = dmsPowerNumRows.makeInt();
+-			mess.add(n_pwr);
+ 			try {
++				addForQuery(mess, n_pwr);
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+@@ -341,12 +343,12 @@
+ 			ASN1String mfr_status = new ASN1String(
+ 				dmsPowerMfrStatus.node, row);
+ 			ASN1Integer voltage = dmsPowerVoltage.makeInt(row);
+-			mess.add(desc);
+-			mess.add(p_type);
+-			mess.add(status);
+-			mess.add(mfr_status);
+-			mess.add(voltage);
+ 			try {
++				addForQuery(mess, desc);
++				addForQuery(mess, p_type);
++				addForQuery(mess, status);
++				addForQuery(mess, mfr_status);
++				addForQuery(mess, voltage);
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+@@ -398,8 +400,8 @@
+ 		/** Query number of light sensors */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer n_snsr = dmsLightSensorNumRows.makeInt();
+-			mess.add(n_snsr);
+ 			try {
++				addForQuery(mess, n_snsr);
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+@@ -432,9 +434,9 @@
+ 				dmsLightSensorStatus.node, row);
+ 			ASN1Integer reading = dmsLightSensorCurrentReading
+ 				.makeInt(row);
+-			mess.add(desc);
+-			mess.add(status);
+-			mess.add(reading);
++			addForQuery(mess, desc);
++			addForQuery(mess, status);
++			addForQuery(mess, reading);
+ 			mess.queryProps();
+ 			logQuery(desc);
+ 			logQuery(status);
+@@ -459,11 +461,11 @@
+ 
+ 		/** Query Ledstar-specific status */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(potBase);
+-			mess.add(low);
+-			mess.add(high);
+-			mess.add(bad);
+ 			try {
++				addForQuery(mess, potBase);
++				addForQuery(mess, low);
++				addForQuery(mess, high);
++				addForQuery(mess, bad);
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+@@ -491,10 +493,10 @@
+ 			ASN1Integer heat = signFaceHeatStatus.makeInt();
+ 			IllumPowerStatus power = new IllumPowerStatus();
+ 			SensorFailures sensor = new SensorFailures();
+-			mess.add(heat);
+-			mess.add(power);
+-			mess.add(sensor);
+ 			try {
++				addForQuery(mess, heat);
++				addForQuery(mess, power);
++				addForQuery(mess, sensor);
+ 				mess.queryProps();
+ 				logQuery(heat);
+ 				logQuery(power);
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpResetDMS.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpResetDMS.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpResetDMS.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2002-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -28,6 +29,7 @@
+  * Operatoin to reset a dynamic message sign.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpResetDMS extends OpDMS {
+ 
+@@ -51,7 +53,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer reset = dmsSWReset.makeInt();
+ 			reset.setInteger(1);
+-			mess.add(reset);
++			addForStore(mess, reset);
+ 			logStore(reset);
+ 			mess.storeProps();
+ 			return new CheckResetCompletion();
+@@ -68,8 +70,8 @@
+ 		/** Check for reset completion */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer reset = dmsSWReset.makeInt();
+-			mess.add(reset);
+ 			try {
++				addForQuery(mess, reset);
+ 				mess.queryProps();
+ 				logQuery(reset);
+ 				if (reset.getInteger() == 0)
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSDefaults.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSDefaults.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSDefaults.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2000-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -39,6 +40,7 @@
+  * Operation to send default parameters to a DMS.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpSendDMSDefaults extends OpDMS {
+ 
+@@ -67,9 +69,9 @@
+ 			end_msg.setMemoryType(DmsMessageMemoryType.blank);
+ 			end_msg.setNumber(1);
+ 			end_msg.setCrc(0);
+-			mess.add(power_time);
+-			mess.add(comm_time);
+-			mess.add(end_msg);
++			addForStore(mess, power_time);
++			addForStore(mess, comm_time);
++			addForStore(mess, end_msg);
+ 			logStore(power_time);
+ 			logStore(comm_time);
+ 			logStore(end_msg);
+@@ -89,9 +91,9 @@
+ 			dur.setInteger(10);
+ 			freq.setInteger(1440);
+ 			time.setInteger(180);
+-			mess.add(dur);
+-			mess.add(freq);
+-			mess.add(time);
++			addForStore(mess, dur);
++			addForStore(mess, freq);
++			addForStore(mess, time);
+ 			logStore(dur);
+ 			logStore(freq);
+ 			logStore(time);
+@@ -119,10 +121,10 @@
+ 				DMS_PAGE_ON_DEFAULT_SECS.getFloat()));
+ 			off_time.setInteger(Math.round(10 *
+ 				DMS_PAGE_OFF_DEFAULT_SECS.getFloat()));
+-			mess.add(line);
+-			mess.add(page);
+-			mess.add(on_time);
+-			mess.add(off_time);
++			addForStore(mess, line);
++			addForStore(mess, page);
++			addForStore(mess, on_time);
++			addForStore(mess, off_time);
+ 			logStore(line);
+ 			logStore(page);
+ 			logStore(on_time);
+@@ -142,10 +144,10 @@
+ 			ASN1Integer limit = ledBadPixelLimit.makeInt();
+ 			temp.setInteger(DMS_HIGH_TEMP_CUTOFF.getInt());
+ 			limit.setInteger(500);
+-			mess.add(temp);
+-			mess.add(override);
+-			mess.add(limit);
+ 			try {
++				addForStore(mess, temp);
++				addForStore(mess, override);
++				addForStore(mess, limit);
+ 				mess.storeProps();
+ 				logStore(temp);
+ 				logStore(override);
+@@ -178,12 +180,12 @@
+ 			day_rate.setInteger(1);
+ 			night_rate.setInteger(15);
+ 			max_lvl.setInteger(20);
+-			mess.add(temp);
+-			mess.add(day_night);
+-			mess.add(day_rate);
+-			mess.add(night_rate);
+-			mess.add(max_lvl);
+ 			try {
++				addForStore(mess, temp);
++				addForStore(mess, day_night);
++				addForStore(mess, day_rate);
++				addForStore(mess, night_rate);
++				addForStore(mess, max_lvl);
+ 				mess.storeProps();
+ 				logStore(temp);
+ 				logStore(day_night);
+@@ -226,10 +228,10 @@
+ 				v_border.setInteger(69);
+ 				h_pitch.setInteger(69);
+ 				v_pitch.setInteger(69);
+-				mess.add(h_border);
+-				mess.add(v_border);
+-				mess.add(h_pitch);
+-				mess.add(v_pitch);
++				addForStore(mess, h_border);
++				addForStore(mess, v_border);
++				addForStore(mess, h_pitch);
++				addForStore(mess, v_pitch);
+ 				mess.storeProps();
+ 				logStore(h_border);
+ 				logStore(v_border);
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2000-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -46,6 +47,7 @@
+  * Operation to send a set of fonts to a DMS controller.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpSendDMSFonts extends OpDMS {
+ 
+@@ -102,8 +104,8 @@
+ 		/** Query the maximum character size (v2 only) */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer max_char = fontMaxCharacterSize.makeInt();
+-			mess.add(max_char);
+ 			try {
++				addForQuery(mess, max_char);
+ 				mess.queryProps();
+ 				logQuery(max_char);
+ 				version2 = true;
+@@ -122,8 +124,8 @@
+ 
+ 		/** Query the number of supported fonts */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(num_fonts);
+-			mess.add(max_characters);
++			addForQuery(mess, num_fonts);
++			addForQuery(mess, max_characters);
+ 			mess.queryProps();
+ 			logQuery(num_fonts);
+ 			logQuery(max_characters);
+@@ -141,10 +143,11 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer number = fontNumber.makeInt(row);
+ 			ASN1Enum<FontStatus> status = makeStatus(row);
+-			mess.add(number);
+-			if (version2)
+-				mess.add(status);
+ 			try {
++				addForQuery(mess, number);
++				if (version2) {
++					addForQuery(mess, status);
++				}
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+@@ -242,8 +245,8 @@
+ 		/** Verify a font */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer version = fontVersionID.makeInt(row);
+-			mess.add(version);
+ 			try {
++				addForQuery(mess, version);
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+@@ -291,7 +294,7 @@
+ 		/** Query the initial font status */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<FontStatus> status = makeStatus(row);
+-			mess.add(status);
++			addForQuery(mess, status);
+ 			mess.queryProps();
+ 			logQuery(status);
+ 			switch (status.getEnum()) {
+@@ -317,7 +320,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<FontStatus> status = makeStatus(row);
+ 			status.setEnum(FontStatus.notUsedReq);
+-			mess.add(status);
++			addForStore(mess, status);
+ 			logStore(status);
+ 			mess.storeProps();
+ 			return new VerifyStatusNotUsed();
+@@ -330,7 +333,7 @@
+ 		/** Verify the font status is "notUsed" */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<FontStatus> status = makeStatus(row);
+-			mess.add(status);
++			addForQuery(mess, status);
+ 			mess.queryProps();
+ 			logQuery(status);
+ 			if (status.getEnum() != FontStatus.notUsed) {
+@@ -349,7 +352,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<FontStatus> status = makeStatus(row);
+ 			status.setEnum(FontStatus.modifyReq);
+-			mess.add(status);
++			addForStore(mess, status);
+ 			logStore(status);
+ 			mess.storeProps();
+ 			return new VerifyStatusModifying();
+@@ -362,7 +365,7 @@
+ 		/** Verify the font status is modifying */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<FontStatus> status = makeStatus(row);
+-			mess.add(status);
++			addForQuery(mess, status);
+ 			mess.queryProps();
+ 			logQuery(status);
+ 			if (status.getEnum() != FontStatus.modifying) {
+@@ -380,9 +383,9 @@
+ 		/** Invalidate a font entry in the font table */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer height = fontHeight.makeInt(row);
+-			mess.add(height);
+-			logStore(height);
+ 			try {
++				addForStore(mess, height);
++				logStore(height);
+ 				mess.storeProps();
+ 			}
+ 			catch (GenError e) {
+@@ -408,11 +411,11 @@
+ 			height.setInteger(font.getHeight());
+ 			char_spacing.setInteger(font.getCharSpacing());
+ 			line_spacing.setInteger(font.getLineSpacing());
+-			mess.add(number);
+-			mess.add(name);
+-			mess.add(height);
+-			mess.add(char_spacing);
+-			mess.add(line_spacing);
++			addForStore(mess, number);
++			addForStore(mess, name);
++			addForStore(mess, height);
++			addForStore(mess, char_spacing);
++			addForStore(mess, line_spacing);
+ 			logStore(number);
+ 			logStore(name);
+ 			logStore(height);
+@@ -460,8 +463,8 @@
+ 				characterBitmap.node, row, code_point);
+ 			char_width.setInteger(graphic.getWidth());
+ 			char_bitmap.setOctetString(pixels);
+-			mess.add(char_width);
+-			mess.add(char_bitmap);
++			addForStore(mess, char_width);
++			addForStore(mess, char_bitmap);
+ 			logStore(char_width);
+ 			logStore(char_bitmap);
+ 			mess.storeProps();
+@@ -488,7 +491,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer height = fontHeight.makeInt(row);
+ 			height.setInteger(font.getHeight());
+-			mess.add(height);
++			addForStore(mess, height);
+ 			logStore(height);
+ 			mess.storeProps();
+ 			if (font == dms.getDefaultFont())
+@@ -505,7 +508,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<FontStatus> status = makeStatus(row);
+ 			status.setEnum(FontStatus.readyForUseReq);
+-			mess.add(status);
++			addForStore(mess, status);
+ 			logStore(status);
+ 			mess.storeProps();
+ 			return new VerifyStatusReadyForUse();
+@@ -525,7 +528,7 @@
+ 		/** Verify the font status is ready for use */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<FontStatus> status = makeStatus(row);
+-			mess.add(status);
++			addForQuery(mess, status);
+ 			mess.queryProps();
+ 			logQuery(status);
+ 			switch (status.getEnum()) {
+@@ -557,7 +560,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer dfont = defaultFont.makeInt();
+ 			dfont.setInteger(font.getNumber());
+-			mess.add(dfont);
++			addForStore(mess, dfont);
+ 			logStore(dfont);
+ 			mess.storeProps();
+ 			return nextFontPhase();
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSLedstar.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSLedstar.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSLedstar.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2006-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -26,6 +27,7 @@
+  * Operation to set the Ledstar pixel current thresholds
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpSendDMSLedstar extends OpDMS {
+ 
+@@ -56,9 +58,9 @@
+ 
+ 		/** Set the LDC pot base */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(potBase);
+-			mess.add(currentLow);
+-			mess.add(currentHigh);
++			addForStore(mess, potBase);
++			addForStore(mess, currentLow);
++			addForStore(mess, currentHigh);
+ 			logStore(potBase);
+ 			logStore(currentLow);
+ 			logStore(currentHigh);
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSMessage.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSMessage.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSMessage.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2000-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -73,6 +74,7 @@
+  * </pre>
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpSendDMSMessage extends OpDMS {
+ 
+@@ -194,8 +196,8 @@
+ 			act.setNumber(1);
+ 			act.setCrc(0);
+ 			act.setAddress(0);
+-			mess.add(act);
+ 			try {
++				addForStore(mess, act);
+ 				logStore(act);
+ 				mess.storeProps();
+ 			}
+@@ -223,8 +225,8 @@
+ 			ASN1Enum<DmsMessageStatus> status = makeStatus(
+ 				DmsMessageMemoryType.changeable, msg_num);
+ 			status.setEnum(DmsMessageStatus.modifyReq);
+-			mess.add(status);
+ 			try {
++				addForStore(mess, status);
+ 				logStore(status);
+ 				mess.storeProps();
+ 			}
+@@ -249,7 +251,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<DmsMessageStatus> status = makeStatus(
+ 				DmsMessageMemoryType.changeable, msg_num);
+-			mess.add(status);
++			addForQuery(mess, status);
+ 			mess.queryProps();
+ 			logQuery(status);
+ 			if (status.getEnum() == DmsMessageStatus.modifying)
+@@ -289,10 +291,10 @@
+ 			beacon.setInteger(message.getBeaconEnabled() ? 1 : 0);
+ 			srv.setInteger(0);
+ 			prior.setInteger(message.getRunTimePriority());
+-			mess.add(ms);
+-			mess.add(beacon);
+-			mess.add(srv);
+-			mess.add(prior);
++			addForStore(mess, ms);
++			addForStore(mess, beacon);
++			addForStore(mess, srv);
++			addForStore(mess, prior);
+ 			logStore(ms);
+ 			logStore(beacon);
+ 			logStore(srv);
+@@ -310,7 +312,7 @@
+ 			ASN1Enum<DmsControlMode> mode = new ASN1Enum<
+ 				DmsControlMode>(DmsControlMode.class,
+ 				dmsControlMode.node);
+-			mess.add(mode);
++			addForQuery(mess, mode);
+ 			mess.queryProps();
+ 			logQuery(mode);
+ 			setErrorStatus(mode.toString());
+@@ -326,8 +328,8 @@
+ 			ASN1Enum<DmsMessageStatus> status = makeStatus(
+ 				DmsMessageMemoryType.changeable, msg_num);
+ 			status.setEnum(DmsMessageStatus.validateReq);
+-			mess.add(status);
+ 			try {
++				addForStore(mess, status);
+ 				logStore(status);
+ 				mess.storeProps();
+ 			}
+@@ -347,8 +349,8 @@
+ 				DmsMessageMemoryType.changeable, msg_num);
+ 			ASN1Integer crc = dmsMessageCRC.makeInt(
+ 				DmsMessageMemoryType.changeable, msg_num);
+-			mess.add(status);
+-			mess.add(crc);
++			addForQuery(mess, status);
++			addForQuery(mess, crc);
+ 			mess.queryProps();
+ 			logQuery(status);
+ 			logQuery(crc);
+@@ -383,7 +385,7 @@
+ 				DmsValidateMessageError>(
+ 				DmsValidateMessageError.class,
+ 				dmsValidateMessageError.node);
+-			mess.add(error);
++			addForQuery(mess, error);
+ 			mess.queryProps();
+ 			logQuery(error);
+ 			switch (error.getEnum()) {
+@@ -416,8 +418,8 @@
+ 			act.setNumber(msg_num);
+ 			act.setCrc(message_crc);
+ 			act.setAddress(0);
+-			mess.add(act);
+ 			try {
++				addForStore(mess, act);
+ 				logStore(act);
+ 				mess.storeProps();
+ 			}
+@@ -444,7 +446,7 @@
+ 			ASN1Enum<DmsActivateMsgError> error = new ASN1Enum<
+ 				DmsActivateMsgError>(DmsActivateMsgError.class,
+ 				dmsActivateMsgError.node);
+-			mess.add(error);
++			addForQuery(mess, error);
+ 			mess.queryProps();
+ 			logQuery(error);
+ 			switch (error.getEnum()) {
+@@ -481,8 +483,8 @@
+ 				MultiSyntaxError>(MultiSyntaxError.class,
+ 				dmsMultiSyntaxError.node);
+ 			ASN1Integer e_pos=dmsMultiSyntaxErrorPosition.makeInt();
+-			mess.add(m_err);
+-			mess.add(e_pos);
++			addForQuery(mess, m_err);
++			addForQuery(mess, e_pos);
+ 			mess.queryProps();
+ 			logQuery(m_err);
+ 			logQuery(e_pos);
+@@ -520,8 +522,8 @@
+ 
+ 		/** Query an other MULTI error */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(o_err);
+ 			try {
++				addForQuery(mess, o_err);
+ 				mess.queryProps();
+ 				logQuery(o_err);
+ 				if (isGraphicError() && graphics.hasNext())
+@@ -558,8 +560,8 @@
+ 			ASN1Flags<LedActivateMsgError> error = new ASN1Flags<
+ 				LedActivateMsgError>(LedActivateMsgError.class,
+ 				ledActivateMsgError.node);
+-			mess.add(error);
+ 			try {
++				addForQuery(mess, error);
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+@@ -587,9 +589,9 @@
+ 				setCommAndPower();
+ 			else
+ 				setCommAndPowerBlank();
+-			mess.add(time);
+-			mess.add(comm_msg);
+-			mess.add(long_msg);
++			addForStore(mess, time);
++			addForStore(mess, comm_msg);
++			addForStore(mess, long_msg);
+ 			logStore(time);
+ 			logStore(comm_msg);
+ 			logStore(long_msg);
+@@ -635,9 +637,9 @@
+ 
+ 		/** Query the graphics configuration */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(color_scheme);
+-			mess.add(max_graphics);
+-			mess.add(block_size);
++			addForQuery(mess, color_scheme);
++			addForQuery(mess, max_graphics);
++			addForQuery(mess, block_size);
+ 			mess.queryProps();
+ 			logQuery(color_scheme);
+ 			logQuery(max_graphics);
+@@ -762,8 +764,8 @@
+ 			}
+ 			ASN1Integer number = dmsGraphicNumber.makeInt(row);
+ 			ASN1Enum<DmsGraphicStatus> status = makeGStatus(row);
+-			mess.add(number);
+-			mess.add(status);
++			addForQuery(mess, number);
++			addForQuery(mess, status);
+ 			mess.queryProps();
+ 			logQuery(number);
+ 			logQuery(status);
+@@ -802,7 +804,7 @@
+ 		}
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer gid = dmsGraphicID.makeInt(row);
+-			mess.add(gid);
++			addForQuery(mess, gid);
+ 			mess.queryProps();
+ 			logQuery(gid);
+ 			if (isIDCorrect(graphic, gid.getInteger()))
+@@ -832,7 +834,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<DmsGraphicStatus> status = makeGStatus(row);
+ 			status.setEnum(DmsGraphicStatus.notUsedReq);
+-			mess.add(status);
++			addForStore(mess, status);
+ 			logStore(status);
+ 			mess.storeProps();
+ 			return new SetGraphicModifying(graphic, row);
+@@ -850,7 +852,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<DmsGraphicStatus> status = makeGStatus(row);
+ 			status.setEnum(DmsGraphicStatus.modifyReq);
+-			mess.add(status);
++			addForStore(mess, status);
+ 			logStore(status);
+ 			mess.storeProps();
+ 			return new VerifyGraphicModifying(graphic, row);
+@@ -867,7 +869,7 @@
+ 		}
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<DmsGraphicStatus> status = makeGStatus(row);
+-			mess.add(status);
++			addForQuery(mess, status);
+ 			mess.queryProps();
+ 			logQuery(status);
+ 			if (status.getEnum() != DmsGraphicStatus.modifying) {
+@@ -910,13 +912,13 @@
+ 					new byte[] { 0, 0, 0 });
+ 			} else
+ 				trans_color.setOctetString(new byte[] { 0 });
+-			mess.add(number);
+-			mess.add(name);
+-			mess.add(height);
+-			mess.add(width);
+-			mess.add(type);
+-			mess.add(trans_enabled);
+-			mess.add(trans_color);
++			addForStore(mess, number);
++			addForStore(mess, name);
++			addForStore(mess, height);
++			addForStore(mess, width);
++			addForStore(mess, type);
++			addForStore(mess, trans_enabled);
++			addForStore(mess, trans_color);
+ 			logStore(number);
+ 			logStore(name);
+ 			logStore(height);
+@@ -949,7 +951,7 @@
+ 			ASN1OctetString block_bitmap = new ASN1OctetString(
+ 				dmsGraphicBlockBitmap.node, row, block);
+ 			block_bitmap.setOctetString(createBlock());
+-			mess.add(block_bitmap);
++			addForStore(mess, block_bitmap);
+ 			logStore(block_bitmap);
+ 			mess.storeProps();
+ 			if (block * block_size.getInteger() < bitmap.length) {
+@@ -983,7 +985,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<DmsGraphicStatus> status = makeGStatus(row);
+ 			status.setEnum(DmsGraphicStatus.readyForUseReq);
+-			mess.add(status);
++			addForStore(mess, status);
+ 			logStore(status);
+ 			mess.storeProps();
+ 			return new VerifyGraphicReady(graphic, row);
+@@ -1007,7 +1009,7 @@
+ 		/** Verify the graphic status is ready for use */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Enum<DmsGraphicStatus> status = makeGStatus(row);
+-			mess.add(status);
++			addForQuery(mess, status);
+ 			mess.queryProps();
+ 			logQuery(status);
+ 			if (status.getEnum() == DmsGraphicStatus.readyForUse)
+@@ -1031,7 +1033,7 @@
+ 		}
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer gid = dmsGraphicID.makeInt(row);
+-			mess.add(gid);
++			addForQuery(mess, gid);
+ 			mess.queryProps();
+ 			logQuery(gid);
+ 			if (!isIDCorrect(graphic, gid.getInteger())) {
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpTestDMSPixels.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpTestDMSPixels.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpTestDMSPixels.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2008-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -35,6 +36,7 @@
+  * This operation tests the pixel status of a DMS.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpTestDMSPixels extends OpDMS {
+ 
+@@ -91,7 +93,7 @@
+ 
+ 		/** Query the status of pixel test activation */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(activation);
++			addForQuery(mess, activation);
+ 			mess.queryProps();
+ 			logQuery(activation);
+ 			if (activation.getEnum() == PixelTestActivation.noTest)
+@@ -107,7 +109,7 @@
+ 		/** Activate the pixel test */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			activation.setEnum(PixelTestActivation.test);
+-			mess.add(activation);
++			addForStore(mess, activation);
+ 			logStore(activation);
+ 			mess.storeProps();
+ 			return new CheckTestCompletion();
+@@ -123,7 +125,7 @@
+ 
+ 		/** Check for test completion */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(activation);
++			addForQuery(mess, activation);
+ 			mess.queryProps();
+ 			logQuery(activation);
+ 			if (activation.getEnum() == PixelTestActivation.noTest)
+@@ -142,7 +144,7 @@
+ 
+ 		/** Query the row count in pixel failure table */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(total_rows);
++			addForQuery(mess, total_rows);
+ 			mess.queryProps();
+ 			logQuery(total_rows);
+ 			if (total_rows.getInteger() > 0)
+@@ -157,9 +159,9 @@
+ 
+ 		/** Query test/message rows in pixel failure table */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(test_rows);
+-			mess.add(message_rows);
+ 			try {
++				addForQuery(mess, test_rows);
++				addForQuery(mess, message_rows);
+ 				mess.queryProps();
+ 				logQuery(test_rows);
+ 				logQuery(message_rows);
+@@ -219,10 +221,10 @@
+ 				PixelFailureStatus>(PixelFailureStatus.class,
+ 				pixelFailureStatus.node,detectionType.ordinal(),
+ 				row);
+-			mess.add(x_loc);
+-			mess.add(y_loc);
+-			mess.add(status);
+ 			try {
++				addForQuery(mess, x_loc);
++				addForQuery(mess, y_loc);
++				addForQuery(mess, status);
+ 				mess.queryProps();
+ 			}
+ 			catch (NoSuchName e) {
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpUpdateDMSBrightness.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpUpdateDMSBrightness.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpUpdateDMSBrightness.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2008-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -30,6 +31,7 @@
+  * Operation to incorporate brightness feedback for a DMS.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpUpdateDMSBrightness extends OpDMS {
+ 
+@@ -76,9 +78,9 @@
+ 
+ 		/** Query the DMS brightness status */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(max_level);
+-			mess.add(p_level);
+-			mess.add(light);
++			addForQuery(mess, max_level);
++			addForQuery(mess, p_level);
++			addForQuery(mess, light);
+ 			mess.queryProps();
+ 			logQuery(max_level);
+ 			logQuery(p_level);
+@@ -94,9 +96,9 @@
+ 
+ 		/** Get the brightness table */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+-			mess.add(b_levels);
+-			mess.add(brightness);
+-			mess.add(control);
++			addForQuery(mess, b_levels);
++			addForQuery(mess, brightness);
++			addForQuery(mess, control);
+ 			mess.queryProps();
+ 			logQuery(b_levels);
+ 			logQuery(brightness);
+@@ -114,7 +116,7 @@
+ 		/** Set the manual control mode */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			control.setEnum(DmsIllumControl.manual);
+-			mess.add(control);
++			addForStore(mess, control);
+ 			logStore(control);
+ 			mess.storeProps();
+ 			return new SetBrightnessTable();
+@@ -131,7 +133,7 @@
+ 			//       vendor, which has a wacky brightness table.
+ 			if (brightness.isValid()) {
+ 				brightness.setTable(calculateTable());
+-				mess.add(brightness);
++				addForStore(mess, brightness);
+ 				logStore(brightness);
+ 				mess.storeProps();
+ 			}
+@@ -152,7 +154,7 @@
+ 		/** Set the photocell control mode */
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			control.setEnum(DmsIllumControl.photocell);
+-			mess.add(control);
++			addForStore(mess, control);
+ 			logStore(control);
+ 			mess.storeProps();
+ 			return null;
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/ntcip/OpUpdateDMSDuration.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpUpdateDMSDuration.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpUpdateDMSDuration.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2004-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -27,6 +28,7 @@
+  * Operation to update the duration of the current DMS message.
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class OpUpdateDMSDuration extends OpDMS {
+ 
+@@ -57,7 +59,7 @@
+ 		protected Phase poll(CommMessage mess) throws IOException {
+ 			ASN1Integer time = dmsMessageTimeRemaining.makeInt();
+ 			time.setInteger(getDuration());
+-			mess.add(time);
++			addForStore(mess, time);
+ 			logStore(time);
+ 			mess.storeProps();
+ 			return null;
+diff -r c66e564da94c -r e4a33a2ec52d src/us/mn/state/dot/tms/server/comm/snmp/SNMP.java
+--- a/src/us/mn/state/dot/tms/server/comm/snmp/SNMP.java	Wed Jul 22 08:47:28 2015 -0500
++++ b/src/us/mn/state/dot/tms/server/comm/snmp/SNMP.java	Sun Aug 09 16:50:22 2015 -0700
+@@ -1,6 +1,7 @@
+ /*
+  * IRIS -- Intelligent Roadway Information System
+  * Copyright (C) 2000-2015  Minnesota Department of Transportation
++ * Copyright (C) 2015  Castle Rock Associates, Inc.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -28,6 +29,7 @@
+  * Simple Network Management Protocol (SNMP)
+  *
+  * @author Douglas Lau
++ * @author Travis Swanston
+  */
+ public class SNMP extends BER {
+ 
+@@ -100,26 +102,39 @@
+ 		protected final String community;
+ 
+ 		/** SNMP request-id */
+-		public final int request_id;
++		public int request_id;
+ 
+ 		/** List of objects set or get with this message */
+ 		protected final LinkedList<ASN1Object> mos =
+ 			new LinkedList<ASN1Object>();
+ 
++		/** True if all properties in the message have been
++		 * queried/stored */
++		boolean executed;
++
+ 		/** Create a new SNMP message */
+ 		public Message(OutputStream o, InputStream i, String c) {
+ 			os = o;
+ 			is = i;
+ 			community = (c != null) ? c : PUBLIC;
++			initialize();
++		}
++
++		/** Initialize this message (or re-initialize it for re-use) */
++		public void initialize() {
++			mos.clear();
+ 			request_id = last_request++;
+ 			if (last_request > REQUEST_ID_MAX_LEDSTAR_BUG)
+ 				last_request = 0;
++			executed = true;
+ 		}
+ 
+ 		/** Add a controller property */
+ 		public void add(ControllerProperty cp) {
+-			if (cp instanceof ASN1Object)
++			if (cp instanceof ASN1Object) {
+ 				mos.add((ASN1Object)cp);
++				executed = false;
++			}
+ 		}
+ 
+ 		/** Query the controller properties.  This is accomplished with
+@@ -127,6 +142,8 @@
+ 		 * @throws IOException On any errors sending a request or
+ 		 *         receiving response */
+ 		public void queryProps() throws IOException {
++			if (executed)
++				return;
+ 			if (mos.isEmpty())
+ 				return;
+ 			is.skip(is.available());
+@@ -137,6 +154,7 @@
+ 			encoder.reset();
+ 			os.flush();
+ 			decodeResponse();
++			initialize();
+ 		}
+ 
+ 		/** Store the controller properties.  This is accomplished with
+@@ -144,6 +162,8 @@
+ 		 * @throws IOException On any errors sending a request or
+ 		 *         receiving response */
+ 		public void storeProps() throws IOException {
++			if (executed)
++				return;
+ 			if (mos.isEmpty())
+ 				return;
+ 			is.skip(is.available());
+@@ -154,6 +174,7 @@
+ 			encoder.reset();
+ 			os.flush();
+ 			decodeResponse();
++			initialize();
+ 		}
+ 
+ 		/** Decode a response to a SET or GET request */

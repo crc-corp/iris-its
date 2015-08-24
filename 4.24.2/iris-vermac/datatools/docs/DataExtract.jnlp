@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <!-- JNLP File for DataExtract Application -->
+   <jnlp
+     spec="1.0"
+     codebase="http://@@DATATOOLS.WEBSTART.HOST@@/@@NAME@@"
+     href="DataExtract.jnlp">
+     <information>
+       <title>Data Extract</title>
+       <vendor>MN/DOT</vendor>
+       <homepage href="dataextract.html"/>
+       <description>Traffic data extraction program</description>
+       <icon href="images/dataextract.png"/>
+       <offline/>
+     </information>
+     <resources>
+       <j2se version="1.6+" initial-heap-size="32M" max-heap-size="128M"/>
+       <jar href="lib/@@NAME@@-@@VERSION@@.jar"/>
+       <jar href="lib/mail.jar"/>
+       <jar href="lib/@@TMSLOG.JAR@@"/>
+     </resources>
+     <security>
+       <all-permissions/>
+     </security>
+     <application-desc main-class="us.mn.state.dot.data.Main">
+       <argument>http://@@DATATOOLS.WEBSTART.HOST@@/@@NAME@@/dataextract.properties</argument>
+     </application-desc>
+   </jnlp>

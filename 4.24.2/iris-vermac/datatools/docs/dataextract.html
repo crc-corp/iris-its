@@ -1,0 +1,101 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>"Data Extract"</title>
+	<link rel="stylesheet" type="text/css" href="/datatools/standard.css" />
+</head>
+<body>
+<div class='mndot_body'>
+<!--#include virtual="/datatools/header.html" -->
+
+<center><h1>Data Extract</h1></center>
+<br><a href="#DetsStats">1. Detectors and Stations</a>
+<br><a href="#Dates">2. Dates</a>
+<br><a href="#Data Sets">3. Data Sets</a>
+<br><a href="#Times">4. Times</a>
+<br><a href="#File Format">5. File Format</a>
+<br><a href="#Extracting">6. Extracting</a>
+<br><a href="#Saving/Retrieving">7. Saving/Retrieving</a>
+<br>
+<hr WIDTH="100%">
+<a href="DataExtract.jnlp">Run DataExtract</a>
+<hr WIDTH="100%">
+<h2>
+<a NAME="DetsStats"></a>1. Detectors and Stations</h2>
+DataExtract allows you to select either detectors or stations or a combination of the two.  You can select in a variety of ways.  They are:<br>
+<ul>
+<li>Type a valid index number into the search box and hit enter.
+<li>Double-click the index in the available list.
+<li>Highlight multiple entries in the list by using the control or shift
+keys and then use the add button to add them all.
+</ul>
+<strong>Detector</strong> data
+can be obtained by either an individual detector number or by a combination of
+detector numbers ( Composite Detectors ).  See the <a href=
+"dataplot.html">DataPlot Documentation</a>
+for instructions on how to use Composite Detectors. <strong>Station</strong>
+data can be represented by
+an individual station number or by creating a composite detector. If station numbers
+are input, they are converted to the composite detectors that represent station
+data. You can also select detectors and stations by creating a text input file and then
+importing it into DataExtract. The format for the file is quite simple.  One entry per
+line.  If it is a detector number, preface the number ( or composite ) with the letter D
+( capital or lower ). If it is a station number, preface the number with S.  That's all!
+<hr WIDTH="100%">
+<h2>
+<a NAME="Dates"></a>2. Dates</h2>
+Date selection is done exactly as it is in DataPlot, but without the
+limitations presented by plotting data.
+<hr WIDTH="100%">
+<h2>
+<a NAME="Data Sets"></a>3. Data Sets</h2>
+There are a variety of data sets that can be extracted.  The raw data,
+volume and occupancy, being two of those sets.  In addition to raw data,
+you can get the aggregate data sets flow, headway, capacity, density and
+speed.  For the formulas used in computing these sets, see the
+<a href="dataplot.html">DataPlot Documentation</a>.
+<hr WIDTH="100%">
+<h2>
+<a NAME="Times"></a>4. Times</h2>
+You can choose to select a full days worth of data or any fractional part
+of a day ( down to minutes ).  DataExtract expects that times are entered
+in 24 hour format and that you are selecting either hours or hours and
+minutes.  If you attempt to select seconds, it will not be accepted.  The entry
+can be of the formats:<br>
+<ul><li>h<li>h mm<li>hmm<li>hh<li>hhmm<li>hh mm</ul>
+You can choose any non-numeric character if you choose to separate the
+hours and minutes ( e.g. hh:mm, hh mm, hh-mm etc... ).
+<hr WIDTH="100%">
+<h2>
+<a NAME="File Format"></a>5. File Format</h2>
+<p>The data can be extracted into a variety of file formats, hopefully versatile
+enough for most needs.  Based on the file format that you choose, the data
+will be written to one or more files.  When a single-file format ( composite or
+congestion) is chosen, you can declare the file name.  The file names will
+automatically be generated for you when the multiple-file formats are chosen.
+Whether you choose a single-file format or a multiple-file format, you must select
+what data you want in the file(s).  The options are values and a variety of
+aggregations of the values.  Although DataExtract is not designed as
+a data manipulation tool, it was determined that certain aggregations of data
+could be useful and so, were made available.  Please feel free to suggest
+others that you think could be useful. Additionally, you can select how you
+want the data oriented.  Essentially, this amounts to portrait or landscape.
+Play around with it, you'll see what I mean.</p>
+<hr WIDTH="100%">
+<h2>
+<a NAME="Extracting"></a>6. Extracting</h2>
+To extract the data, first make sure that you have selected at least one
+date, detector, data set, time frame, and the necessary file information
+has been provided.  From the file menu, choose "Extract Data".  It's that simple.
+This produces a CSV ( comma separated values ) file.  It can then be
+opened with most spreadsheet and database applications as well as any
+text editor.
+<hr WIDTH="100%">
+<h2>
+<a NAME="Saving/Retrieving"></a>7. Saving/Retrieving</h2>
+DataExtract can save and retrieve extraction settings to and from a file.  You will find these options on the file menu listed as "Save Settings As..." and "Open Settings File...".
+<hr WIDTH="100%">
+</div>
+</body>
+</html>

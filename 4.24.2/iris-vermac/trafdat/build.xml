@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!-- ant build file for Trafdat project
+     Copyright (C) 2007-2014  Minnesota Department of Transportation
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 2 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.  -->
+
+<project name="trafdat" default="war" basedir=".">
+	<property file="project.properties"/>
+	<property file="${user.home}/.ant.properties"/>
+	<property name="src.dir" value="src" />
+	<property name="etc.dir" value="etc" />
+	<property name="lib.dir" value="lib" />
+	<property name="build.dir" value="build" />
+	<property name="build.webapp.dir" value="build/webapp" />
+	<property name="build.src.dir" value="${build.dir}/src" />
+	<property name="build.etc.dir" value="${build.dir}/etc" />
+	<property name="build.web.dir" value="${build.dir}/web" />
+	<property name="build.lib.dir" value="${build.dir}/lib" />
+	<property name="build.classes.dir" value="${build.dir}/classes" />
+	<property name="build.javadocs.dir" value="${build.dir}/javadocs" />
+	<property name="userdocs.dir" value="${name}" />
+	<property name="webxml" value="etc/web.xml" />
+	<property name="build.compiler.pedantic" value="true"/>
+	<path id="classpath">
+		<fileset dir = "${lib.dir}" includes="**/*.jar"/>
+	</path>
+
+	<!-- Check for one jar dependancy -->
+	<target name="check-jar">
+		<available property="jar.exists"
+			   file="${lib.dir}/${file.jar}"/>
+		<echo message="Checking for ${lib.dir}/${file.jar}"/>
+		<fail unless="jar.exists"
+		      message="Missing dependency: ${lib.dir}/${file.jar}"/>
+	</target>
+
+	<!-- Check for dependancies -->
+	<target name="check">
+		<antcall target="check-jar">
+			<param name="file.jar" value="servlet-api.jar"/>
+		</antcall>
+	</target>
+
+	<!-- Prepare the directory structure -->
+	<target name="prepare"
+	        description="Prepare the build directory">
+		<mkdir dir="${build.src.dir}" />
+		<mkdir dir="${build.classes.dir}" />
+		<mkdir dir="${build.lib.dir}" />
+		<copy todir="${build.src.dir}" filtering="true">
+			<fileset dir="${src.dir}"/>
+			<filterset begintoken="@@" endtoken="@@">
+				<filter token="VERSION" value="${version}"/>
+			</filterset>
+		</copy>
+	</target>
+
+	<!-- Compile the source code -->
+	<target name="compile"
+		depends="check, prepare"
+		description="Compiles all of the source files for the project.">
+		<javac destdir="${build.classes.dir}"
+		       debug="${debug}"
+		       deprecation="on"
+		       includeantruntime="true"
+		       source="1.6"
+		       target="1.6">
+			<src path="${build.src.dir}"/>
+			<classpath refid="classpath" />
+			<compilerarg value="-Xlint:unchecked"/>
+		</javac>
+	</target>
+
+	<!-- Create the server war -->
+	<target name="war"
+		depends="compile"
+		description="Creates the war file.">
+		<copy todir="${build.webapp.dir}/WEB-INF/classes">
+			<fileset dir="${build.classes.dir}"/>
+		</copy>
+		<war destfile="${build.lib.dir}/${name}.war-${version}"
+		     webxml="${webxml}"
+		     basedir="${build.webapp.dir}">
+		</war>
+	</target>
+
+	<!-- Create the API documentation -->
+	<target name="javadocs"
+		depends="prepare"
+		description="Creates the javadocs for the project.">
+		<javadoc packagenames="${packages}"
+		         classpathref="classpath"
+		         sourcepath="${src.dir}"
+		         destdir="${build.javadocs}"
+		         author="true"
+		         version="true"
+		         windowtitle="${name} API"
+		         doctitle="${name}-${version}"
+		         bottom="Copyright &#169; Minnesota Department of
+		                 Transportation. All Rights Reserved."/>
+	</target>
+
+	<!-- Clean up generated stuff -->
+	<target name="clean"
+		description="deletes build directory.">
+		<delete dir="${build.dir}"/>
+	</target>
+</project>

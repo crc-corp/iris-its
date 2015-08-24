@@ -1,0 +1,7 @@
+bin
+build
+dist
+.ant.properties
+.ant.properties~
+build.xml~
+.build.xml.swp

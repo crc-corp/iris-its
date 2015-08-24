@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: jnlp.jar mail.jar tms-log-@@TMSLOG.VERSION@@.jar 
+Main-Class: us.mn.state.dot.data.Main

@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+
+<!-- ant build file for tdxml project
+     Copyright (C) 2000-2010  Minnesota Department of Transportation
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 2 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.  -->
+
+<project default="jar" basedir=".">
+
+	<!-- Base directory configuration -->
+	<property name="src.dir" value="src"/>
+
+	<!-- Property configuration -->
+	<property file="project.properties"/>
+	<property file="${user.home}/.ant.properties"/>
+
+	<!-- Build directory configuration -->
+	<property name="build.dir" value="build"/>
+	<property name="build.lib" value="${build.dir}/lib"/>
+	<property name="build.src" value="${build.dir}/src"/>
+	<property name="build.classes" value="${build.dir}/classes"/>
+	<property name="build.docs" value="${build.dir}/docs"/>
+
+	<!-- Prepare the build directory -->
+	<target name="prepare">
+		<tstamp/>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.lib}"/>
+		<mkdir dir="${build.src}"/>
+		<mkdir dir="${build.docs}"/>
+		<copy todir="${build.src}">
+			<fileset dir="${src.dir}">
+				<include name = "**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Compile the source code -->
+	<target name="compile"
+		depends="prepare"
+		description="--> compile the source code">
+		<mkdir dir="${build.classes}"/>
+		<javac srcdir="${build.src}"
+		       destdir="${build.classes}"
+		       debug="${debug}"
+		       deprecation="on"
+		       source="1.5"
+		       target="1.5">
+			<compilerarg value="-Xlint:unchecked"/>
+		</javac>
+	</target>
+
+	<!-- Create the jar file -->
+	<target name="jar"
+		depends="compile"
+		description="--> generate the ${name} jar files">
+		<jar jarfile="${build.lib}/${name}-${version}.jar">
+			<fileset dir="${build.classes}">
+				<include name="us/mn/state/dot/tdxml/**"/>
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- Create api documentation -->
+	<target name="javadocs"
+		depends="prepare"
+		description="--> create the javadocs for the project">
+		<mkdir dir="${build.docs}"/>
+		<javadoc packagenames="${packages}"
+		         sourcepath="${basedir}/${build.src}"
+		         destdir="${build.docs}"
+		         author="true"
+		         version="true"
+		         windowtitle="${name} API"
+		         doctitle="${name}"
+		         bottom="Copyright &#169; Minnesota Department of
+				Transportation. All Rights Reserved.">
+		</javadoc>
+	</target>
+
+	<!-- Clean up build and distribution directories -->
+	<target name="clean"
+		description="--> clean up the created directories">
+		<delete dir="${build.dir}"/>
+	</target>
+</project>

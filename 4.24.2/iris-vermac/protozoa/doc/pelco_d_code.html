@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta name="Author" content="Douglas Lau"/>
+	<link href="protozoa.css" rel="stylesheet" type="text/css"/>
+	<title>Pelco D Camera Control Code</title>
+</head>
+
+<body>
+<h2>Pelco D Camera Control Code</h2>
+
+<p>
+	Receiver address can range from 1 - 254.
+</p>
+<p>
+	Pan and tilt speed can range from 0 - 63. There is also a "turbo" pan
+	speed, which can be selected with a value of 64.
+</p>
+<p>
+	Commands sent to a camera remain active until another command is
+	received. For example, a pan will not stop until a command is sent
+	with pan speed of zero. There is a timeout function, but it is well
+	over 30 seconds.
+</p>
+<p>
+	The checksum is obtained by summing the values of bytes 1 - 5, using
+	only the low 8 bits of that sum.
+</p>
+
+<div class="left">
+<table>
+<tr>
+	<th>BIT</th>
+	<th>FUNCTION</th>
+</tr>
+<tr>
+	<td>0</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>8</td>
+	<td>receiver bit 0</td>
+</tr>
+<tr>
+	<td>9</td>
+	<td>receiver bit 1</td>
+</tr>
+<tr>
+	<td>10</td>
+	<td>receiver bit 2</td>
+</tr>
+<tr>
+	<td>11</td>
+	<td>receiver bit 3</td>
+</tr>
+<tr>
+	<td>12</td>
+	<td>receiver bit 4</td>
+</tr>
+<tr>
+	<td>13</td>
+	<td>receiver bit 5</td>
+</tr>
+<tr>
+	<td>14</td>
+	<td>receiver bit 6</td>
+</tr>
+<tr>
+	<td>15</td>
+	<td>receiver bit 7</td>
+</tr>
+
+<tr>
+	<td>16 - 23</td>
+	<td>
+		see <a href="#command">command</a>
+		<br/>or <a href="#extended">extended</a>
+	</td>
+</tr>
+<tr>
+	<td>24</td>
+	<td>
+		0: <a href="#command">command</a><br/>
+		1: <a href="#extended">extended</a> function
+	</td>
+</tr>
+<tr>
+	<td>25 - 47</td>
+	<td>
+		see <a href="#command">command</a>
+		<br/>or <a href="#extended">extended</a>
+	</td>
+</tr>
+<tr>
+	<td>48</td>
+	<td>checksum bit 0</td>
+</tr>
+<tr>
+	<td>49</td>
+	<td>checksum bit 1</td>
+</tr>
+<tr>
+	<td>50</td>
+	<td>checksum bit 2</td>
+</tr>
+<tr>
+	<td>51</td>
+	<td>checksum bit 3</td>
+</tr>
+<tr>
+	<td>52</td>
+	<td>checksum bit 4</td>
+</tr>
+<tr>
+	<td>53</td>
+	<td>checksum bit 5</td>
+</tr>
+<tr>
+	<td>54</td>
+	<td>checksum bit 6</td>
+</tr>
+<tr>
+	<td>55</td>
+	<td>checksum bit 7</td>
+</tr>
+</table>
+</div>
+
+<div class="right">
+<table id="extended">
+<tr>
+	<th rowspan="2">EXTENDED<br/>FUNCTION</th>
+	<th colspan="5">BIT</th>
+	<th colspan="2">PARAMETERS</th>
+</tr>
+<tr>
+	<th>29</th>
+	<th>28</th>
+	<th>27</th>
+	<th>26</th>
+	<th>25</th>
+	<th>BITS 40-47</th>
+	<th>BITS 32-39</th>
+</tr>
+<tr>
+	<td>store preset</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1 - 32</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clear preset</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1 - 32</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>recall preset</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1 - 32</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>set auxiliary</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1 - 8</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>clear auxiliary</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1 - 8</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>N/A</td>
+	<td>N/A</td>
+</tr>
+<tr>
+	<td>remote reset</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>set zone start</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1 - 8</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>set zone end</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1 - 8</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>write character</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>ASCII char</td>
+	<td>0 - 28 (X pos)</td>
+</tr>
+<tr>
+	<td>clear all characters</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>acknowledge alarm</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>alarm #</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>zone scan on</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>zone scan off</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>set pattern start</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>set pattern stop</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>run pattern</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>set zoom speed</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0 - 3</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>set focus speed</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0 - 3</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>reset to defaults</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>auto-focus</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0: auto<br/>1: on<br/>2: off</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>auto-iris</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0: auto<br/>1: on<br/>2: off</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>reserved</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>N/A</td>
+	<td>N/A</td>
+</tr>
+<tr>
+	<td>reserved</td>
+	<td>1</td>
+	<td>1</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>N/A</td>
+	<td>N/A</td>
+</tr>
+</table>
+</div>
+
+<table id="command">
+<tr>
+	<th>BIT</th>
+	<th>COMMAND<br/>FUNCTION</th>
+</tr>
+<tr>
+	<td>16</td>
+	<td>focus near</td>
+</tr>
+<tr>
+	<td>17</td>
+	<td>iris open</td>
+</tr>
+<tr>
+	<td>18</td>
+	<td>iris close</td>
+</tr>
+<tr>
+	<td>19</td>
+	<td rowspan="2"><a href="#sense">sense function</a></td>
+</tr>
+<tr>
+	<td>20</td>
+</tr>
+<tr>
+	<td>21</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>22</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>23</td>
+	<td><a href="#sense">sense function</a></td>
+</tr>
+<tr>
+	<td>24</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>25</td>
+	<td>pan right</td>
+</tr>
+<tr>
+	<td>26</td>
+	<td>pan left</td>
+</tr>
+<tr>
+	<td>27</td>
+	<td>tilt up</td>
+</tr>
+<tr>
+	<td>28</td>
+	<td>tilt down</td>
+</tr>
+<tr>
+	<td>29</td>
+	<td>zoom in</td>
+</tr>
+<tr>
+	<td>30</td>
+	<td>zoom out</td>
+</tr>
+<tr>
+	<td>31</td>
+	<td>focus far</td>
+</tr>
+<tr>
+	<td>32</td>
+	<td>pan speed bit 0</td>
+</tr>
+<tr>
+	<td>33</td>
+	<td>pan speed bit 1</td>
+</tr>
+<tr>
+	<td>34</td>
+	<td>pan speed bit 2</td>
+</tr>
+<tr>
+	<td>35</td>
+	<td>pan speed bit 3</td>
+</tr>
+<tr>
+	<td>36</td>
+	<td>pan speed bit 4</td>
+</tr>
+<tr>
+	<td>37</td>
+	<td>pan speed bit 5</td>
+</tr>
+<tr>
+	<td>38</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>39</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>40</td>
+	<td>tilt speed bit 0</td>
+</tr>
+<tr>
+	<td>41</td>
+	<td>tilt speed bit 1</td>
+</tr>
+<tr>
+	<td>42</td>
+	<td>tilt speed bit 2</td>
+</tr>
+<tr>
+	<td>43</td>
+	<td>tilt speed bit 3</td>
+</tr>
+<tr>
+	<td>44</td>
+	<td>tilt speed bit 4</td>
+</tr>
+<tr>
+	<td>45</td>
+	<td>tilt speed bit 5</td>
+</tr>
+<tr>
+	<td>46</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>47</td>
+	<td>must be 0</td>
+</tr>
+</table>
+
+<br/>
+
+<table id="sense">
+<tr>
+	<th rowspan="2">SENSE FUNCTION</th>
+	<th colspan="3">BIT</th>
+</tr>
+<tr>
+	<th>23</td>
+	<th>20</td>
+	<th>19</td>
+</tr>
+<tr>
+	<td>no function</td>
+	<td></td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>camera off</td>
+	<td>0</td>
+	<td></td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>camera on</td>
+	<td>1</td>
+	<td></td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>manual scan</td>
+	<td>0</td>
+	<td>1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>auto scan</td>
+	<td>1</td>
+	<td>1</td>
+	<td></td>
+</tr>
+</table>
+
+<p class="all">
+	Auxiliary functions:
+</p>
+<table>
+<tr>
+	<th>AUX</th>
+	<th>FUNCTION</th>
+</tr>
+<tr>
+	<td>1</td>
+	<td>wiper</td>
+</tr>
+</table>
+
+<p class="stamp">
+	2014 May 9
+</p>
+</body>
+</html>

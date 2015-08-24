@@ -1,0 +1,12 @@
+[Unit]
+Description=Protozoa Camera Control Transceiver
+
+[Service]
+ExecStart=/usr/local/bin/protozoa
+Nice=-20
+Type=simple
+Restart=always
+User=protozoa
+
+[Install]
+WantedBy=multi-user.target

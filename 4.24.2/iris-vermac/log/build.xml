@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<!-- ant build file for log project -->
+<project name="tms-log" default="jar" basedir=".">
+	<property file="project.properties"/>
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="build"/>
+	<property name="build.src" value="${build.dir}/src"/>
+	<property name="build.lib" value="${build.dir}/lib"/>
+	<property name="build.classes" value="${build.dir}/classes"/>
+	<property name="build.javadocs" value="${build.dir}/javadocs"/>
+	<property name="build.compiler.pedantic" value="true"/>
+
+	<!-- Prepare the build directory -->
+	<target name="prepare"
+	        description="Prepare the build directory">
+		<mkdir dir="${build.classes}"/>
+		<mkdir dir="${build.lib}"/>
+	</target>
+
+	<!-- Compile the source code -->
+	<target name="compile"
+	        depends="prepare"
+	        description="Compile all of the source files for the project">
+		<javac srcdir="${src.dir}"
+		       destdir="${build.classes}"
+		       debug="${debug}"
+		       deprecation="on"
+		       source="1.5"
+		       target="1.5">
+		</javac>
+	</target>
+
+	<!-- Create the jar -->
+	<target name="jar"
+		depends="compile"
+		description="Create the jar">
+		<jar jarfile="${build.lib}/${name}-${version}.jar">
+			<fileset dir="${build.classes}"
+				 includes="us/mn/state/dot/**/*.class"/>
+		</jar>
+	</target>
+
+	<!-- Create the API documentation -->
+	<target name="docs"
+	        depends="prepare"
+	        description="Create the API documentation">
+		<mkdir dir="${build.javadocs}" />
+		<javadoc packagenames="${packages}"
+		         classpathref="classpath"
+			 sourcepath="${src.dir}"
+		         destdir="${build.javadocs}"
+		         author="true"
+		         version="true"
+			 windowtitle="${name} version ${version} API"
+			 doctitle="${name} version ${version}"
+		         bottom="Copyright &#169; Minnesota Department of
+		                 Transportation. All Rights Reserved."/>
+	</target>
+
+	<!-- Clean up generated stuff -->
+	<target name="clean"
+	        description="Remove the build and distribution directories">
+		<delete dir="${build.dir}"/>
+	</target>
+</project>

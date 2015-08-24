@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" name="Author" content="Douglas Lau"/>
+	<link href="protozoa.css" rel="stylesheet" type="text/css"/>
+	<title>Infinova Camera Control Code</title>
+</head>
+
+<body>
+<h2>Infinova Camera Control Code</h2>
+
+<p>
+	The Infinova IP camera has a simple TCP-based protocol which can
+	encapsulate 3 different PTZ control protocols.
+	These are the Infinova protocol, and the Pelco P and D protocols.
+	Not much is known about the Infinova protocol, but use of either of
+	the Pelco protocols is trivial.
+</p>
+<p>
+	The wiper function can be controlled in two ways: aux 1 or preset 100.
+</p>
+
+<div class="left">
+<table>
+<tr>
+	<th>OCTET</th>
+	<th>FUNCTION</th>
+</tr>
+<tr>
+	<td>0</td>
+	<td>Magic Number 0x49 (I)</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>Magic Number 0x4e (N)</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>Magic Number 0x46 (F)</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>Message ID (0x01: auth?<br/> or 0x13: PTZ packet)</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>unknown (0 or 1)</td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>unknown (0 or 1)</td>
+</tr>
+<tr>
+	<td>8</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>9</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>10</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>11</td>
+	<td>Packet length</td>
+</tr>
+<tr>
+	<td>12+</td>
+	<td>packet contents</td>
+</tr>
+</table>
+</div>
+
+<p>
+	Each message to the camera must begin with a 12-byte header, as
+	described in the table on the left.
+</p>
+</p>
+	After connecting, the first message sent must be an "authentication"
+	message (ID: 0x01), otherwise the camera will close the socket.
+	For this message, the packet length (octet 11) should be 64 (0x40).
+	The first 32 octets of the packet contents should be a "user name"
+	field, in ASCII.
+	The next 32 octets are apperantly a hashed password field.
+	The user name and password are not checked by the camera, though,
+	so they can have any values.
+	Zero-filling these values is recommended.
+	In captured data, there are 2 extra zero bytes appended after the
+	authentication packet is finished.
+	It is not known whether these bytes are required.
+</p>
+
+<div class="right">
+<table>
+<tr>
+	<th>OCTET</th>
+	<th>FUNCTION</th>
+</tr>
+<tr>
+	<td>0</td>
+	<td>unknown (1)</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>raw packet length (7)</td>
+</tr>
+<tr>
+	<td>8</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>9</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>10</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>11</td>
+	<td>unknown (0)</td>
+</tr>
+<tr>
+	<td>12+</td>
+	<td>raw packet contents</td>
+</tr>
+</table>
+</div>
+
+<p>
+	After authentication, regular PTZ packets can be sent as needed.
+	For these, the message ID is 0x13.
+	The first 12-bytes of the packet contain a "PTZ header", which is
+	probably determined by the protocol.
+	This PTZ header is described in the table to the right.
+</p>
+<p>
+	After the PTZ header, the raw protocol packet is sent unmodified.
+	So, for Pelco D, seven bytes are sent for each packet.
+</p>
+
+<p class="all">
+	Auxiliary functions:
+</p>
+<table>
+<tr>
+	<th>AUX</th>
+	<th>FUNCTION</th>
+</tr>
+<tr>
+	<td>1</td>
+	<td>wiper</td>
+</tr>
+</table>
+<table>
+<tr>
+	<th>PRESET</th>
+	<th>FUNCTION</th>
+</tr>
+<tr>
+	<td>Recall / Store 95</td>
+	<td>Enter menu</td>
+</tr>
+<tr>
+	<td>Recall 99</td>
+	<td>Begin auto scan</td>
+</tr>
+<tr>
+	<td>Store 100</td>
+	<td>Turn on wiper</td>
+</tr>
+<tr>
+	<td>Recall 100</td>
+	<td>Turn off wiper</td>
+</tr>
+</table>
+
+<p class="stamp">
+	2014 May 9
+</p>
+</body>
+</html>

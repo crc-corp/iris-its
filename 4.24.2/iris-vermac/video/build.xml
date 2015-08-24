@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+
+<!-- ant build file for video project
+     Copyright (C) 2007-2011  Minnesota Department of Transportation
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 2 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.  -->
+
+<project name="video" default="war" basedir=".">
+	<property file="project.properties"/>
+	<property file="${user.home}/.ant.properties"/>
+	<property name="src.dir" value="src" />
+	<property name="etc.dir" value="etc" />
+	<property name="web.dir" value="web" />
+	<property name="lib.dir" value="lib" />
+	<property name="bin.dir" value="bin" />
+	<property name="build.dir" value="build" />
+	<property name="build.war.dir" value="${build.dir}/war" />
+	<property name="build.src.dir" value="${build.dir}/src" />
+	<property name="build.etc.dir" value="${build.dir}/etc" />
+	<property name="build.web.dir" value="${build.dir}/web" />
+	<property name="build.lib.dir" value="${build.dir}/lib" />
+	<property name="build.dist.dir" value="${build.dir}/dist" />
+	<property name="build.classes.dir" value="${build.dir}/classes" />
+	<property name="build.javadocs.dir" value="${build.dir}/javadocs" />
+	<property name="webxml" value="${web.dir}/web-inf/web.xml"/>
+	<property name="userdocs.dir" value="${name}" />
+	<property name="build.compiler.pedantic" value="true"/>
+	<path id="classpath">
+		<fileset dir = "${lib.dir}" includes="**/*.jar"/>
+	</path>
+
+	<!-- Check for dependancies -->
+	<target name="check-deps">
+		<antcall target="check-jar">
+			<param name="file.jar" value="postgresql-8.4-702.jdbc3.jar"/>
+		</antcall>
+		<antcall target="check-jar">
+			<param name="file.jar" value="servlet-api.jar"/>
+		</antcall>
+	</target>
+
+	<!-- Check for one jar dependancy -->
+	<target name="check-jar">
+		<available property="jar.exists"
+			   file="${lib.dir}/${file.jar}"/>
+		<echo message="Checking for ${lib.dir}/${file.jar}"/>
+		<fail unless="jar.exists"
+		      message="Missing dependency: ${lib.dir}/${file.jar}"/>
+	</target>
+
+	<!-- Prepares the directory structure -->
+	<target name="prepare"
+	        description="Prepare the build directory">
+
+		<mkdir dir="${build.src.dir}" />
+		<mkdir dir="${build.classes.dir}" />
+		<mkdir dir="${build.lib.dir}" />
+
+		<copy todir="${build.src.dir}">
+			<fileset dir="${src.dir}"/>
+		</copy>
+
+		<copy todir="${build.web.dir}">
+			<fileset dir="${web.dir}" />
+		</copy>
+
+		<copy todir="${build.etc.dir}">
+			<fileset dir="${etc.dir}" />
+		</copy>
+		<chmod dir="${build.etc.dir}" perm="ugo+rx" 
+		       includes="**/*.sh"/>		
+	</target>
+
+	<!-- Compile the source cod -->
+	<target name="compile"
+		depends="check-deps, prepare"
+		description="Compiles all of the source files for the project.">
+		<javac destdir="${build.classes.dir}"
+			excludes="us/mn/state/dot/video/dev/**"
+			debug="on"
+			deprecation="on"
+			optimize="on"
+			target="1.5">
+			<src path="${build.src.dir}"/>
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<!-- Create the war -->
+	<target name="war"
+		depends="clean, compile"
+		description="Creates the war file. Can be used as backend or repeater">
+		<copy todir="${build.war.dir}/WEB-INF/lib">
+			<fileset dir="${lib.dir}" >
+				<exclude name="servlet*" />
+			</fileset>
+		</copy>
+		<copy todir="${build.war.dir}/WEB-INF/classes">
+			<fileset dir="${build.classes.dir}">
+				<include name="us/mn/state/dot/video/*.*"/>
+				<include name="us/mn/state/dot/video/server/*.*"/>
+			</fileset>
+			<fileset dir="${etc.dir}">
+				<include name="logging.properties"/>
+			</fileset>
+		</copy>
+		<war
+			destfile="${build.lib.dir}/${name}.war-${version}"
+			webxml="${webxml}"
+			basedir="${build.war.dir}">
+		</war>
+	</target>
+
+	<!-- Create the API documentation -->
+	<target name="javadocs"
+		depends="prepare"
+		description="Creates the javadocs for the project.">
+		<javadoc packagenames="${packages}"
+			classpathref="classpath"
+			sourcepath="${basedir}/${src.dir}"
+			destdir="${build.javadocs}"
+			author="true"
+			version="true"
+			windowtitle="${name} API"
+			doctitle="${name}-${version}"
+			bottom="Copyright &#169; Minnesota Department of
+			Transportation. All Rights Reserved."/>
+	</target>
+
+	<!-- Clean up generated stuff -->
+	<target name="clean"
+		description="deletes build directory.">
+		<delete dir="${build.dir}"/>
+	</target>
+</project>

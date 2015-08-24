@@ -1,0 +1,50 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>"Density"</title>
+	<link rel="stylesheet" type="text/css" href="/datatools/standard.css" />
+</head>
+<body>
+<div class='mndot_body'>
+<!--#include virtual="/datatools/header.html" -->
+
+<h1>Density Calculation from Detector Data</h1>
+In traffic data analysis, there are three related types of data: speed,
+flow and density. <b>Speed</b> (miles per hour), is the best understood
+of these types, and some sensing systems can directly measure it. <b>Flow</b>
+is the rate in which vehicles arrive at a particular point on a roadway,
+described in terms of vehicles per hour. Traffic sensing systems usually
+record the traffic <b>volume</b>, which is the actual number of vehicles
+to arrive during a sampling period (e.g.. 30 seconds). Volume can be easily
+converted to a flow rate by multiplying the recorded volume by the number
+of sampling periods in an hour. Density is a measurement of how close vehicles
+are together, in vehicles per mile. With flow and speed measurements, density
+is easily calculated by dividing the flow rate by the speed:
+<p>Density (vehicles per mile)&nbsp; = Flow (vehicles per hour) / Speed
+(miles per hour)</p>
+<p>Unfortunately, older traffic sensing systems do not directly measure
+speed. In many cases, sensors provide only volume and <b>occupancy</b>,
+which is a percentage of time which the sensor is "occupied," by a vehicle.
+This presents some difficulties in determining both density and speed.
+Occupancy has a direct relationship to density, but that relationship is
+also affected by the average vehicle length and the sensitivity of the
+sensor. These two factors, taken together, are referred to as the <b>average
+field length</b> of the traffic sensor (usually described in feet).</p>
+<p>Once the average field length of a sensor is known, it is trivial to
+convert occupancy data into density. Multiply the occupancy by the number
+of feet in a mile (5280), to determine the number of occupied feet per
+mile. Then divide the number of occupied feet per mile by the average field
+length to determine the number of vehicles per mile (density).</p>
+<p>To compute the average field length for a sensor, it is necessary to
+take accurate speed and flow measurements, which can then be converted
+to density. Then multiply the recorded occupancy from the same sampling
+period by 5280 feet, to get the number of occupied feet per mile. After
+that, divide the number of occupied feet per mile by the measured density
+to determine the average field length for a sensor.</p>
+<br>&nbsp;</br>
+<p>Last modified: 21 Apr 2000
+<br>&nbsp;</br>
+</div>
+</body>
+</html>

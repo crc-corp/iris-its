@@ -1,0 +1,1432 @@
+<?xml version='1.0'?>
+<arterials system='Arterials' time_stamp='Mon, 13 Oct 2008 09:22:35 CDT' detector_prefix='E' >
+<zone index='71' label='TH 5 &amp; (10)/(32) # WACONIA'>
+	<detector index='E71_1' label='Detector 1'/>
+	<detector index='E71_2' label='Detector 2'/>
+	<detector index='E71_3' label='Detector 3'/>
+	<detector index='E71_4' label='Detector 4'/>
+	<detector index='E71_5' label='Detector 5'/>
+	<detector index='E71_6' label='Detector 6'/>
+</zone>
+<zone index='78' label='TH 169 &amp; Cedar Lk Rd # MINNETONKA'>
+	<detector index='E78_1' label='Detector 1'/>
+	<detector index='E78_2' label='Detector 2'/>
+	<detector index='E78_3' label='Detector 3'/>
+	<detector index='E78_4' label='Detector 4'/>
+</zone>
+<zone index='79' label='TH 169 &amp; Minnetonka Blvd # MINNETONKA'>
+	<detector index='E79_1' label='Detector 1'/>
+	<detector index='E79_2' label='Detector 2'/>
+	<detector index='E79_3' label='Detector 3'/>
+	<detector index='E79_4' label='Detector 4'/>
+</zone>
+<zone index='82' label='TH 169 &amp; Bren Rd/Londonderry # MINNETONKA'>
+	<detector index='E82_1' label='Detector 1'/>
+	<detector index='E82_2' label='Detector 2'/>
+	<detector index='E82_3' label='Detector 3'/>
+	<detector index='E82_4' label='Detector 4'/>
+	<detector index='E82_5' label='Detector 5'/>
+	<detector index='E82_6' label='Detector 6'/>
+	<detector index='E82_7' label='Detector 7'/>
+	<detector index='E82_8' label='Detector 8'/>
+	<detector index='E82_9' label='Detector 9'/>
+	<detector index='E82_10' label='Detector 10'/>
+	<detector index='E82_11' label='Detector 11'/>
+	<detector index='E82_12' label='Detector 12'/>
+	<detector index='E82_13' label='Detector 13'/>
+	<detector index='E82_14' label='Detector 14'/>
+	<detector index='E82_15' label='Detector 15'/>
+	<detector index='E82_16' label='Detector 16'/>
+	<detector index='E82_17' label='Detector 17'/>
+	<detector index='E82_18' label='Detector 18'/>
+	<detector index='E82_19' label='Detector 19'/>
+</zone>
+<zone index='83' label='TH 169 &amp; TH 10 &amp; TH 47 # ANOKA'>
+	<detector index='E83_1' label='Detector 1'/>
+	<detector index='E83_2' label='Detector 2'/>
+	<detector index='E83_3' label='Detector 3'/>
+	<detector index='E83_4' label='Detector 4'/>
+	<detector index='E83_5' label='Detector 5'/>
+	<detector index='E83_6' label='Detector 6'/>
+	<detector index='E83_7' label='Detector 7'/>
+	<detector index='E83_8' label='Detector 8'/>
+	<detector index='E83_9' label='Detector 9'/>
+	<detector index='E83_10' label='Detector 10'/>
+	<detector index='E83_11' label='Detector 11'/>
+	<detector index='E83_12' label='Detector 12'/>
+	<detector index='E83_13' label='Detector 13'/>
+	<detector index='E83_14' label='Detector 14'/>
+	<detector index='E83_15' label='Detector 15'/>
+</zone>
+<zone index='87' label='TH 7 &amp; TH 41 # EXCELSIOR'>
+	<detector index='E87_1' label='Detector 1'/>
+	<detector index='E87_2' label='Detector 2'/>
+	<detector index='E87_3' label='Detector 3'/>
+	<detector index='E87_4' label='Detector 4'/>
+	<detector index='E87_5' label='Detector 5'/>
+	<detector index='E87_6' label='Detector 6'/>
+	<detector index='E87_7' label='Detector 7'/>
+	<detector index='E87_8' label='Detector 8'/>
+	<detector index='E87_9' label='Detector 9'/>
+	<detector index='E87_10' label='Detector 10'/>
+	<detector index='E87_11' label='Detector 11'/>
+	<detector index='E87_12' label='Detector 12'/>
+</zone>
+<zone index='90' label='TH 47 &amp; 153rd Ave N # RAMSEY'>
+	<detector index='E90_1' label='Detector 1'/>
+	<detector index='E90_2' label='Detector 2'/>
+	<detector index='E90_3' label='Detector 3'/>
+	<detector index='E90_4' label='Detector 4'/>
+	<detector index='E90_5' label='Detector 5'/>
+	<detector index='E90_6' label='Detector 6'/>
+	<detector index='E90_7' label='Detector 7'/>
+	<detector index='E90_8' label='Detector 8'/>
+</zone>
+<zone index='91' label='TH 13 &amp; (31)/Lynn Ave # BURNSVILLE'>
+	<detector index='E91_1' label='Detector 1'/>
+	<detector index='E91_2' label='Detector 2'/>
+	<detector index='E91_3' label='Detector 3'/>
+	<detector index='E91_4' label='Detector 4'/>
+	<detector index='E91_5' label='Detector 5'/>
+	<detector index='E91_6' label='Detector 6'/>
+	<detector index='E91_7' label='Detector 7'/>
+	<detector index='E91_8' label='Detector 8'/>
+	<detector index='E91_9' label='Detector 9'/>
+	<detector index='E91_10' label='Detector 10'/>
+	<detector index='E91_11' label='Detector 11'/>
+	<detector index='E91_12' label='Detector 12'/>
+</zone>
+<zone index='95' label='I-94 &amp; Shingle Creek Pkwy # BROOKLYN PARK'>
+	<detector index='E95_1' label='Detector 1'/>
+	<detector index='E95_2' label='Detector 2'/>
+	<detector index='E95_3' label='Detector 3'/>
+	<detector index='E95_4' label='Detector 4'/>
+	<detector index='E95_5' label='Detector 5'/>
+	<detector index='E95_6' label='Detector 6'/>
+	<detector index='E95_7' label='Detector 7'/>
+	<detector index='E95_8' label='Detector 8'/>
+</zone>
+<zone index='96' label='TH 5 &amp; Venture/Fuller # EDEN PRAIRIE'>
+	<detector index='E96_1' label='Detector 1'/>
+	<detector index='E96_2' label='Detector 2'/>
+	<detector index='E96_3' label='Detector 3'/>
+	<detector index='E96_4' label='Detector 4'/>
+	<detector index='E96_5' label='Detector 5'/>
+	<detector index='E96_6' label='Detector 6'/>
+	<detector index='E96_7' label='Detector 7'/>
+	<detector index='E96_8' label='Detector 8'/>
+</zone>
+<zone index='98' label='TH 7 &amp; (73)/17th Ave # HOPKINS'>
+	<detector index='E98_1' label='Detector 1'/>
+	<detector index='E98_2' label='Detector 2'/>
+	<detector index='E98_3' label='Detector 3'/>
+	<detector index='E98_4' label='Detector 4'/>
+	<detector index='E98_5' label='Detector 5'/>
+	<detector index='E98_6' label='Detector 6'/>
+	<detector index='E98_7' label='Detector 7'/>
+	<detector index='E98_8' label='Detector 8'/>
+	<detector index='E98_9' label='Detector 9'/>
+	<detector index='E98_10' label='Detector 10'/>
+	<detector index='E98_11' label='Detector 11'/>
+	<detector index='E98_12' label='Detector 12'/>
+	<detector index='E98_13' label='Detector 13'/>
+	<detector index='E98_14' label='Detector 14'/>
+	<detector index='E98_15' label='Detector 15'/>
+	<detector index='E98_16' label='Detector 16'/>
+	<detector index='E98_17' label='Detector 17'/>
+	<detector index='E98_18' label='Detector 18'/>
+	<detector index='E98_19' label='Detector 19'/>
+	<detector index='E98_20' label='Detector 20'/>
+</zone>
+<zone index='99' label='TH 10 &amp; Hanson Blvd-Single Point #'>
+	<detector index='E99_1' label='Detector 1'/>
+	<detector index='E99_2' label='Detector 2'/>
+	<detector index='E99_3' label='Detector 3'/>
+	<detector index='E99_4' label='Detector 4'/>
+	<detector index='E99_5' label='Detector 5'/>
+	<detector index='E99_6' label='Detector 6'/>
+	<detector index='E99_7' label='Detector 7'/>
+	<detector index='E99_8' label='Detector 8'/>
+	<detector index='E99_9' label='Detector 9'/>
+	<detector index='E99_10' label='Detector 10'/>
+	<detector index='E99_11' label='Detector 11'/>
+	<detector index='E99_12' label='Detector 12'/>
+	<detector index='E99_13' label='Detector 13'/>
+	<detector index='E99_14' label='Detector 14'/>
+	<detector index='E99_15' label='Detector 15'/>
+	<detector index='E99_16' label='Detector 16'/>
+	<detector index='E99_17' label='Detector 17'/>
+	<detector index='E99_18' label='Detector 18'/>
+	<detector index='E99_19' label='Detector 19'/>
+	<detector index='E99_20' label='Detector 20'/>
+	<detector index='E99_21' label='Detector 21'/>
+	<detector index='E99_22' label='Detector 22'/>
+	<detector index='E99_23' label='Detector 23'/>
+	<detector index='E99_24' label='Detector 24'/>
+</zone>
+<zone index='100' label='TH 47 &amp; 49th Ave N # COLUMBIA HEIGHTS'>
+	<detector index='E100_1' label='Detector 1'/>
+	<detector index='E100_2' label='Detector 2'/>
+	<detector index='E100_3' label='Detector 3'/>
+	<detector index='E100_4' label='Detector 4'/>
+	<detector index='E100_5' label='Detector 5'/>
+	<detector index='E100_6' label='Detector 6'/>
+	<detector index='E100_7' label='Detector 7'/>
+	<detector index='E100_8' label='Detector 8'/>
+	<detector index='E100_9' label='Detector 9'/>
+	<detector index='E100_10' label='Detector 10'/>
+	<detector index='E100_11' label='Detector 11'/>
+	<detector index='E100_12' label='Detector 12'/>
+</zone>
+<zone index='101' label='TH 12 &amp; Carlson Pkwy # MINNETONKA'>
+	<detector index='E101_1' label='Detector 1'/>
+	<detector index='E101_2' label='Detector 2'/>
+	<detector index='E101_3' label='Detector 3'/>
+	<detector index='E101_4' label='Detector 4'/>
+</zone>
+<zone index='103' label='TH 212 &amp; I-494 SR # EDEN PRAIRIE'>
+	<detector index='E103_1' label='Detector 1'/>
+	<detector index='E103_2' label='Detector 2'/>
+	<detector index='E103_3' label='Detector 3'/>
+	<detector index='E103_4' label='Detector 4'/>
+	<detector index='E103_5' label='Detector 5'/>
+	<detector index='E103_6' label='Detector 6'/>
+	<detector index='E103_7' label='Detector 7'/>
+	<detector index='E103_8' label='Detector 8'/>
+	<detector index='E103_9' label='Detector 9'/>
+	<detector index='E103_10' label='Detector 10'/>
+	<detector index='E103_11' label='Detector 11'/>
+	<detector index='E103_12' label='Detector 12'/>
+	<detector index='E103_13' label='Detector 13'/>
+	<detector index='E103_14' label='Detector 14'/>
+	<detector index='E103_15' label='Detector 15'/>
+	<detector index='E103_16' label='Detector 16'/>
+	<detector index='E103_17' label='Detector 17'/>
+	<detector index='E103_18' label='Detector 18'/>
+	<detector index='E103_19' label='Detector 19'/>
+	<detector index='E103_20' label='Detector 20'/>
+	<detector index='E103_21' label='Detector 21'/>
+	<detector index='E103_22' label='Detector 22'/>
+</zone>
+<zone index='104' label='TH 212 &amp; TH 101 E JCT # SHAKOPEE "Y"'>
+	<detector index='E104_1' label='Detector 1'/>
+	<detector index='E104_2' label='Detector 2'/>
+	<detector index='E104_3' label='Detector 3'/>
+	<detector index='E104_4' label='Detector 4'/>
+	<detector index='E104_5' label='Detector 5'/>
+	<detector index='E104_6' label='Detector 6'/>
+	<detector index='E104_7' label='Detector 7'/>
+	<detector index='E104_8' label='Detector 8'/>
+	<detector index='E104_9' label='Detector 9'/>
+	<detector index='E104_10' label='Detector 10'/>
+	<detector index='E104_11' label='Detector 11'/>
+	<detector index='E104_12' label='Detector 12'/>
+	<detector index='E104_13' label='Detector 13'/>
+	<detector index='E104_14' label='Detector 14'/>
+	<detector index='E104_15' label='Detector 15'/>
+	<detector index='E104_16' label='Detector 16'/>
+	<detector index='E104_17' label='Detector 17'/>
+	<detector index='E104_18' label='Detector 18'/>
+	<detector index='E104_19' label='Detector 19'/>
+	<detector index='E104_20' label='Detector 20'/>
+	<detector index='E104_21' label='Detector 21'/>
+	<detector index='E104_22' label='Detector 22'/>
+	<detector index='E104_23' label='Detector 23'/>
+</zone>
+<zone index='106' label='I-394 &amp; (61)Plymouth Rd SR# MINNETONKA'>
+	<detector index='E106_1' label='Detector 1'/>
+	<detector index='E106_2' label='Detector 2'/>
+	<detector index='E106_3' label='Detector 3'/>
+	<detector index='E106_4' label='Detector 4'/>
+	<detector index='E106_5' label='Detector 5'/>
+	<detector index='E106_6' label='Detector 6'/>
+	<detector index='E106_7' label='Detector 7'/>
+	<detector index='E106_8' label='Detector 8'/>
+	<detector index='E106_9' label='Detector 9'/>
+	<detector index='E106_10' label='Detector 10'/>
+	<detector index='E106_11' label='Detector 11'/>
+	<detector index='E106_12' label='Detector 12'/>
+	<detector index='E106_13' label='Detector 13'/>
+	<detector index='E106_14' label='Detector 14'/>
+	<detector index='E106_15' label='Detector 15'/>
+</zone>
+<zone index='107' label='TH 55 &amp; Winnetka Ave # GOLDEN VALLEY'>
+	<detector index='E107_1' label='Detector 1'/>
+	<detector index='E107_2' label='Detector 2'/>
+	<detector index='E107_3' label='Detector 3'/>
+	<detector index='E107_4' label='Detector 4'/>
+	<detector index='E107_5' label='Detector 5'/>
+	<detector index='E107_6' label='Detector 6'/>
+	<detector index='E107_7' label='Detector 7'/>
+	<detector index='E107_8' label='Detector 8'/>
+	<detector index='E107_9' label='Detector 9'/>
+	<detector index='E107_10' label='Detector 10'/>
+	<detector index='E107_11' label='Detector 11'/>
+	<detector index='E107_12' label='Detector 12'/>
+	<detector index='E107_13' label='Detector 13'/>
+	<detector index='E107_14' label='Detector 14'/>
+	<detector index='E107_15' label='Detector 15'/>
+	<detector index='E107_16' label='Detector 16'/>
+	<detector index='E107_17' label='Detector 17'/>
+	<detector index='E107_18' label='Detector 18'/>
+	<detector index='E107_19' label='Detector 19'/>
+	<detector index='E107_20' label='Detector 20'/>
+	<detector index='E107_21' label='Detector 21'/>
+	<detector index='E107_22' label='Detector 22'/>
+	<detector index='E107_23' label='Detector 23'/>
+	<detector index='E107_24' label='Detector 24'/>
+	<detector index='E107_25' label='Detector 25'/>
+	<detector index='E107_26' label='Detector 26'/>
+	<detector index='E107_27' label='Detector 27'/>
+	<detector index='E107_28' label='Detector 28'/>
+	<detector index='E107_29' label='Detector 29'/>
+	<detector index='E107_30' label='Detector 30'/>
+	<detector index='E107_31' label='Detector 31'/>
+	<detector index='E107_32' label='Detector 32'/>
+</zone>
+<zone index='108' label='TH 55 &amp; I-494 ER # PLYMOUTH'>
+	<detector index='E108_1' label='Detector 1'/>
+	<detector index='E108_2' label='Detector 2'/>
+	<detector index='E108_3' label='Detector 3'/>
+	<detector index='E108_4' label='Detector 4'/>
+	<detector index='E108_5' label='Detector 5'/>
+	<detector index='E108_6' label='Detector 6'/>
+	<detector index='E108_7' label='Detector 7'/>
+	<detector index='E108_8' label='Detector 8'/>
+	<detector index='E108_9' label='Detector 9'/>
+	<detector index='E108_10' label='Detector 10'/>
+	<detector index='E108_11' label='Detector 11'/>
+	<detector index='E108_12' label='Detector 12'/>
+	<detector index='E108_13' label='Detector 13'/>
+	<detector index='E108_14' label='Detector 14'/>
+	<detector index='E108_15' label='Detector 15'/>
+	<detector index='E108_16' label='Detector 16'/>
+	<detector index='E108_17' label='Detector 17'/>
+	<detector index='E108_18' label='Detector 18'/>
+	<detector index='E108_19' label='Detector 19'/>
+	<detector index='E108_20' label='Detector 20'/>
+	<detector index='E108_21' label='Detector 21'/>
+	<detector index='E108_22' label='Detector 22'/>
+	<detector index='E108_23' label='Detector 23'/>
+	<detector index='E108_24' label='Detector 24'/>
+	<detector index='E108_25' label='Detector 25'/>
+	<detector index='E108_26' label='Detector 26'/>
+	<detector index='E108_27' label='Detector 27'/>
+	<detector index='E108_28' label='Detector 28'/>
+</zone>
+<zone index='109' label='TH 101 &amp; I-94 (49) to (144) # ROGERS'>
+	<detector index='E109_1' label='Detector 1'/>
+	<detector index='E109_2' label='Detector 2'/>
+	<detector index='E109_3' label='Detector 3'/>
+	<detector index='E109_4' label='Detector 4'/>
+	<detector index='E109_5' label='Detector 5'/>
+	<detector index='E109_6' label='Detector 6'/>
+	<detector index='E109_7' label='Detector 7'/>
+	<detector index='E109_8' label='Detector 8'/>
+	<detector index='E109_9' label='Detector 9'/>
+	<detector index='E109_10' label='Detector 10'/>
+	<detector index='E109_11' label='Detector 11'/>
+	<detector index='E109_12' label='Detector 12'/>
+	<detector index='E109_13' label='Detector 13'/>
+	<detector index='E109_14' label='Detector 14'/>
+	<detector index='E109_15' label='Detector 15'/>
+	<detector index='E109_16' label='Detector 16'/>
+	<detector index='E109_17' label='Detector 17'/>
+	<detector index='E109_18' label='Detector 18'/>
+</zone>
+<zone index='110' label='TH 252 &amp; Brookdale Dr # BROOKLYN PARK'>
+	<detector index='E110_1' label='Detector 1'/>
+	<detector index='E110_2' label='Detector 2'/>
+	<detector index='E110_3' label='Detector 3'/>
+	<detector index='E110_4' label='Detector 4'/>
+	<detector index='E110_5' label='Detector 5'/>
+	<detector index='E110_6' label='Detector 6'/>
+	<detector index='E110_7' label='Detector 7'/>
+	<detector index='E110_8' label='Detector 8'/>
+	<detector index='E110_9' label='Detector 9'/>
+	<detector index='E110_10' label='Detector 10'/>
+	<detector index='E110_11' label='Detector 11'/>
+	<detector index='E110_12' label='Detector 12'/>
+	<detector index='E110_13' label='Detector 13'/>
+	<detector index='E110_14' label='Detector 14'/>
+	<detector index='E110_15' label='Detector 15'/>
+	<detector index='E110_16' label='Detector 16'/>
+	<detector index='E110_17' label='Detector 17'/>
+	<detector index='E110_18' label='Detector 18'/>
+	<detector index='E110_19' label='Detector 19'/>
+	<detector index='E110_20' label='Detector 20'/>
+	<detector index='E110_21' label='Detector 21'/>
+	<detector index='E110_22' label='Detector 22'/>
+</zone>
+<zone index='111' label='TH 47 &amp; Mississippi St # FRIDLEY'>
+	<detector index='E111_1' label='Detector 1'/>
+	<detector index='E111_2' label='Detector 2'/>
+	<detector index='E111_3' label='Detector 3'/>
+	<detector index='E111_4' label='Detector 4'/>
+	<detector index='E111_5' label='Detector 5'/>
+	<detector index='E111_6' label='Detector 6'/>
+	<detector index='E111_7' label='Detector 7'/>
+	<detector index='E111_8' label='Detector 8'/>
+	<detector index='E111_9' label='Detector 9'/>
+	<detector index='E111_10' label='Detector 10'/>
+	<detector index='E111_11' label='Detector 11'/>
+	<detector index='E111_12' label='Detector 12'/>
+	<detector index='E111_13' label='Detector 13'/>
+	<detector index='E111_14' label='Detector 14'/>
+	<detector index='E111_15' label='Detector 15'/>
+	<detector index='E111_16' label='Detector 16'/>
+	<detector index='E111_17' label='Detector 17'/>
+	<detector index='E111_18' label='Detector 18'/>
+	<detector index='E111_19' label='Detector 19'/>
+	<detector index='E111_20' label='Detector 20'/>
+</zone>
+<zone index='112' label='TH 62 &amp; Clearwater/Beach Rd # EDEN PRAIRIE'>
+	<detector index='E112_1' label='Detector 1'/>
+	<detector index='E112_2' label='Detector 2'/>
+	<detector index='E112_3' label='Detector 3'/>
+	<detector index='E112_4' label='Detector 4'/>
+	<detector index='E112_5' label='Detector 5'/>
+	<detector index='E112_6' label='Detector 6'/>
+	<detector index='E112_7' label='Detector 7'/>
+	<detector index='E112_8' label='Detector 8'/>
+	<detector index='E112_9' label='Detector 9'/>
+	<detector index='E112_10' label='Detector 10'/>
+	<detector index='E112_11' label='Detector 11'/>
+	<detector index='E112_12' label='Detector 12'/>
+	<detector index='E112_13' label='Detector 13'/>
+	<detector index='E112_14' label='Detector 14'/>
+	<detector index='E112_15' label='Detector 15'/>
+	<detector index='E112_16' label='Detector 16'/>
+</zone>
+<zone index='114' label='394 &amp; Ridgedale Dr &amp; S Frt Rd # MINNETONKA'>
+	<detector index='E114_1' label='Detector 1'/>
+	<detector index='E114_2' label='Detector 2'/>
+	<detector index='E114_3' label='Detector 3'/>
+	<detector index='E114_4' label='Detector 4'/>
+	<detector index='E114_5' label='Detector 5'/>
+	<detector index='E114_6' label='Detector 6'/>
+	<detector index='E114_7' label='Detector 7'/>
+	<detector index='E114_8' label='Detector 8'/>
+	<detector index='E114_9' label='Detector 9'/>
+	<detector index='E114_10' label='Detector 10'/>
+	<detector index='E114_11' label='Detector 11'/>
+	<detector index='E114_12' label='Detector 12'/>
+	<detector index='E114_13' label='Detector 13'/>
+	<detector index='E114_14' label='Detector 14'/>
+	<detector index='E114_15' label='Detector 15'/>
+	<detector index='E114_16' label='Detector 16'/>
+	<detector index='E114_17' label='Detector 17'/>
+</zone>
+<zone index='116' label='394 S Frt Rd &amp; (73)Hopkins Crs Rd # MINNETONKA'>
+	<detector index='E116_1' label='Detector 1'/>
+	<detector index='E116_2' label='Detector 2'/>
+	<detector index='E116_3' label='Detector 3'/>
+	<detector index='E116_4' label='Detector 4'/>
+	<detector index='E116_5' label='Detector 5'/>
+	<detector index='E116_6' label='Detector 6'/>
+	<detector index='E116_7' label='Detector 7'/>
+	<detector index='E116_8' label='Detector 8'/>
+	<detector index='E116_9' label='Detector 9'/>
+	<detector index='E116_10' label='Detector 10'/>
+	<detector index='E116_11' label='Detector 11'/>
+	<detector index='E116_12' label='Detector 12'/>
+	<detector index='E116_13' label='Detector 13'/>
+	<detector index='E116_14' label='Detector 14'/>
+	<detector index='E116_15' label='Detector 15'/>
+	<detector index='E116_16' label='Detector 16'/>
+</zone>
+<zone index='117' label='TH 5 &amp; Great Plains Blvd # CHANHASSEN'>
+	<detector index='E117_1' label='Detector 1'/>
+	<detector index='E117_2' label='Detector 2'/>
+	<detector index='E117_3' label='Detector 3'/>
+	<detector index='E117_4' label='Detector 4'/>
+	<detector index='E117_5' label='Detector 5'/>
+	<detector index='E117_6' label='Detector 6'/>
+	<detector index='E117_7' label='Detector 7'/>
+	<detector index='E117_8' label='Detector 8'/>
+	<detector index='E117_9' label='Detector 9'/>
+	<detector index='E117_10' label='Detector 10'/>
+	<detector index='E117_11' label='Detector 11'/>
+	<detector index='E117_12' label='Detector 12'/>
+	<detector index='E117_13' label='Detector 13'/>
+	<detector index='E117_14' label='Detector 14'/>
+	<detector index='E117_15' label='Detector 15'/>
+	<detector index='E117_16' label='Detector 16'/>
+	<detector index='E117_17' label='Detector 17'/>
+	<detector index='E117_18' label='Detector 18'/>
+	<detector index='E117_19' label='Detector 19'/>
+	<detector index='E117_20' label='Detector 20'/>
+	<detector index='E117_21' label='Detector 21'/>
+	<detector index='E117_22' label='Detector 22'/>
+	<detector index='E117_23' label='Detector 23'/>
+	<detector index='E117_24' label='Detector 24'/>
+</zone>
+<zone index='118' label='I-394 S Frt Rd &amp; Louisiana # ST LOUIS PARK'>
+	<detector index='E118_1' label='Detector 1'/>
+	<detector index='E118_2' label='Detector 2'/>
+	<detector index='E118_3' label='Detector 3'/>
+	<detector index='E118_4' label='Detector 4'/>
+	<detector index='E118_5' label='Detector 5'/>
+	<detector index='E118_6' label='Detector 6'/>
+	<detector index='E118_7' label='Detector 7'/>
+	<detector index='E118_8' label='Detector 8'/>
+	<detector index='E118_9' label='Detector 9'/>
+	<detector index='E118_10' label='Detector 10'/>
+	<detector index='E118_11' label='Detector 11'/>
+	<detector index='E118_12' label='Detector 12'/>
+</zone>
+<zone index='120' label='TH 55 &amp; (50) # ROCKFORD'>
+	<detector index='E120_1' label='Detector 1'/>
+	<detector index='E120_2' label='Detector 2'/>
+	<detector index='E120_3' label='Detector 3'/>
+	<detector index='E120_4' label='Detector 4'/>
+	<detector index='E120_5' label='Detector 5'/>
+	<detector index='E120_6' label='Detector 6'/>
+	<detector index='E120_7' label='Detector 7'/>
+	<detector index='E120_8' label='Detector 8'/>
+	<detector index='E120_9' label='Detector 9'/>
+	<detector index='E120_10' label='Detector 10'/>
+</zone>
+<zone index='121' label='TH 7 &amp; TH 101 # MINNETONKA'>
+	<detector index='E121_1' label='Detector 1'/>
+	<detector index='E121_2' label='Detector 2'/>
+	<detector index='E121_3' label='Detector 3'/>
+	<detector index='E121_4' label='Detector 4'/>
+	<detector index='E121_5' label='Detector 5'/>
+	<detector index='E121_6' label='Detector 6'/>
+	<detector index='E121_7' label='Detector 7'/>
+	<detector index='E121_8' label='Detector 8'/>
+	<detector index='E121_9' label='Detector 9'/>
+	<detector index='E121_10' label='Detector 10'/>
+	<detector index='E121_11' label='Detector 11'/>
+	<detector index='E121_12' label='Detector 12'/>
+	<detector index='E121_13' label='Detector 13'/>
+	<detector index='E121_14' label='Detector 14'/>
+	<detector index='E121_15' label='Detector 15'/>
+	<detector index='E121_16' label='Detector 16'/>
+	<detector index='E121_17' label='Detector 17'/>
+	<detector index='E121_18' label='Detector 18'/>
+	<detector index='E121_19' label='Detector 19'/>
+	<detector index='E121_20' label='Detector 20'/>
+</zone>
+<zone index='122' label='TH 610 &amp; Noble Ave SR # BROOKLYN PARK'>
+	<detector index='E122_1' label='Detector 1'/>
+	<detector index='E122_2' label='Detector 2'/>
+	<detector index='E122_3' label='Detector 3'/>
+	<detector index='E122_4' label='Detector 4'/>
+	<detector index='E122_5' label='Detector 5'/>
+	<detector index='E122_6' label='Detector 6'/>
+	<detector index='E122_7' label='Detector 7'/>
+	<detector index='E122_8' label='Detector 8'/>
+	<detector index='E122_9' label='Detector 9'/>
+	<detector index='E122_10' label='Detector 10'/>
+	<detector index='E122_11' label='Detector 11'/>
+	<detector index='E122_12' label='Detector 12'/>
+	<detector index='E122_13' label='Detector 13'/>
+	<detector index='E122_14' label='Detector 14'/>
+	<detector index='E122_15' label='Detector 15'/>
+</zone>
+<zone index='124' label='TH 169 &amp; Hayden Lk Rd # CHAMPLIN'>
+	<detector index='E124_1' label='Detector 1'/>
+	<detector index='E124_2' label='Detector 2'/>
+	<detector index='E124_3' label='Detector 3'/>
+	<detector index='E124_4' label='Detector 4'/>
+	<detector index='E124_5' label='Detector 5'/>
+	<detector index='E124_6' label='Detector 6'/>
+	<detector index='E124_7' label='Detector 7'/>
+	<detector index='E124_8' label='Detector 8'/>
+	<detector index='E124_9' label='Detector 9'/>
+	<detector index='E124_10' label='Detector 10'/>
+	<detector index='E124_11' label='Detector 11'/>
+	<detector index='E124_12' label='Detector 12'/>
+	<detector index='E124_13' label='Detector 13'/>
+	<detector index='E124_14' label='Detector 14'/>
+	<detector index='E124_15' label='Detector 15'/>
+	<detector index='E124_16' label='Detector 16'/>
+</zone>
+<zone index='125' label='TH 12 &amp; Willow Dr/Old Crystal Bay # ORONO'>
+	<detector index='E125_1' label='Detector 1'/>
+	<detector index='E125_2' label='Detector 2'/>
+	<detector index='E125_3' label='Detector 3'/>
+	<detector index='E125_4' label='Detector 4'/>
+	<detector index='E125_5' label='Detector 5'/>
+	<detector index='E125_6' label='Detector 6'/>
+	<detector index='E125_7' label='Detector 7'/>
+	<detector index='E125_8' label='Detector 8'/>
+	<detector index='E125_9' label='Detector 9'/>
+	<detector index='E125_10' label='Detector 10'/>
+	<detector index='E125_11' label='Detector 11'/>
+	<detector index='E125_12' label='Detector 12'/>
+</zone>
+<zone index='127' label='TH 5/312 &amp; Mitchell Road @ Martin Dr # EDEN PRAIRIE'>
+	<detector index='E127_1' label='Detector 1'/>
+	<detector index='E127_2' label='Detector 2'/>
+	<detector index='E127_3' label='Detector 3'/>
+	<detector index='E127_4' label='Detector 4'/>
+	<detector index='E127_5' label='Detector 5'/>
+	<detector index='E127_6' label='Detector 6'/>
+	<detector index='E127_7' label='Detector 7'/>
+	<detector index='E127_8' label='Detector 8'/>
+	<detector index='E127_9' label='Detector 9'/>
+	<detector index='E127_10' label='Detector 10'/>
+	<detector index='E127_11' label='Detector 11'/>
+	<detector index='E127_12' label='Detector 12'/>
+	<detector index='E127_13' label='Detector 13'/>
+	<detector index='E127_14' label='Detector 14'/>
+	<detector index='E127_15' label='Detector 15'/>
+	<detector index='E127_16' label='Detector 16'/>
+	<detector index='E127_17' label='Detector 17'/>
+	<detector index='E127_18' label='Detector 18'/>
+	<detector index='E127_19' label='Detector 19'/>
+	<detector index='E127_20' label='Detector 20'/>
+	<detector index='E127_21' label='Detector 21'/>
+	<detector index='E127_22' label='Detector 22'/>
+	<detector index='E127_23' label='Detector 23'/>
+	<detector index='E127_24' label='Detector 24'/>
+	<detector index='E127_25' label='Detector 25'/>
+	<detector index='E127_26' label='Detector 26'/>
+	<detector index='E127_27' label='Detector 27'/>
+	<detector index='E127_28' label='Detector 28'/>
+	<detector index='E127_29' label='Detector 29'/>
+</zone>
+<zone index='129' label='TH 41 &amp; TH 212 # CHASKA'>
+	<detector index='E129_1' label='Detector 1'/>
+	<detector index='E129_2' label='Detector 2'/>
+	<detector index='E129_3' label='Detector 3'/>
+	<detector index='E129_4' label='Detector 4'/>
+	<detector index='E129_5' label='Detector 5'/>
+	<detector index='E129_6' label='Detector 6'/>
+	<detector index='E129_7' label='Detector 7'/>
+	<detector index='E129_8' label='Detector 8'/>
+	<detector index='E129_9' label='Detector 9'/>
+	<detector index='E129_10' label='Detector 10'/>
+	<detector index='E129_11' label='Detector 11'/>
+	<detector index='E129_12' label='Detector 12'/>
+	<detector index='E129_13' label='Detector 13'/>
+	<detector index='E129_14' label='Detector 14'/>
+	<detector index='E129_15' label='Detector 15'/>
+	<detector index='E129_16' label='Detector 16'/>
+	<detector index='E129_17' label='Detector 17'/>
+	<detector index='E129_18' label='Detector 18'/>
+	<detector index='E129_19' label='Detector 19'/>
+	<detector index='E129_20' label='Detector 20'/>
+	<detector index='E129_21' label='Detector 21'/>
+	<detector index='E129_22' label='Detector 22'/>
+	<detector index='E129_23' label='Detector 23'/>
+	<detector index='E129_24' label='Detector 24'/>
+</zone>
+<zone index='130' label='TH 169 &amp; 494 NR # BLOOMINGTON'>
+	<detector index='E130_1' label='Detector 1'/>
+	<detector index='E130_2' label='Detector 2'/>
+	<detector index='E130_3' label='Detector 3'/>
+	<detector index='E130_4' label='Detector 4'/>
+	<detector index='E130_5' label='Detector 5'/>
+	<detector index='E130_6' label='Detector 6'/>
+	<detector index='E130_7' label='Detector 7'/>
+	<detector index='E130_8' label='Detector 8'/>
+	<detector index='E130_9' label='Detector 9'/>
+	<detector index='E130_10' label='Detector 10'/>
+	<detector index='E130_11' label='Detector 11'/>
+	<detector index='E130_12' label='Detector 12'/>
+	<detector index='E130_13' label='Detector 13'/>
+	<detector index='E130_14' label='Detector 14'/>
+	<detector index='E130_15' label='Detector 15'/>
+	<detector index='E130_16' label='Detector 16'/>
+	<detector index='E130_17' label='Detector 17'/>
+	<detector index='E130_18' label='Detector 18'/>
+	<detector index='E130_19' label='Detector 19'/>
+	<detector index='E130_20' label='Detector 20'/>
+</zone>
+<zone index='131' label='TH 100 &amp; 36th Ave N # CRYSTAL'>
+	<detector index='E131_1' label='Detector 1'/>
+	<detector index='E131_2' label='Detector 2'/>
+	<detector index='E131_3' label='Detector 3'/>
+	<detector index='E131_4' label='Detector 4'/>
+	<detector index='E131_5' label='Detector 5'/>
+	<detector index='E131_6' label='Detector 6'/>
+	<detector index='E131_7' label='Detector 7'/>
+	<detector index='E131_8' label='Detector 8'/>
+	<detector index='E131_9' label='Detector 9'/>
+	<detector index='E131_10' label='Detector 10'/>
+	<detector index='E131_11' label='Detector 11'/>
+	<detector index='E131_12' label='Detector 12'/>
+	<detector index='E131_13' label='Detector 13'/>
+	<detector index='E131_14' label='Detector 14'/>
+	<detector index='E131_15' label='Detector 15'/>
+	<detector index='E131_16' label='Detector 16'/>
+	<detector index='E131_17' label='Detector 17'/>
+	<detector index='E131_18' label='Detector 18'/>
+	<detector index='E131_19' label='Detector 19'/>
+	<detector index='E131_20' label='Detector 20'/>
+</zone>
+<zone index='132' label='TH 169 &amp; (17) NR # SHAKOPEE'>
+	<detector index='E132_1' label='Detector 1'/>
+	<detector index='E132_2' label='Detector 2'/>
+	<detector index='E132_3' label='Detector 3'/>
+	<detector index='E132_4' label='Detector 4'/>
+	<detector index='E132_5' label='Detector 5'/>
+	<detector index='E132_6' label='Detector 6'/>
+	<detector index='E132_7' label='Detector 7'/>
+	<detector index='E132_8' label='Detector 8'/>
+</zone>
+<zone index='133' label='TH 169 &amp; (83) NR # SHAKOPEE'>
+	<detector index='E133_1' label='Detector 1'/>
+	<detector index='E133_2' label='Detector 2'/>
+	<detector index='E133_3' label='Detector 3'/>
+	<detector index='E133_4' label='Detector 4'/>
+	<detector index='E133_5' label='Detector 5'/>
+	<detector index='E133_6' label='Detector 6'/>
+	<detector index='E133_7' label='Detector 7'/>
+	<detector index='E133_8' label='Detector 8'/>
+	<detector index='E133_9' label='Detector 9'/>
+	<detector index='E133_10' label='Detector 10'/>
+	<detector index='E133_11' label='Detector 11'/>
+	<detector index='E133_12' label='Detector 12'/>
+</zone>
+<zone index='134' label='I-494 &amp; Carlson Pkwy ER # PLYMOUTH'>
+	<detector index='E134_1' label='Detector 1'/>
+	<detector index='E134_2' label='Detector 2'/>
+	<detector index='E134_3' label='Detector 3'/>
+	<detector index='E134_4' label='Detector 4'/>
+</zone>
+<zone index='137' label='TH 212 &amp; Shady Oak Rd WR # EDEN PRAIRIE'>
+	<detector index='E137_1' label='Detector 1'/>
+	<detector index='E137_2' label='Detector 2'/>
+	<detector index='E137_3' label='Detector 3'/>
+	<detector index='E137_4' label='Detector 4'/>
+	<detector index='E137_5' label='Detector 5'/>
+	<detector index='E137_6' label='Detector 6'/>
+	<detector index='E137_7' label='Detector 7'/>
+	<detector index='E137_8' label='Detector 8'/>
+	<detector index='E137_9' label='Detector 9'/>
+	<detector index='E137_10' label='Detector 10'/>
+	<detector index='E137_11' label='Detector 11'/>
+	<detector index='E137_12' label='Detector 12'/>
+	<detector index='E137_13' label='Detector 13'/>
+	<detector index='E137_14' label='Detector 14'/>
+	<detector index='E137_15' label='Detector 15'/>
+	<detector index='E137_16' label='Detector 16'/>
+	<detector index='E137_17' label='Detector 17'/>
+</zone>
+<zone index='139' label='TH 212 &amp; Reform St # NORWOOD'>
+	<detector index='E139_1' label='Detector 1'/>
+	<detector index='E139_2' label='Detector 2'/>
+	<detector index='E139_3' label='Detector 3'/>
+	<detector index='E139_4' label='Detector 4'/>
+	<detector index='E139_5' label='Detector 5'/>
+	<detector index='E139_6' label='Detector 6'/>
+	<detector index='E139_7' label='Detector 7'/>
+	<detector index='E139_8' label='Detector 8'/>
+</zone>
+<zone index='141' label='TH 13 &amp; Duluth St # PRIOR LAKE'>
+	<detector index='E141_1' label='Detector 1'/>
+	<detector index='E141_2' label='Detector 2'/>
+	<detector index='E141_3' label='Detector 3'/>
+	<detector index='E141_4' label='Detector 4'/>
+	<detector index='E141_5' label='Detector 5'/>
+	<detector index='E141_6' label='Detector 6'/>
+	<detector index='E141_7' label='Detector 7'/>
+	<detector index='E141_8' label='Detector 8'/>
+	<detector index='E141_9' label='Detector 9'/>
+	<detector index='E141_10' label='Detector 10'/>
+</zone>
+<zone index='142' label='TH 169 &amp; Valley View WR # EDINA'>
+	<detector index='E142_1' label='Detector 1'/>
+	<detector index='E142_2' label='Detector 2'/>
+	<detector index='E142_3' label='Detector 3'/>
+	<detector index='E142_4' label='Detector 4'/>
+	<detector index='E142_5' label='Detector 5'/>
+	<detector index='E142_6' label='Detector 6'/>
+	<detector index='E142_7' label='Detector 7'/>
+	<detector index='E142_8' label='Detector 8'/>
+</zone>
+<zone index='144' label='TH 13 &amp; (16) McColl Rd # SAVAGE'>
+	<detector index='E144_1' label='Detector 1'/>
+	<detector index='E144_2' label='Detector 2'/>
+	<detector index='E144_3' label='Detector 3'/>
+	<detector index='E144_4' label='Detector 4'/>
+	<detector index='E144_5' label='Detector 5'/>
+	<detector index='E144_6' label='Detector 6'/>
+	<detector index='E144_7' label='Detector 7'/>
+	<detector index='E144_8' label='Detector 8'/>
+	<detector index='E144_9' label='Detector 9'/>
+	<detector index='E144_10' label='Detector 10'/>
+	<detector index='E144_11' label='Detector 11'/>
+	<detector index='E144_12' label='Detector 12'/>
+	<detector index='E144_13' label='Detector 13'/>
+	<detector index='E144_14' label='Detector 14'/>
+	<detector index='E144_15' label='Detector 15'/>
+	<detector index='E144_16' label='Detector 16'/>
+	<detector index='E144_17' label='Detector 17'/>
+	<detector index='E144_18' label='Detector 18'/>
+	<detector index='E144_19' label='Detector 19'/>
+	<detector index='E144_20' label='Detector 20'/>
+</zone>
+<zone index='163' label='TH 3 &amp; TH 50 S Jct # FARMINGTON'>
+	<detector index='E163_1' label='Detector 1'/>
+	<detector index='E163_2' label='Detector 2'/>
+	<detector index='E163_3' label='Detector 3'/>
+	<detector index='E163_4' label='Detector 4'/>
+	<detector index='E163_5' label='Detector 5'/>
+	<detector index='E163_6' label='Detector 6'/>
+	<detector index='E163_7' label='Detector 7'/>
+	<detector index='E163_8' label='Detector 8'/>
+</zone>
+<zone index='164' label='TH 52 &amp; 117th St WR # INVER GROVE'>
+	<detector index='E164_1' label='Detector 1'/>
+	<detector index='E164_2' label='Detector 2'/>
+	<detector index='E164_3' label='Detector 3'/>
+	<detector index='E164_4' label='Detector 4'/>
+	<detector index='E164_5' label='Detector 5'/>
+	<detector index='E164_6' label='Detector 6'/>
+	<detector index='E164_7' label='Detector 7'/>
+	<detector index='E164_8' label='Detector 8'/>
+	<detector index='E164_9' label='Detector 9'/>
+	<detector index='E164_10' label='Detector 10'/>
+	<detector index='E164_11' label='Detector 11'/>
+	<detector index='E164_12' label='Detector 12'/>
+	<detector index='E164_13' label='Detector 13'/>
+	<detector index='E164_14' label='Detector 14'/>
+	<detector index='E164_15' label='Detector 15'/>
+	<detector index='E164_16' label='Detector 16'/>
+	<detector index='E164_17' label='Detector 17'/>
+	<detector index='E164_18' label='Detector 18'/>
+	<detector index='E164_19' label='Detector 19'/>
+	<detector index='E164_20' label='Detector 20'/>
+	<detector index='E164_21' label='Detector 21'/>
+	<detector index='E164_22' label='Detector 22'/>
+	<detector index='E164_23' label='Detector 23'/>
+	<detector index='E164_24' label='Detector 24'/>
+</zone>
+<zone index='165' label='I-35 &amp; (5) / CSAH 50 ER # LAKEVILLE'>
+	<detector index='E165_1' label='Detector 1'/>
+	<detector index='E165_2' label='Detector 2'/>
+	<detector index='E165_3' label='Detector 3'/>
+	<detector index='E165_4' label='Detector 4'/>
+	<detector index='E165_5' label='Detector 5'/>
+	<detector index='E165_6' label='Detector 6'/>
+	<detector index='E165_7' label='Detector 7'/>
+	<detector index='E165_8' label='Detector 8'/>
+	<detector index='E165_9' label='Detector 9'/>
+	<detector index='E165_10' label='Detector 10'/>
+	<detector index='E165_11' label='Detector 11'/>
+	<detector index='E165_12' label='Detector 12'/>
+	<detector index='E165_13' label='Detector 13'/>
+	<detector index='E165_14' label='Detector 14'/>
+	<detector index='E165_15' label='Detector 15'/>
+	<detector index='E165_16' label='Detector 16'/>
+	<detector index='E165_17' label='Detector 17'/>
+	<detector index='E165_18' label='Detector 18'/>
+	<detector index='E165_19' label='Detector 19'/>
+	<detector index='E165_20' label='Detector 20'/>
+	<detector index='E165_21' label='Detector 21'/>
+</zone>
+<zone index='170' label='TH 13 &amp; Yankee Doodle Rd # EAGAN'>
+	<detector index='E170_1' label='Detector 1'/>
+	<detector index='E170_2' label='Detector 2'/>
+	<detector index='E170_3' label='Detector 3'/>
+	<detector index='E170_4' label='Detector 4'/>
+	<detector index='E170_5' label='Detector 5'/>
+	<detector index='E170_6' label='Detector 6'/>
+	<detector index='E170_7' label='Detector 7'/>
+	<detector index='E170_8' label='Detector 8'/>
+	<detector index='E170_9' label='Detector 9'/>
+	<detector index='E170_10' label='Detector 10'/>
+</zone>
+<zone index='173' label='TH 61 &amp; I-694 SR # MAPLEWOOD'>
+	<detector index='E173_1' label='Detector 1'/>
+	<detector index='E173_2' label='Detector 2'/>
+	<detector index='E173_3' label='Detector 3'/>
+	<detector index='E173_4' label='Detector 4'/>
+	<detector index='E173_5' label='Detector 5'/>
+	<detector index='E173_6' label='Detector 6'/>
+	<detector index='E173_7' label='Detector 7'/>
+	<detector index='E173_8' label='Detector 8'/>
+	<detector index='E173_9' label='Detector 9'/>
+	<detector index='E173_10' label='Detector 10'/>
+	<detector index='E173_11' label='Detector 11'/>
+	<detector index='E173_12' label='Detector 12'/>
+	<detector index='E173_13' label='Detector 13'/>
+	<detector index='E173_14' label='Detector 14'/>
+	<detector index='E173_15' label='Detector 15'/>
+	<detector index='E173_16' label='Detector 16'/>
+	<detector index='E173_17' label='Detector 17'/>
+	<detector index='E173_18' label='Detector 18'/>
+	<detector index='E173_19' label='Detector 19'/>
+	<detector index='E173_20' label='Detector 20'/>
+	<detector index='E173_21' label='Detector 21'/>
+	<detector index='E173_22' label='Detector 22'/>
+	<detector index='E173_23' label='Detector 23'/>
+	<detector index='E173_24' label='Detector 24'/>
+	<detector index='E173_25' label='Detector 25'/>
+	<detector index='E173_26' label='Detector 26'/>
+	<detector index='E173_27' label='Detector 27'/>
+	<detector index='E173_28' label='Detector 28'/>
+	<detector index='E173_29' label='Detector 29'/>
+</zone>
+<zone index='175' label='I-494 &amp; Pilot Knob Rd NR # EAGAN'>
+	<detector index='E175_1' label='Detector 1'/>
+	<detector index='E175_2' label='Detector 2'/>
+	<detector index='E175_3' label='Detector 3'/>
+	<detector index='E175_4' label='Detector 4'/>
+	<detector index='E175_5' label='Detector 5'/>
+	<detector index='E175_6' label='Detector 6'/>
+	<detector index='E175_7' label='Detector 7'/>
+	<detector index='E175_8' label='Detector 8'/>
+	<detector index='E175_9' label='Detector 9'/>
+</zone>
+<zone index='177' label='TH 120 &amp; TH 5 N Jct # OAKDALE'>
+	<detector index='E177_1' label='Detector 1'/>
+	<detector index='E177_2' label='Detector 2'/>
+	<detector index='E177_3' label='Detector 3'/>
+	<detector index='E177_4' label='Detector 4'/>
+</zone>
+<zone index='178' label='TH 52 &amp; Blaine/Upper 55th # INVER GROVE HEIGHTS'>
+	<detector index='E178_1' label='Detector 1'/>
+	<detector index='E178_2' label='Detector 2'/>
+	<detector index='E178_3' label='Detector 3'/>
+	<detector index='E178_4' label='Detector 4'/>
+	<detector index='E178_5' label='Detector 5'/>
+	<detector index='E178_6' label='Detector 6'/>
+	<detector index='E178_7' label='Detector 7'/>
+	<detector index='E178_8' label='Detector 8'/>
+	<detector index='E178_9' label='Detector 9'/>
+	<detector index='E178_10' label='Detector 10'/>
+	<detector index='E178_11' label='Detector 11'/>
+	<detector index='E178_12' label='Detector 12'/>
+</zone>
+<zone index='181' label='TH 65 &amp; (6) Mississippi St # FRIDLEY'>
+	<detector index='E181_1' label='Detector 1'/>
+	<detector index='E181_2' label='Detector 2'/>
+	<detector index='E181_3' label='Detector 3'/>
+	<detector index='E181_4' label='Detector 4'/>
+	<detector index='E181_5' label='Detector 5'/>
+	<detector index='E181_6' label='Detector 6'/>
+	<detector index='E181_7' label='Detector 7'/>
+	<detector index='E181_8' label='Detector 8'/>
+	<detector index='E181_9' label='Detector 9'/>
+	<detector index='E181_10' label='Detector 10'/>
+	<detector index='E181_11' label='Detector 11'/>
+	<detector index='E181_12' label='Detector 12'/>
+	<detector index='E181_13' label='Detector 13'/>
+	<detector index='E181_14' label='Detector 14'/>
+	<detector index='E181_15' label='Detector 15'/>
+	<detector index='E181_16' label='Detector 16'/>
+	<detector index='E181_17' label='Detector 17'/>
+	<detector index='E181_18' label='Detector 18'/>
+	<detector index='E181_19' label='Detector 19'/>
+</zone>
+<zone index='182' label='TH 65 &amp; 105th # BLAINE'>
+	<detector index='E182_1' label='Detector 1'/>
+	<detector index='E182_2' label='Detector 2'/>
+	<detector index='E182_3' label='Detector 3'/>
+	<detector index='E182_4' label='Detector 4'/>
+	<detector index='E182_5' label='Detector 5'/>
+	<detector index='E182_6' label='Detector 6'/>
+	<detector index='E182_7' label='Detector 7'/>
+	<detector index='E182_8' label='Detector 8'/>
+	<detector index='E182_9' label='Detector 9'/>
+	<detector index='E182_10' label='Detector 10'/>
+	<detector index='E182_11' label='Detector 11'/>
+	<detector index='E182_12' label='Detector 12'/>
+	<detector index='E182_13' label='Detector 13'/>
+	<detector index='E182_14' label='Detector 14'/>
+	<detector index='E182_15' label='Detector 15'/>
+	<detector index='E182_16' label='Detector 16'/>
+	<detector index='E182_17' label='Detector 17'/>
+	<detector index='E182_18' label='Detector 18'/>
+	<detector index='E182_19' label='Detector 19'/>
+	<detector index='E182_20' label='Detector 20'/>
+	<detector index='E182_21' label='Detector 21'/>
+	<detector index='E182_22' label='Detector 22'/>
+	<detector index='E182_23' label='Detector 23'/>
+	<detector index='E182_24' label='Detector 24'/>
+</zone>
+<zone index='183' label='I-494 &amp; Lake Rd ER # WOODBURY'>
+	<detector index='E183_1' label='Detector 1'/>
+	<detector index='E183_2' label='Detector 2'/>
+	<detector index='E183_3' label='Detector 3'/>
+	<detector index='E183_4' label='Detector 4'/>
+	<detector index='E183_5' label='Detector 5'/>
+	<detector index='E183_6' label='Detector 6'/>
+	<detector index='E183_7' label='Detector 7'/>
+	<detector index='E183_8' label='Detector 8'/>
+	<detector index='E183_9' label='Detector 9'/>
+	<detector index='E183_10' label='Detector 10'/>
+	<detector index='E183_11' label='Detector 11'/>
+	<detector index='E183_12' label='Detector 12'/>
+	<detector index='E183_13' label='Detector 13'/>
+	<detector index='E183_14' label='Detector 14'/>
+	<detector index='E183_15' label='Detector 15'/>
+	<detector index='E183_16' label='Detector 16'/>
+</zone>
+<zone index='186' label='I-694 &amp; (10)/10th St WR # OAKDALE'>
+	<detector index='E186_1' label='Detector 1'/>
+	<detector index='E186_2' label='Detector 2'/>
+	<detector index='E186_3' label='Detector 3'/>
+	<detector index='E186_4' label='Detector 4'/>
+	<detector index='E186_5' label='Detector 5'/>
+	<detector index='E186_6' label='Detector 6'/>
+	<detector index='E186_7' label='Detector 7'/>
+	<detector index='E186_8' label='Detector 8'/>
+	<detector index='E186_9' label='Detector 9'/>
+	<detector index='E186_10' label='Detector 10'/>
+	<detector index='E186_11' label='Detector 11'/>
+	<detector index='E186_12' label='Detector 12'/>
+</zone>
+<zone index='188' label='I-35 &amp; (2)Broadway ER # FOREST LAKE'>
+	<detector index='E188_1' label='Detector 1'/>
+	<detector index='E188_2' label='Detector 2'/>
+	<detector index='E188_3' label='Detector 3'/>
+	<detector index='E188_4' label='Detector 4'/>
+	<detector index='E188_5' label='Detector 5'/>
+	<detector index='E188_6' label='Detector 6'/>
+	<detector index='E188_7' label='Detector 7'/>
+	<detector index='E188_8' label='Detector 8'/>
+	<detector index='E188_9' label='Detector 9'/>
+	<detector index='E188_10' label='Detector 10'/>
+	<detector index='E188_11' label='Detector 11'/>
+	<detector index='E188_12' label='Detector 12'/>
+	<detector index='E188_13' label='Detector 13'/>
+	<detector index='E188_14' label='Detector 14'/>
+	<detector index='E188_15' label='Detector 15'/>
+	<detector index='E188_16' label='Detector 16'/>
+	<detector index='E188_17' label='Detector 17'/>
+	<detector index='E188_18' label='Detector 18'/>
+	<detector index='E188_19' label='Detector 19'/>
+	<detector index='E188_20' label='Detector 20'/>
+	<detector index='E188_21' label='Detector 21'/>
+	<detector index='E188_22' label='Detector 22'/>
+	<detector index='E188_23' label='Detector 23'/>
+	<detector index='E188_24' label='Detector 24'/>
+</zone>
+<zone index='189' label='35W &amp; Burnsville Pkwy ER # BURNSVILLE'>
+	<detector index='E189_1' label='Detector 1'/>
+	<detector index='E189_2' label='Detector 2'/>
+	<detector index='E189_3' label='Detector 3'/>
+	<detector index='E189_4' label='Detector 4'/>
+	<detector index='E189_5' label='Detector 5'/>
+	<detector index='E189_6' label='Detector 6'/>
+	<detector index='E189_7' label='Detector 7'/>
+	<detector index='E189_8' label='Detector 8'/>
+</zone>
+<zone index='190' label='35E &amp; Little Canada Rd # LITTLE CANADA'>
+	<detector index='E190_1' label='Detector 1'/>
+	<detector index='E190_2' label='Detector 2'/>
+	<detector index='E190_3' label='Detector 3'/>
+	<detector index='E190_4' label='Detector 4'/>
+	<detector index='E190_5' label='Detector 5'/>
+	<detector index='E190_6' label='Detector 6'/>
+	<detector index='E190_7' label='Detector 7'/>
+	<detector index='E190_8' label='Detector 8'/>
+	<detector index='E190_9' label='Detector 9'/>
+</zone>
+<zone index='191' label='149 &amp; Blue Gentian # MENDOTA HEIGHTS'>
+	<detector index='E191_1' label='Detector 1'/>
+	<detector index='E191_2' label='Detector 2'/>
+	<detector index='E191_3' label='Detector 3'/>
+	<detector index='E191_4' label='Detector 4'/>
+	<detector index='E191_5' label='Detector 5'/>
+	<detector index='E191_6' label='Detector 6'/>
+	<detector index='E191_7' label='Detector 7'/>
+	<detector index='E191_8' label='Detector 8'/>
+	<detector index='E191_9' label='Detector 9'/>
+	<detector index='E191_10' label='Detector 10'/>
+	<detector index='E191_11' label='Detector 11'/>
+	<detector index='E191_12' label='Detector 12'/>
+	<detector index='E191_13' label='Detector 13'/>
+	<detector index='E191_14' label='Detector 14'/>
+	<detector index='E191_15' label='Detector 15'/>
+	<detector index='E191_16' label='Detector 16'/>
+	<detector index='E191_17' label='Detector 17'/>
+	<detector index='E191_18' label='Detector 18'/>
+	<detector index='E191_19' label='Detector 19'/>
+	<detector index='E191_20' label='Detector 20'/>
+	<detector index='E191_21' label='Detector 21'/>
+	<detector index='E191_22' label='Detector 22'/>
+</zone>
+<zone index='194' label='TH 61 &amp; TH 97 N Jct # FOREST LAKE'>
+	<detector index='E194_1' label='Detector 1'/>
+	<detector index='E194_2' label='Detector 2'/>
+	<detector index='E194_3' label='Detector 3'/>
+	<detector index='E194_4' label='Detector 4'/>
+	<detector index='E194_5' label='Detector 5'/>
+	<detector index='E194_6' label='Detector 6'/>
+	<detector index='E194_7' label='Detector 7'/>
+	<detector index='E194_8' label='Detector 8'/>
+	<detector index='E194_9' label='Detector 9'/>
+	<detector index='E194_10' label='Detector 10'/>
+	<detector index='E194_11' label='Detector 11'/>
+	<detector index='E194_12' label='Detector 12'/>
+	<detector index='E194_13' label='Detector 13'/>
+	<detector index='E194_14' label='Detector 14'/>
+	<detector index='E194_15' label='Detector 15'/>
+	<detector index='E194_16' label='Detector 16'/>
+	<detector index='E194_17' label='Detector 17'/>
+	<detector index='E194_18' label='Detector 18'/>
+	<detector index='E194_19' label='Detector 19'/>
+</zone>
+<zone index='195' label='TH 55 &amp; River St # HASTINGS'>
+	<detector index='E195_1' label='Detector 1'/>
+	<detector index='E195_2' label='Detector 2'/>
+	<detector index='E195_3' label='Detector 3'/>
+	<detector index='E195_4' label='Detector 4'/>
+	<detector index='E195_5' label='Detector 5'/>
+	<detector index='E195_6' label='Detector 6'/>
+	<detector index='E195_7' label='Detector 7'/>
+	<detector index='E195_8' label='Detector 8'/>
+	<detector index='E195_9' label='Detector 9'/>
+	<detector index='E195_10' label='Detector 10'/>
+	<detector index='E195_11' label='Detector 11'/>
+	<detector index='E195_12' label='Detector 12'/>
+	<detector index='E195_13' label='Detector 13'/>
+	<detector index='E195_14' label='Detector 14'/>
+	<detector index='E195_15' label='Detector 15'/>
+	<detector index='E195_16' label='Detector 16'/>
+</zone>
+<zone index='196' label='I-35 &amp; 185th St @ Kenrick # LAKEVILLE'>
+	<detector index='E196_1' label='Detector 1'/>
+	<detector index='E196_2' label='Detector 2'/>
+	<detector index='E196_3' label='Detector 3'/>
+	<detector index='E196_4' label='Detector 4'/>
+</zone>
+<zone index='198' label='I-494 NR &amp; TH 156/Concord # S.ST.PAUL'>
+	<detector index='E198_1' label='Detector 1'/>
+	<detector index='E198_2' label='Detector 2'/>
+	<detector index='E198_3' label='Detector 3'/>
+	<detector index='E198_4' label='Detector 4'/>
+	<detector index='E198_5' label='Detector 5'/>
+	<detector index='E198_6' label='Detector 6'/>
+	<detector index='E198_7' label='Detector 7'/>
+	<detector index='E198_8' label='Detector 8'/>
+	<detector index='E198_9' label='Detector 9'/>
+	<detector index='E198_10' label='Detector 10'/>
+	<detector index='E198_11' label='Detector 11'/>
+	<detector index='E198_12' label='Detector 12'/>
+	<detector index='E198_13' label='Detector 13'/>
+	<detector index='E198_14' label='Detector 14'/>
+	<detector index='E198_15' label='Detector 15'/>
+	<detector index='E198_16' label='Detector 16'/>
+	<detector index='E198_17' label='Detector 17'/>
+	<detector index='E198_18' label='Detector 18'/>
+	<detector index='E198_19' label='Detector 19'/>
+	<detector index='E198_20' label='Detector 20'/>
+</zone>
+<zone index='200' label='TH 36 &amp; TH 95/Nelson St # STILLWATER'>
+	<detector index='E200_1' label='Detector 1'/>
+	<detector index='E200_2' label='Detector 2'/>
+	<detector index='E200_3' label='Detector 3'/>
+	<detector index='E200_4' label='Detector 4'/>
+	<detector index='E200_5' label='Detector 5'/>
+	<detector index='E200_6' label='Detector 6'/>
+	<detector index='E200_7' label='Detector 7'/>
+	<detector index='E200_8' label='Detector 8'/>
+	<detector index='E200_9' label='Detector 9'/>
+	<detector index='E200_10' label='Detector 10'/>
+	<detector index='E200_11' label='Detector 11'/>
+	<detector index='E200_12' label='Detector 12'/>
+	<detector index='E200_13' label='Detector 13'/>
+	<detector index='E200_14' label='Detector 14'/>
+	<detector index='E200_15' label='Detector 15'/>
+	<detector index='E200_16' label='Detector 16'/>
+	<detector index='E200_17' label='Detector 17'/>
+	<detector index='E200_18' label='Detector 18'/>
+	<detector index='E200_19' label='Detector 19'/>
+	<detector index='E200_20' label='Detector 20'/>
+</zone>
+<zone index='201' label='TH 55 &amp; TH 149 @ N Jct # EAGAN'>
+	<detector index='E201_1' label='Detector 1'/>
+	<detector index='E201_2' label='Detector 2'/>
+	<detector index='E201_3' label='Detector 3'/>
+	<detector index='E201_4' label='Detector 4'/>
+	<detector index='E201_5' label='Detector 5'/>
+	<detector index='E201_6' label='Detector 6'/>
+	<detector index='E201_7' label='Detector 7'/>
+	<detector index='E201_8' label='Detector 8'/>
+	<detector index='E201_9' label='Detector 9'/>
+	<detector index='E201_10' label='Detector 10'/>
+	<detector index='E201_11' label='Detector 11'/>
+	<detector index='E201_12' label='Detector 12'/>
+</zone>
+<zone index='203' label='TH 61 &amp; 80th/Grange # COTTAGE GROVE'>
+	<detector index='E203_1' label='Detector 1'/>
+	<detector index='E203_2' label='Detector 2'/>
+	<detector index='E203_3' label='Detector 3'/>
+	<detector index='E203_4' label='Detector 4'/>
+	<detector index='E203_5' label='Detector 5'/>
+	<detector index='E203_6' label='Detector 6'/>
+	<detector index='E203_7' label='Detector 7'/>
+	<detector index='E203_8' label='Detector 8'/>
+	<detector index='E203_9' label='Detector 9'/>
+	<detector index='E203_10' label='Detector 10'/>
+	<detector index='E203_11' label='Detector 11'/>
+	<detector index='E203_12' label='Detector 12'/>
+	<detector index='E203_13' label='Detector 13'/>
+</zone>
+<zone index='204' label='TH 36 &amp; Washington Ave # OAK PARK HTS'>
+	<detector index='E204_1' label='Detector 1'/>
+	<detector index='E204_2' label='Detector 2'/>
+	<detector index='E204_3' label='Detector 3'/>
+	<detector index='E204_4' label='Detector 4'/>
+	<detector index='E204_5' label='Detector 5'/>
+	<detector index='E204_6' label='Detector 6'/>
+	<detector index='E204_7' label='Detector 7'/>
+	<detector index='E204_8' label='Detector 8'/>
+	<detector index='E204_9' label='Detector 9'/>
+	<detector index='E204_10' label='Detector 10'/>
+	<detector index='E204_11' label='Detector 11'/>
+	<detector index='E204_12' label='Detector 12'/>
+</zone>
+<zone index='205' label='TH 110 &amp; TH 149/Dodd Rd # MENDOTA HEIGHTS'>
+	<detector index='E205_1' label='Detector 1'/>
+	<detector index='E205_2' label='Detector 2'/>
+	<detector index='E205_3' label='Detector 3'/>
+	<detector index='E205_4' label='Detector 4'/>
+	<detector index='E205_5' label='Detector 5'/>
+	<detector index='E205_6' label='Detector 6'/>
+	<detector index='E205_7' label='Detector 7'/>
+	<detector index='E205_8' label='Detector 8'/>
+	<detector index='E205_9' label='Detector 9'/>
+	<detector index='E205_10' label='Detector 10'/>
+	<detector index='E205_11' label='Detector 11'/>
+	<detector index='E205_12' label='Detector 12'/>
+</zone>
+<zone index='206' label='TH 36 &amp; Hadley Ave # NORTH ST. PAUL'>
+	<detector index='E206_1' label='Detector 1'/>
+	<detector index='E206_2' label='Detector 2'/>
+	<detector index='E206_3' label='Detector 3'/>
+	<detector index='E206_4' label='Detector 4'/>
+	<detector index='E206_5' label='Detector 5'/>
+	<detector index='E206_6' label='Detector 6'/>
+	<detector index='E206_7' label='Detector 7'/>
+	<detector index='E206_8' label='Detector 8'/>
+	<detector index='E206_9' label='Detector 9'/>
+	<detector index='E206_10' label='Detector 10'/>
+	<detector index='E206_11' label='Detector 11'/>
+	<detector index='E206_12' label='Detector 12'/>
+</zone>
+<zone index='207' label='TH 55 &amp; Mendota Hgts Rd # EAGAN'>
+	<detector index='E207_1' label='Detector 1'/>
+	<detector index='E207_2' label='Detector 2'/>
+	<detector index='E207_3' label='Detector 3'/>
+	<detector index='E207_4' label='Detector 4'/>
+	<detector index='E207_5' label='Detector 5'/>
+	<detector index='E207_6' label='Detector 6'/>
+	<detector index='E207_7' label='Detector 7'/>
+	<detector index='E207_8' label='Detector 8'/>
+	<detector index='E207_9' label='Detector 9'/>
+	<detector index='E207_10' label='Detector 10'/>
+	<detector index='E207_11' label='Detector 11'/>
+	<detector index='E207_12' label='Detector 12'/>
+</zone>
+<zone index='209' label='TH 51 &amp; (30) Larpenteur Ave # FALCON HEIGHTS'>
+	<detector index='E209_1' label='Detector 1'/>
+	<detector index='E209_2' label='Detector 2'/>
+	<detector index='E209_3' label='Detector 3'/>
+	<detector index='E209_4' label='Detector 4'/>
+	<detector index='E209_5' label='Detector 5'/>
+	<detector index='E209_6' label='Detector 6'/>
+	<detector index='E209_7' label='Detector 7'/>
+	<detector index='E209_8' label='Detector 8'/>
+	<detector index='E209_9' label='Detector 9'/>
+	<detector index='E209_10' label='Detector 10'/>
+	<detector index='E209_11' label='Detector 11'/>
+	<detector index='E209_12' label='Detector 12'/>
+	<detector index='E209_13' label='Detector 13'/>
+	<detector index='E209_14' label='Detector 14'/>
+	<detector index='E209_15' label='Detector 15'/>
+	<detector index='E209_16' label='Detector 16'/>
+	<detector index='E209_17' label='Detector 17'/>
+	<detector index='E209_18' label='Detector 18'/>
+	<detector index='E209_19' label='Detector 19'/>
+</zone>
+<zone index='210' label='TH 952 &amp; Butler Ave &amp; Robert St # WEST ST. PAUL'>
+	<detector index='E210_1' label='Detector 1'/>
+	<detector index='E210_2' label='Detector 2'/>
+	<detector index='E210_3' label='Detector 3'/>
+	<detector index='E210_4' label='Detector 4'/>
+	<detector index='E210_5' label='Detector 5'/>
+	<detector index='E210_6' label='Detector 6'/>
+	<detector index='E210_7' label='Detector 7'/>
+	<detector index='E210_8' label='Detector 8'/>
+	<detector index='E210_9' label='Detector 9'/>
+	<detector index='E210_10' label='Detector 10'/>
+	<detector index='E210_11' label='Detector 11'/>
+	<detector index='E210_12' label='Detector 12'/>
+	<detector index='E210_13' label='Detector 13'/>
+	<detector index='E210_14' label='Detector 14'/>
+	<detector index='E210_15' label='Detector 15'/>
+	<detector index='E210_16' label='Detector 16'/>
+</zone>
+<zone index='212' label='I-35 &amp; TH 95 WR # NORTH BRANCH'>
+	<detector index='E212_1' label='Detector 1'/>
+	<detector index='E212_2' label='Detector 2'/>
+	<detector index='E212_3' label='Detector 3'/>
+	<detector index='E212_4' label='Detector 4'/>
+	<detector index='E212_5' label='Detector 5'/>
+	<detector index='E212_6' label='Detector 6'/>
+	<detector index='E212_7' label='Detector 7'/>
+	<detector index='E212_8' label='Detector 8'/>
+	<detector index='E212_9' label='Detector 9'/>
+	<detector index='E212_10' label='Detector 10'/>
+	<detector index='E212_11' label='Detector 11'/>
+	<detector index='E212_12' label='Detector 12'/>
+	<detector index='E212_13' label='Detector 13'/>
+	<detector index='E212_14' label='Detector 14'/>
+	<detector index='E212_15' label='Detector 15'/>
+	<detector index='E212_16' label='Detector 16'/>
+	<detector index='E212_17' label='Detector 17'/>
+	<detector index='E212_18' label='Detector 18'/>
+	<detector index='E212_19' label='Detector 19'/>
+	<detector index='E212_20' label='Detector 20'/>
+	<detector index='E212_21' label='Detector 21'/>
+</zone>
+<zone index='213' label='TH 13 &amp; Portland Ave # BURNSVILLE'>
+	<detector index='E213_1' label='Detector 1'/>
+	<detector index='E213_2' label='Detector 2'/>
+	<detector index='E213_3' label='Detector 3'/>
+	<detector index='E213_4' label='Detector 4'/>
+	<detector index='E213_5' label='Detector 5'/>
+	<detector index='E213_6' label='Detector 6'/>
+	<detector index='E213_7' label='Detector 7'/>
+	<detector index='E213_8' label='Detector 8'/>
+	<detector index='E213_9' label='Detector 9'/>
+	<detector index='E213_10' label='Detector 10'/>
+	<detector index='E213_11' label='Detector 11'/>
+	<detector index='E213_12' label='Detector 12'/>
+	<detector index='E213_13' label='Detector 13'/>
+	<detector index='E213_14' label='Detector 14'/>
+	<detector index='E213_15' label='Detector 15'/>
+	<detector index='E213_16' label='Detector 16'/>
+	<detector index='E213_17' label='Detector 17'/>
+	<detector index='E213_18' label='Detector 18'/>
+</zone>
+<zone index='215' label='TH 51/Snelling &amp; CoRd C # ROSEVILLE'>
+	<detector index='E215_1' label='Detector 1'/>
+	<detector index='E215_2' label='Detector 2'/>
+	<detector index='E215_3' label='Detector 3'/>
+	<detector index='E215_4' label='Detector 4'/>
+	<detector index='E215_5' label='Detector 5'/>
+	<detector index='E215_6' label='Detector 6'/>
+	<detector index='E215_7' label='Detector 7'/>
+	<detector index='E215_8' label='Detector 8'/>
+	<detector index='E215_9' label='Detector 9'/>
+	<detector index='E215_10' label='Detector 10'/>
+	<detector index='E215_11' label='Detector 11'/>
+	<detector index='E215_12' label='Detector 12'/>
+	<detector index='E215_13' label='Detector 13'/>
+	<detector index='E215_14' label='Detector 14'/>
+	<detector index='E215_15' label='Detector 15'/>
+	<detector index='E215_16' label='Detector 16'/>
+	<detector index='E215_17' label='Detector 17'/>
+	<detector index='E215_18' label='Detector 18'/>
+	<detector index='E215_19' label='Detector 19'/>
+	<detector index='E215_20' label='Detector 20'/>
+	<detector index='E215_21' label='Detector 21'/>
+	<detector index='E215_22' label='Detector 22'/>
+	<detector index='E215_23' label='Detector 23'/>
+	<detector index='E215_24' label='Detector 24'/>
+</zone>
+<zone index='218' label='TH 52 &amp; (14) Southview Blvd WR # S.ST.PAUL'>
+	<detector index='E218_1' label='Detector 1'/>
+	<detector index='E218_2' label='Detector 2'/>
+	<detector index='E218_3' label='Detector 3'/>
+	<detector index='E218_4' label='Detector 4'/>
+	<detector index='E218_5' label='Detector 5'/>
+	<detector index='E218_6' label='Detector 6'/>
+	<detector index='E218_7' label='Detector 7'/>
+	<detector index='E218_8' label='Detector 8'/>
+	<detector index='E218_9' label='Detector 9'/>
+	<detector index='E218_10' label='Detector 10'/>
+	<detector index='E218_11' label='Detector 11'/>
+	<detector index='E218_12' label='Detector 12'/>
+	<detector index='E218_13' label='Detector 13'/>
+	<detector index='E218_14' label='Detector 14'/>
+</zone>
+<zone index='221' label='I-35 &amp; TH 97 WR # COLUMBUS'>
+	<detector index='E221_1' label='Detector 1'/>
+	<detector index='E221_2' label='Detector 2'/>
+	<detector index='E221_3' label='Detector 3'/>
+	<detector index='E221_4' label='Detector 4'/>
+	<detector index='E221_5' label='Detector 5'/>
+	<detector index='E221_6' label='Detector 6'/>
+	<detector index='E221_7' label='Detector 7'/>
+	<detector index='E221_8' label='Detector 8'/>
+	<detector index='E221_9' label='Detector 9'/>
+	<detector index='E221_10' label='Detector 10'/>
+	<detector index='E221_11' label='Detector 11'/>
+	<detector index='E221_12' label='Detector 12'/>
+	<detector index='E221_13' label='Detector 13'/>
+	<detector index='E221_14' label='Detector 14'/>
+	<detector index='E221_15' label='Detector 15'/>
+	<detector index='E221_16' label='Detector 16'/>
+</zone>
+<zone index='222' label='TH 55 &amp; TH 13 # MENDOTA HEIGHTS'>
+	<detector index='E222_1' label='Detector 1'/>
+	<detector index='E222_2' label='Detector 2'/>
+	<detector index='E222_3' label='Detector 3'/>
+	<detector index='E222_4' label='Detector 4'/>
+	<detector index='E222_5' label='Detector 5'/>
+	<detector index='E222_6' label='Detector 6'/>
+	<detector index='E222_7' label='Detector 7'/>
+	<detector index='E222_8' label='Detector 8'/>
+	<detector index='E222_9' label='Detector 9'/>
+	<detector index='E222_10' label='Detector 10'/>
+	<detector index='E222_11' label='Detector 11'/>
+	<detector index='E222_12' label='Detector 12'/>
+</zone>
+<zone index='225' label='TH 120 &amp; (19)/CoRd D # MAHTOMEDI'>
+	<detector index='E225_1' label='Detector 1'/>
+	<detector index='E225_2' label='Detector 2'/>
+	<detector index='E225_3' label='Detector 3'/>
+	<detector index='E225_4' label='Detector 4'/>
+	<detector index='E225_5' label='Detector 5'/>
+	<detector index='E225_6' label='Detector 6'/>
+	<detector index='E225_7' label='Detector 7'/>
+	<detector index='E225_8' label='Detector 8'/>
+	<detector index='E225_9' label='Detector 9'/>
+	<detector index='E225_10' label='Detector 10'/>
+	<detector index='E225_11' label='Detector 11'/>
+	<detector index='E225_12' label='Detector 12'/>
+	<detector index='E225_13' label='Detector 13'/>
+	<detector index='E225_14' label='Detector 14'/>
+</zone>
+<zone index='229' label='TH 61 &amp; 2nd St R/R # WHITE BEAR LAKE'>
+	<detector index='E229_1' label='Detector 1'/>
+	<detector index='E229_2' label='Detector 2'/>
+	<detector index='E229_3' label='Detector 3'/>
+	<detector index='E229_4' label='Detector 4'/>
+	<detector index='E229_5' label='Detector 5'/>
+	<detector index='E229_6' label='Detector 6'/>
+	<detector index='E229_7' label='Detector 7'/>
+	<detector index='E229_8' label='Detector 8'/>
+	<detector index='E229_9' label='Detector 9'/>
+	<detector index='E229_10' label='Detector 10'/>
+	<detector index='E229_11' label='Detector 11'/>
+	<detector index='E229_12' label='Detector 12'/>
+	<detector index='E229_13' label='Detector 13'/>
+	<detector index='E229_14' label='Detector 14'/>
+	<detector index='E229_15' label='Detector 15'/>
+	<detector index='E229_16' label='Detector 16'/>
+	<detector index='E229_17' label='Detector 17'/>
+	<detector index='E229_18' label='Detector 18'/>
+	<detector index='E229_19' label='Detector 19'/>
+	<detector index='E229_20' label='Detector 20'/>
+	<detector index='E229_21' label='Detector 21'/>
+	<detector index='E229_22' label='Detector 22'/>
+</zone>
+<zone index='235' label='TH 149 &amp; (73) Opperman/Becker Rd # EAGAN'>
+	<detector index='E235_1' label='Detector 1'/>
+	<detector index='E235_2' label='Detector 2'/>
+	<detector index='E235_3' label='Detector 3'/>
+	<detector index='E235_4' label='Detector 4'/>
+	<detector index='E235_5' label='Detector 5'/>
+	<detector index='E235_6' label='Detector 6'/>
+	<detector index='E235_7' label='Detector 7'/>
+	<detector index='E235_8' label='Detector 8'/>
+	<detector index='E235_9' label='Detector 9'/>
+	<detector index='E235_10' label='Detector 10'/>
+	<detector index='E235_11' label='Detector 11'/>
+	<detector index='E235_12' label='Detector 12'/>
+</zone>
+</arterials>

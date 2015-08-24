@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta name="Author" content="Douglas Lau"/>
+	<link href="protozoa.css" rel="stylesheet" type="text/css"/>
+	<title>Vicon Camera Control Code</title>
+</head>
+
+<body>
+<h2>Vicon Camera Control Code</h2>
+
+<p>
+	Commands sent to a camera remain active until another command is
+	received. For example, a pan will not stop until a command is sent
+	with pan speed of zero. There is a timeout function, but it is well
+	over 30 seconds.
+</p>
+<p>
+	For certain receivers, it appears that auxiliary functions require an
+	extended packet.
+	For these receivers, a basic command packet with aux functions set
+	will have no effect.
+	AUX 6 is used for wiper control.
+</p>
+<p>
+	Older receivers (V1200R-PVP and V1300R-PVP) differ slightly from this
+	documentation. Variable speed pan is controlled by AUX 3 and AUX 4,
+	allowing 4 speed levels. Tilt is similarly controlled by AUX 5 and
+	AUX 6.
+</p>
+
+<div class="left">
+<table>
+<tr>
+	<th>BIT</th>
+	<th>FUNCTION</th>
+</tr>
+<tr>
+	<td>0</td>
+	<td>receiver bit 4</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>receiver bit 5</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>receiver bit 6</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>receiver bit 7</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>8</td>
+	<td>receiver bit 0</td>
+</tr>
+<tr>
+	<td>9</td>
+	<td>receiver bit 1</td>
+</tr>
+<tr>
+	<td>10</td>
+	<td>receiver bit 2</td>
+</tr>
+<tr>
+	<td>11</td>
+	<td>receiver bit 3</td>
+</tr>
+<tr>
+	<td>12</td>
+	<td>0: status poll<br/>1: command (add bits 16-47)</td>
+</tr>
+<tr>
+	<td>13</td>
+	<td>ack alarm</td>
+</tr>
+<tr>
+	<td>14</td>
+	<td>extended command<br/>(with bit 12; add bits 48-79)</td>
+</tr>
+<tr>
+	<td>15</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>16</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>17</td>
+	<td>toggle auto-iris (or on-screen menu "back out")</td>
+</tr>
+<tr>
+	<td>18</td>
+	<td>toggle auto-pan (or on-screen menu "enter")</td>
+</tr>
+<tr>
+	<td>19</td>
+	<td>tilt down</td>
+</tr>
+<tr>
+	<td>20</td>
+	<td>tilt up</td>
+</tr>
+<tr>
+	<td>21</td>
+	<td>pan right</td>
+</tr>
+<tr>
+	<td>22</td>
+	<td>pan left</td>
+</tr>
+<tr>
+	<td>23</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>24</td>
+	<td>toggle lens speed</td>
+</tr>
+<tr>
+	<td>25</td>
+	<td>iris close</td>
+</tr>
+<tr>
+	<td>26</td>
+	<td>iris open</td>
+</tr>
+<tr>
+	<td>27</td>
+	<td>focus near</td>
+</tr>
+<tr>
+	<td>28</td>
+	<td>focus far</td>
+</tr>
+<tr>
+	<td>29</td>
+	<td>zoom in</td>
+</tr>
+<tr>
+	<td>30</td>
+	<td>zoom out</td>
+</tr>
+<tr>
+	<td>31</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>32</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>33</td>
+	<td>auxiliary 6</td>
+</tr>
+<tr>
+	<td>34</td>
+	<td>auxiliary 5</td>
+</tr>
+<tr>
+	<td>35</td>
+	<td>auxiliary 4</td>
+</tr>
+<tr>
+	<td>36</td>
+	<td>auxiliary 3</td>
+</tr>
+<tr>
+	<td>37</td>
+	<td>auxiliary 2</td>
+</tr>
+<tr>
+	<td>38</td>
+	<td>auxiliary 1</td>
+</tr>
+<tr>
+	<td>39</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>40</td>
+	<td>preset bit 0</td>
+</tr>
+<tr>
+	<td>41</td>
+	<td>preset bit 1</td>
+</tr>
+<tr>
+	<td>42</td>
+	<td>preset bit 2</td>
+</tr>
+<tr>
+	<td>43</td>
+	<td>preset bit 3</td>
+</tr>
+<tr>
+	<td>44</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>45</td>
+	<td>preset recall</td>
+</tr>
+<tr>
+	<td>46</td>
+	<td>preset store</td>
+</tr>
+<tr>
+	<td>47</td>
+	<td>must be 0</td>
+</tr>
+</table>
+</div>
+
+<div class="right">
+<table>
+<tr>
+	<th>BIT</th>
+	<th>EXTENDED PRESET</th>
+</tr>
+<tr>
+	<td>48</td>
+	<td>0: recall preset<br/>1: store preset</td>
+</tr>
+<tr>
+	<td>49</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>50</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>51</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>52</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>53</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>54</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>55</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>56</td>
+	<td>preset bit 0</td>
+</tr>
+<tr>
+	<td>57</td>
+	<td>preset bit 1</td>
+</tr>
+<tr>
+	<td>58</td>
+	<td>preset bit 2</td>
+</tr>
+<tr>
+	<td>59</td>
+	<td>preset bit 3</td>
+</tr>
+<tr>
+	<td>60</td>
+	<td>preset bit 4</td>
+</tr>
+<tr>
+	<td>61</td>
+	<td>preset bit 5</td>
+</tr>
+<tr>
+	<td>62</td>
+	<td>preset bit 6</td>
+</tr>
+<tr>
+	<td>63</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>64</td>
+	<td>preset pan speed bit 0</td>
+</tr>
+<tr>
+	<td>65</td>
+	<td>preset pan speed bit 1</td>
+</tr>
+<tr>
+	<td>66</td>
+	<td>preset pan speed bit 2</td>
+</tr>
+<tr>
+	<td>67</td>
+	<td>preset pan speed bit 3</td>
+</tr>
+<tr>
+	<td>68</td>
+	<td>preset pan speed bit 4</td>
+</tr>
+<tr>
+	<td>69</td>
+	<td>preset pan speed bit 5</td>
+</tr>
+<tr>
+	<td>70</td>
+	<td>preset pan speed bit 6</td>
+</tr>
+<tr>
+	<td>71</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>72</td>
+	<td>preset tilt speed bit 0</td>
+</tr>
+<tr>
+	<td>73</td>
+	<td>preset tilt speed bit 1</td>
+</tr>
+<tr>
+	<td>74</td>
+	<td>preset tilt speed bit 2</td>
+</tr>
+<tr>
+	<td>75</td>
+	<td>preset tilt speed bit 3</td>
+</tr>
+<tr>
+	<td>76</td>
+	<td>preset tilt speed bit 4</td>
+</tr>
+<tr>
+	<td>77</td>
+	<td>preset tilt speed bit 5</td>
+</tr>
+<tr>
+	<td>78</td>
+	<td>preset tilt speed bit 6</td>
+</tr>
+<tr>
+	<td>79</td>
+	<td>must be 0</td>
+</tr>
+</table>
+</div>
+
+<table>
+<tr>
+	<th>BIT</th>
+	<th>EXTENDED SPEED</th>
+</tr>
+<tr>
+	<td>48</td>
+	<td>pan speed bit 7</td>
+</tr>
+<tr>
+	<td>49</td>
+	<td>pan speed bit 8</td>
+</tr>
+<tr>
+	<td>50</td>
+	<td>pan speed bit 9</td>
+</tr>
+<tr>
+	<td>51</td>
+	<td>pan speed bit 10</td>
+</tr>
+<tr>
+	<td>52</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>53</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>54</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>55</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>56</td>
+	<td>pan speed bit 0</td>
+</tr>
+<tr>
+	<td>57</td>
+	<td>pan speed bit 1</td>
+</tr>
+<tr>
+	<td>58</td>
+	<td>pan speed bit 2</td>
+</tr>
+<tr>
+	<td>59</td>
+	<td>pan speed bit 3</td>
+</tr>
+<tr>
+	<td>60</td>
+	<td>pan speed bit 4</td>
+</tr>
+<tr>
+	<td>61</td>
+	<td>pan speed bit 5</td>
+</tr>
+<tr>
+	<td>62</td>
+	<td>pan speed bit 6</td>
+</tr>
+<tr>
+	<td>63</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>64</td>
+	<td>tilt speed bit 7</td>
+</tr>
+<tr>
+	<td>65</td>
+	<td>tilt speed bit 8</td>
+</tr>
+<tr>
+	<td>66</td>
+	<td>tilt speed bit 9</td>
+</tr>
+<tr>
+	<td>67</td>
+	<td>tilt speed bit 10</td>
+</tr>
+<tr>
+	<td>68</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>69</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>70</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>71</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>72</td>
+	<td>tilt speed bit 0</td>
+</tr>
+<tr>
+	<td>73</td>
+	<td>tilt speed bit 1</td>
+</tr>
+<tr>
+	<td>74</td>
+	<td>tilt speed bit 2</td>
+</tr>
+<tr>
+	<td>75</td>
+	<td>tilt speed bit 3</td>
+</tr>
+<tr>
+	<td>76</td>
+	<td>tilt speed bit 4</td>
+</tr>
+<tr>
+	<td>77</td>
+	<td>tilt speed bit 5</td>
+</tr>
+<tr>
+	<td>78</td>
+	<td>tilt speed bit 6</td>
+</tr>
+<tr>
+	<td>79</td>
+	<td>must be 0</td>
+</tr>
+</table>
+
+<br/>
+
+<table>
+<tr>
+	<th>BIT</th>
+	<th>EXTENDED STATUS MODIFY</th>
+</tr>
+<tr>
+	<td>48</td>
+	<td>0: standard<br/>1: V15UVS</td>
+</tr>
+<tr>
+	<td>49</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>50</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>51</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>52</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>53</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>54</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>55</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>56</td>
+	<td>current sector</td>
+</tr>
+<tr>
+	<td>57</td>
+	<td>current preset</td>
+</tr>
+<tr>
+	<td>58</td>
+	<td>aux set 2</td>
+</tr>
+<tr>
+	<td>59 - 79</td>
+	<td>must be 0</td>
+</tr>
+</table>
+
+<div class="all">
+<p>
+	Some preset functions are overloaded for special camera functions.
+</p>
+<table>
+<tr>
+	<th>PRESET</th>
+	<th>FUNCTION</th>
+</tr>
+<tr>
+	<td>Recall 80-87</td>
+	<td>Run tour sequence</td>
+</tr>
+<tr>
+	<td>Recall 88-89</td>
+	<td>Run Autotour sequence</td>
+</tr>
+<tr>
+	<td>Store 90</td>
+	<td>Pan/tilt lock</td>
+</tr>
+<tr>
+	<td>Store 93</td>
+	<td>Configure response line polarity</td>
+</tr>
+<tr>
+	<td>Store 94</td>
+	<td>Enter camera on-screen menu</td>
+</tr>
+<tr>
+	<td>Store 95</td>
+	<td>Initiate auto baud detect</td>
+</tr>
+<tr>
+	<td>Store 96</td>
+	<td>Initiate sector programming</td>
+</tr>
+<tr>
+	<td>Store 97</td>
+	<td>Initiate soft camera reset</td>
+</tr>
+<tr>
+	<td>Store 98</td>
+	<td>Set autopan limits</td>
+</tr>
+<tr>
+	<td>Store 99</td>
+	<td>Set manual pan limits</td>
+</tr>
+</table>
+</div>
+
+<p class="stamp">
+	2014 April 28
+</p>
+</body>
+</html>

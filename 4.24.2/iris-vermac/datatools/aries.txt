@@ -1,0 +1,935 @@
+ Zone   2: Cliff Rd (Dakota Co Operates) #
+  Int  2: CSAH 32 & TH 77 ER
+  Int  3: CSAH 32 & TH 77 WR
+  Int  5: CSAH 32 & 35E WR
+  Int  6: CSAH 32 & 35E ER
+ Zone   3: transfer file zone
+  Int  1: TH 65 & TH 242
+  Int  2: NR
+ Zone   5: CSAH 3 @ CSAH 20 (Henn Co Operates)
+  Int  1: CSAH 3 & CSAH 20
+  Int  2: CSAH 3 & CSAH 20 (SYS DET 9-16)
+  Int  3: Blake Rd & 2nd St
+  Int  4: Blake Rd & Cambridge St
+  Int  5: Knollwood Henn Co, no interconnect
+ Zone  15: 169 & 85th X Street (Henn Co Operates)#
+  Int  1: 85th & Lakeland
+  Int  2: 85th & Xylon
+ Zone  45: ASC 280/Larpenteur & Eustice (Ram Co Operates)
+  Int 14: 280/Larpenteur & Eustice (Ram Co)
+ Zone  59: TH 12 & CoRd 6 / North Ramps
+  Int  1: TH 12 & CoRd 6 / South Ramps
+  Int  2: TH 12 & CoRd 6 / North Ramps
+ Zone  60: TH 212 & CSAH 10 Engler Blvd / WR
+  Int  1: TH 212 & (10) Engler Blvd WR
+  Int  2: TH 212 & (10) Engler Blvd ER
+ Zone  61: TH 212 & CSAH 17/Powers Blvd @ CSAH 18/Lyman Blvd#
+  Int  1: TH 212 &(17)Powers Blvd SR*
+  Int  2: TH 212 & (17) Powers Blvd NR*
+  Int  3: (18) Lyman Blvd & (17) Powers Blvd
+ Zone  62: TH 212 & TH 101 @ CSAH 18/Lyman Blvd
+  Int  1: TH 101 & CSAH 18/Lyman Blvd
+  Int  2: TH 212 & TH 101 SR
+  Int  3: TH 212 & TH 101 NR/Lk Susan Dr
+ Zone  63: TH 212 & Dell Rd NR/Linwood Ct    EDEN PRAIRIE
+  Int  1: TH 212 & Dell Rd SR
+  Int  2: TH 212 & Dell Rd NR/Linwood
+ Zone  64: TH 169 & TH 41#                  LOUISVILLE TWSP
+  Int  1: Dem Con Dr & TH 41
+  Int  2: TH 169 & TH 41
+ Zone  65: TEST
+  Int  1: asc3 test
+  Int  2: test new modem 5600 multi tch
+ Zone  66: TH 169 & Anders Lks Pkwy/Bloom-Ferry ER#
+  Int  1: TH 169 & Anders Lks@Henn Town Rd WR
+  Int  2: TH 169 & Bloomington Ferry Rd ER
+ Zone  67: TH 169 & Pioneer Tr  ER #          EDEN PRAIRIE
+  Int  1: 169 & Pioneer Tr  West Frtg Rd Ht
+  Int  2: 169 & Pioneer Tr  WR
+  Int  3: 169 & Pioneer Tr  ER
+ Zone  68: TH 169 & Riverview Rd & 108th    EDEN PRAIRIE
+  Int  1: TH 169 & Riverview Rd WR
+  Int  2: TH 169 & 108th St ER
+ Zone  69: 694 & East River Rd  #
+  Int  1: 694 & East River Rd  SR
+  Int  2: 694 & East River Rd  NR
+ Zone  70: TH 12 & (83) Halgren Rd         MAPLE PLAIN
+  Int  1: TH 12 & (83) Halgren Rd
+  Int  2: TH 12 & CSAH 29 Baker Park Rd
+ Zone  71: TH 5 & (10)/(32) #                   WACONIA
+  Int  1: TH 5 & Oak St
+  Int  2: TH 5 & (10)/(32)
+  Int  3: TH 5 & (32) @ Marketplace Dr
+  Int  4: TH 5 & TH 284/Olive St
+  Int  5: TH 5 & CoRd 30/W J   (No Comm)
+  Int  6: TH 5 & Oak Ave @ Community Dr
+ Zone  72: TH 62 & Xerxes SR                         EDINA
+  Int  1: TH 62 & Xerxes SR
+  Int  2: TH 62 & Xerxes NR
+ Zone  73: I-35W/TH 62 & Lyndale              RICHFIELD
+  Int  1: 35W/TH 62 & Lyndale SR
+  Int  2: 35W/TH 62 & Lyndale NR
+ Zone  74: TH 101 & CSAH 37/70th St              OTSEGO
+  Int  1: TH 101 & CSAH 36/45th/53rd
+  Int  2: TH 101 & CSAH 37/70th
+  Int  3: TH 101 & CSAH 42/River Rd
+  Int  4: TH 101 & CSAH 39/90th St
+  Int  5: TH 101 & CTY42 River Rd ER
+ Zone  75: ISOLATED INTERSECTIONS WEST METRO
+  Int  1: TH 169 & TH 282   #          JORDAN
+  Int  2: TH 7 & CSAH 92 (Main St)   #
+  Int  3: TH 62 & Valley View *#
+  Int  4: TH169 & 81 BYPASS SYS A TEMP
+  Int  5: BLANK
+  Int  6: TH 21 & TH 282               JORDAN
+  Int  7: TH 212 & Carver Pkwy/(CSAH11) NR&SR
+  Int  8: TH 169 & (69) Old Brickyard Rd
+  Int  9: TH 5 & (11) Victoria Dr
+  Int 10: TH 12 & CoRd 6/McCulley Rd (ORONO
+  Int 11: I-494 & 24th Ave (Bloomington)
+  Int 12: TH 101 & CSAH 14/Pioneer Tr
+  Int 13: BLANK
+  Int 14: TH 10 & 171st St             RAMSEY
+  Int 15: I-35W & 106th St  ER    BLOOMINGTON
+  Int 16: TH 610 & (3)/Coon Rapids Blvd  ER
+  Int 17: TH 610 & (81) @Territorial Rd (MG)
+  Int 18: TH 7 & Smithtown/Rolling Acres #
+  Int 19: TH 100 & CSAH 10/57th  ER   (B.P.)
+  Int 20: TH 100 & CSAH 10/57th  ER  (B.P.)
+  Int 21: TH 5 & Rolling Acres Rd/Bavaria Rd
+  Int 22: CSAH 14 & Bluff Crk  Dsgn.Build/212
+  Int 23: TH 212 & Charlson Rd
+  Int 24: TH 212 & (15/17) Audobon Ave Chaska
+ Zone  76: TH 242 & Jefferson # (Anoka Co Operates) BLAINE
+  Int  1: TH 242 & Shenandoah Blvd    NIC
+  Int  2: TH 242 & Hanson Blvd     NIC
+  Int  3: TH 242 & Foley          NIC
+  Int  4: TH 242 & University
+  Int  5: TH 242 & Jefferson
+  Int  6: TH 242 & Oak/Polk St
+ Zone  77: West TH 55 Isolated/possible future (19)
+  Int  1: TH 55 & (92)/Dogwood   Greenfield
+  Int  2: TH 55 & (19)
+  Int  3: TH 55 & Willow Dr
+ Zone  78: TH 169 & Cedar Lk Rd #             MINNETONKA
+  Int  1: TH 169 & Cedar Lk Rd   WR
+  Int  2: TH 169 & Cedar Lk Rd    ER
+ Zone  79: TH 169 & Minnetonka Blvd #      MINNETONKA
+  Int  1: TH 169 & Minnetonka Blvd  WR
+  Int  2: TH 169 & Minnetonka Blvd  ER
+ Zone  80: I-35W & 90th St #                     BLOOMINGTON
+  Int  1: I-35W & 90th St  WR
+  Int  2: I-35W & 90th St  ER
+ Zone  81: I-35W & 94th St #                     BLOOMINGTON
+  Int  1: I-35W & 94th St  WR
+  Int  2: I-35W & 94th St  ER
+ Zone  82: TH 169 & Bren Rd/Londonderry #  MINNETONKA
+  Int  1: Bren Road & Smetana Dr
+  Int  2: Bren Rd & TH 169  WR
+  Int  3: Bren Rd/Londonderry & TH 169  ER
+ Zone  83: TH 169 & TH 10 & TH 47 #               ANOKA
+  Int  1: TH 169 & E Frtg Rd-Peninsula Point
+  Int  2: TH 169 & PED CROSSING*
+  Int  3: Main St & TH 169/Ferry St*
+  Int  4: TH 10 & TH 47  SR*
+  Int  5: TH 10 & TH 47  NR
+  Int  6: TH 47 & Pleasant St
+ Zone  84: TH 610 & East River Rd  #         COON RAPIDS
+  Int  1: TH 610 & East River Rd   SR
+  Int  2: TH 610 & East River Rd   NR
+ Zone  85: TH 169 & 36th Ave  N  #                PLYMOUTH
+  Int  1: TH 169 & 36th  Ave N   WR*
+  Int  2: TH 169 & 36th  Ave N  ER*
+ Zone  86: TH 100 & W 50th St  #              EDINA
+  Int  1: TH 100 & W 50th St   WR*
+  Int  2: TH 100 & W 50th St   ER
+ Zone  87: TH 7 & TH 41   #                       EXCELSIOR
+  Int  3: TH 7 & TH 41
+  Int  4: TH 7 & (19)/Oak St
+  Int  5: TH 7 & Christmas Lake Rd
+ Zone  88: TH 100 & Glenwood Ave  #      GOLDEN VALLEY
+  Int  1: TH 100 & Glenwood Ave  WR
+  Int  2: TH 100 & Glenwood Ave  ER
+ Zone  89: TH 169 & Plymouth Ave ER #   GOLDEN VALLEY
+  Int  1: TH 169 & Plymouth Rd WR/ Frt Rd
+  Int  2: TH 169 & Plymouth ER/ Frt Rd
+ Zone  90: TH 47 & 153rd  Ave  N  #               RAMSEY
+  Int  1: TH 47 & (116)/Bunker Lake Blvd *
+  Int  2: TH 47 & (5)/Nowthen/ XKimo St *
+  Int  3: TH 47 & Sunwood/149th Ave N*
+  Int  4: TH 47 & Alpine Dr/153rd  Ave N *
+  Int  5: TH 47 & McKinley St * (Future)
+ Zone  91: TH 13 & (31)/Lynn Ave #             BURNSVILLE
+  Int  1: TH 13 & (31)/Lynn Ave        [R/R]
+  Int  2: TH 13 & Washburn Ave/Dump Rd
+  Int  3: TH 13 & CSAH 5
+ Zone  92: TH 610 & (14) Zane Ave  #       BROOKLYN PARK
+  Int  1: TH 610 & Zane Ave  SR
+  Int  2: TH 610 & Zane Ave  NR
+ Zone  93: TH 610 & W Broadway #          BROOKLYN PARK
+  Int  1: TH 610 & W Broadway  SR
+  Int  2: TH 610 & W Broadway  NR
+  Int  3: TH 610 & 97th Ave N @ W Broadway
+ Zone  94: TH 3 & CoRd 42 #  RADIO       ROSEMOUNT
+  Int  1: TH 3 & (42)
+  Int  2: TH 3 & 145th St W*
+ Zone  95: I-94 & Shingle Creek Pkwy #       BROOKLYN PARK
+  Int  1: I-94 & Shingle Creek Pkwy  SR
+  Int  2: I-94 & Shingle Creek Pkwy  NR
+ Zone  96: TH 5 & Venture/Fuller #              EDEN PRAIRIE
+  Int  1: TH 5  (4)/Eden Prairie Rd
+  Int  2: TH 5 & Venture/Fuller Rd
+  Int  3: (4) & Timber Lk Rd (Henn Co)
+  Int  4: (4) & Terry Pine Dr (Henn Co)
+  Int  5: (4) & Wagner Way (Henn Co)*
+ Zone  97: TH 169 & 85th Ave N              BROOKLYN CENTER
+  Int  1: TH CSAH 81 & 169       [R/R]
+  Int  2: TH 169 & (109)/85th Ave N
+  Int  3: TH 169 & (30)/93rd Ave N
+  Int  4: TH 169 & TH 610  SR*
+  Int  5: (109) 85th Ave @ CSAH 81 (Henn Co)
+  Int  6: (81) & Jefferson Hwy   (Henn Co)
+ Zone  98: TH 7 & (73)/17th Ave  #                 HOPKINS
+  Int  1: TH 7 & Shady Oak Rd
+  Int  2: TH 7 & (73)/17th Ave
+  Int  3: TH 7 & 12th Ave
+  Int  4: TH 7 & 5th Ave/Oakridge Rd
+  Int  5: TH 7 & TH 169  WR
+  Int  6: TH 7 & TH 169  ER
+  Int  7: TH 7 & Blake Rd/Aquilla Ave N
+  Int  8: TH 7 & Texas Ave
+  Int  9: TH 7 & Louisiana Ave
+  Int 10: TH 7 & Woodale Ave
+  Int 11: Louisiana Ave & Walker St *
+  Int 12: (73)/17th Ave & N Frt Rd-Mtka.Mill
+  Int 13: Louisiana Ave & Lake St *
+  Int 14: TH 7 & TH 100  ER
+  Int 15: TH 7 & TH 100  WR
+  Int 16: OTTOWA Henn Co, no interconnect
+ Zone  99: TH 10 & Hanson Blvd-Single Point #
+  Int  1: Hanson Blvd & Northdale/Robinson*
+  Int  2: TH 10 & Hanson Blvd @ Single Point
+  Int  3: Hanson Blvd/(78) & Northdale/(11)
+ Zone 100: TH 47 & 49th Ave N #       COLUMBIA HEIGHTS
+  Int  1: TH 47 & 37th Ave N
+  Int  2: TH 47 & 40th Ave N
+  Int  3: TH 47 & 44th Ave N
+  Int  4: TH 47 & 49th Ave N
+  Int  5: TH 47 & 53rd Ave N
+ Zone 101: TH 12 & Carlson Pkwy  #        MINNETONKA
+  Int  1: TH 12 & Carlson Pkwy  SR
+  Int  2: TH 12 & Carlson Pkwy  NR
+  Int  3: TH 12 & Twelve Oaks/Carlson Pkwy
+ Zone 102: TH 10 & Sunfish Blvd  #            ANOKA
+  Int  1: TH 10 & Fairoak Ave
+  Int  2: TH 10 & Thurston/Cutters Grove
+  Int  3: TH 10 & (57)Sunfish Blvd
+  Int  4: TH 10 & (56)/Ramsey Blvd
+  Int  5: TH 10 & Armstrong Blvd      [R/R]
+ Zone 103: TH 212 & I-494  SR #            EDEN PRAIRIE
+  Int  1: TH 212 & (1)Pioneer Trail
+  Int  2: TH 212 & College View Dr
+  Int  3: TH 212 & Anderson Lakes Pkwy
+  Int  4: TH 212 & Fountain Place
+  Int  5: TH 212 & Prairie Center Dr
+  Int  6: TH 212 & Regional Center Dr
+  Int  7: TH 212 & Single Tree La
+  Int  8: TH 212 & Leona Rd & Eden Rd*
+  Int  9: TH 212 & I-494  SR/Technology Dr
+  Int 10: TH 212 & I-494  NR
+  Int 11: TH 212 & (39)/Valley View  ER
+  Int 12: TH 212 & WR/Bryant@(39) Valley View
+  Int 13: Valley View & Prairie Center Dr*
+  Int 14: Prairie Center Dr & Viking Dr
+  Int 15: TH 494 & Prairie Center Dr  NR
+  Int 16: Prairie Ctr Dr & W 78th St (EP oper
+  Int 17: Prairie Ctr Dr & Prairie Lks Dr (EP
+  Int 18: Prairie Ctr Dr & Preserve Blvd  EP
+  Int 19: Anderson Lk Pkwy & Columbine (EP Op
+ Zone 104: TH 212 & TH 101  E JCT  #    SHAKOPEE "Y"
+  Int  1: TH 212 & TH 101  W Jct
+  Int  2: TH 212 & TH 101  E Jct
+  Int  3: TH 212 & (101) N Jct
+  Int  4: TH 212 & (101) S Jct
+ Zone 105: TH 10 & Foley Blvd  NR #        BROOKLYN PARK
+  Int  1: Foley Blvd & 99th Ave
+  Int  2: Foley Blvd & TH 10 SR
+  Int  3: Foley Blvd & (11) TH 10 NR/101st*
+ Zone 106: I-394 & (61)Plymouth Rd  SR#   MINNETONKA
+  Int  1: Ridgedale Dr & Plymouth Rd
+  Int  2: Cartway La & Ridgedale Dr
+  Int  3: Cartway La & Plymouth Rd
+  Int  4: I-394 & Plymouth Rd  SR
+  Int  5: I-394 & Plymouth Rd  NR
+  Int  6: I-394 & N Frt Rd @ (61)/Plymouth Rd
+ Zone 107: TH 55 & Winnetka Ave  #        GOLDEN VALLEY
+  Int  1: TH 55 & Boone Ave/General Mills
+  Int  2: TH 55 & Winnetka Ave/(156)
+  Int  3: TH 55 & Rhode Island Ave
+  Int  4: TH 55 & Glenwood Ave/(40)
+  Int  5: TH 55 & Douglas Dr/(102)
+  Int  6: TH 55 & TH 100 Ramps
+  Int  7: TH 55 & Schaper Rd
+  Int  8: TH 55 & Meadow La
+  Int  9: TH 55 & Theodore Wirth Pkwy
+ Zone 108: TH 55 & I-494  ER  #                 PLYMOUTH
+  Int  1: TH 55 & Arrowhead Dr
+  Int  2: TH 55 & Pinto/(116)
+  Int  3: TH 55 & Clydesdale
+  Int  4: TH 55 & (101) W Jct/Sioux Tr
+  Int  5: TH 55 & Peony (101)
+  Int  6: TH 55 & (24) Rockford Rd
+  Int  7: TH 55 & Vicksburg La
+  Int  8: TH 55 & Niagra/Plymouth Blvd
+  Int  9: TH 55 & Fernbrook La
+  Int 10: TH 55 & TH 494 WR
+  Int 11: TH 55 & TH 494 ER
+  Int 12: TH 55 & Xenium/Northwest Blvd
+  Int 13: TH 55 & Industrial Park Blvd
+  Int 14: TH 55 & CoRd 6
+  Int 15: TH 55 & W Medicine Lk
+  Int 16: TH 55 & South Shore Dr
+  Int 17: TH 55 &  Revere La/Quaker La
+  Int 18: Vicksburg & 32nd - Plym Oper
+  Int 19: Vicksburg & 35th - Plym Oper
+  Int 20: Vicksburg & 36th - Plym Oper
+  Int 21: Xenium & 24th South of TH55  Henn C
+  Int 22: Xenium & Indust Parkway-Henn Cnty
+  Int 23: Fernbrook La & Harbor La N
+  Int 24: Fernbrook La & 27th Ave
+ Zone 109: TH 101 & I-94 (49) to (144) #      ROGERS
+  Int  1: TH 101 & I-94 SR
+  Int  2: TH 101 & I-94 NR
+  Int  3: TH 101 & S Diamond Lk (49)*
+  Int  4: TH 101 & (144)/141st Ave
+ Zone 110: TH 252 & Brookdale Dr #            BROOKLYN PARK
+  Int  1: TH 252 & 66th Ave N
+  Int  2: TH 252 & 70th Ave N
+  Int  3: TH 252 & 73rd Ave N
+  Int  4: TH 252 & Brookdale Dr
+  Int  5: TH 252 & 81st Ave N
+  Int  6: TH 252 & 85th Ave N
+ Zone 111: TH 47 & Mississippi St  #             FRIDLEY
+  Int  1: TH 47 & I-694 SR
+  Int  2: TH 47 & I-694 NR
+  Int  3: TH 47 & 57th Ave (102)
+  Int  4: TH 47 & 61st Ave
+  Int  5: TH 47 & Mississippi St (6)
+  Int  6: TH 47 & 69th Ave
+  Int  7: TH 47 & 73rd Ave
+  Int  8: TH 47 & Osborne Rd (8)
+  Int  9: TH 47 & 81st Ave
+  Int 10: TH 47 & 85th Ave (132)*
+  Int 11: TH 47 & University Ave (3)
+ Zone 112: TH 62 & Clearwater/Beach Rd #   EDEN PRAIRIE
+  Int  1: TH 62 & Clearwater/Beach Rd
+  Int  2: TH 62 & I-494 ER
+  Int  3: TH 62 & I-494 WR
+  Int  4: CSAH 62 & CSAH 60/Baker Rd
+ Zone 113: TH 12 & TH 101 NR #                   WAYZATA
+  Int  1: TH 12 & 101 SR
+  Int  2: TH 12 & 101 NR
+  Int  3: TH 101 & 1st Ave/Harmony (Henn Co)
+ Zone 114: 394 & Ridgedale Dr & S Frt Rd #   MINNETONKA
+  Int  1: Ridgedale Dr & So Frt Rd
+  Int  2: Ridgedale Dr & 394 SR*
+  Int  3: Ridgedale Dr & 394 NR
+ Zone 115: 394 & Golden Hills Dr N Frt Rd @ Park Pl/Xenia # G.V.
+  Int  1: Park Place Blvd & Gamble Dr
+  Int  2: Park Place Blvd & 16th St
+  Int  3: Park Place Blvd & Wayzata Blvd Fr
+  Int  4: Park Place Blvd & 394 SR
+  Int  5: Xenia Ave & 394 NR
+  Int  6: Xenia Ave & Golden Hills Dr/N Frt
+ Zone 116: 394 S Frt Rd & (73)Hopkins Crs Rd  # MINNETONKA
+  Int  1: CSAH 73 & S. Frontage Rd
+  Int  2: CSAH 73 & S Loop Ramp/Pk N ride
+  Int  3: CSAH 73 & NR/N Frt Rd
+  Int  4: CSAH 73 & Fairfield
+ Zone 117: TH 5 & Great Plains Blvd  #         CHANHASSEN
+  Int  1: TH 5 & TH 41
+  Int  2: TH 5 & Century Ave
+  Int  3: TH 5 & Galpin
+  Int  4: TH 5 & Audubon
+  Int  5: TH 5 & Powers
+  Int  6: TH 5 & Market
+  Int  7: TH 5 & Great Plains
+  Int  8: TH 5 & Dakota  Ave/TH 101
+  Int  9: TH 5 & Dell
+  Int 10: TH 5 & TH 101 @ W 78th St
+  Int 12: TH 41 & (18) Lyman
+  Int 13: TH 41 & 82nd St
+ Zone 118: I-394 S Frt Rd & Louisiana #   ST LOUIS PARK
+  Int  1: Louisiana Ave & S Frt Rd
+  Int  2: Louisiana Ave & SR
+  Int  3: Louisiana Ave & NR
+ Zone 119: I-394 & General Mills Blvd  SR#
+  Int  1: I-394 & General Mills Blvd  SR
+  Int  2: I-394 & General Mills Blvd  NR
+  Int  3: Betty Crocker Dr & General Mills
+ Zone 120: TH 55 & (50)    #                      ROCKFORD
+  Int  1: TH 55 & (20) Main St
+  Int  2: TH 55 & (50)/Rebecca Pk Tr/Woodland
+ Zone 121: TH 7 & TH 101    #                 MINNETONKA
+  Int  1: 101 & Excelsi Blvd     HENN CO OWNS
+  Int  2: 101 & Hutchins Dr     HENN CO OWNS
+  Int  3: TH 7 & 101
+  Int  4: 101 & Cub Ent          HENN CO OWNS
+  Int  5: TH 7 & Market Blvd
+  Int  6: TH 7 & Vinehill Rd
+  Int  7: TH 7 & Tonkawood/Woodland Rd
+  Int  8: TH 7 & Williston Rd
+ Zone 122: TH 610 & Noble Ave  SR  #    BROOKLYN PARK
+  Int  1: TH 610 & Noble Ave   SR
+  Int  2: TH 610 & Noble Ave   NR
+  Int  3: TH 610 & Noble Ave @ 95th St N
+ Zone 123: I-94 & Boone Ave N SR  #     BROOKLYN PARK
+  Int  1: I-94 & Boone Ave SR
+  Int  2: I-94 & Boone Ave NR
+ Zone 124: TH 169 & Hayden Lk Rd   #        CHAMPLIN
+  Int  1: TH 169 & 109th Ave N
+  Int  2: TH 169 & 114th Ave N
+  Int  3: TH 169 & 117th Ave N
+  Int  4: TH 169 & 120th Ave N
+  Int  5: TH 169 & Hayden Lk Rd*
+  Int  6: TH 169 & (12) S Jct W River Rd
+  Int  7: TH 169 & (12) N Jct Miller Rd/Dayto
+  Int  9: Business Park & 120th By Target*
+  Int 10: Elm Crk & Jefferson Hwy west of 169
+  Int 11: 114th & Aquila east of 169 By Cub
+ Zone 125: TH 12 & Willow Dr/Old Crystal Bay #  ORONO
+  Int  1: TH 12 & Old Crystal Bay Rd
+  Int  2: TH 12 & Willow DR
+  Int  3: TH 12 & (146) Lake St
+  Int  4: TH 12 & Brown Rd
+  Int  6: *
+ Zone 126: I-94 & (30) ER Maple Grove (City of MG owns & operates)
+  Int  1: CSAH 30 & Target Ent
+  Int  2: CSAH 30 & Dunkrik La
+  Int  3: CSAH 30 & 96th/Menards
+  Int  4: I-94 & CSAH 30 WR
+  Int  5: I-94 & CSAH 30/95th Ave ER
+ Zone 127: TH 5/312 & Mitchell Road @ Martin Dr # EDEN PRAIRIE
+  Int  1: Mitchell Rd & Anderson Lakes Rd
+  Int  2: Mitchell Rd & Technology Dr
+  Int  3: Mitchell Rd & Lone Oak
+  Int  4: Mitchell Rd & TH 5/312  SR
+  Int  5: Mitchell Rd & TH 5/312  NR
+  Int  6: Mitchell Rd & Martin Dr
+ Zone 128: TH 169 & Betty Crocker Dr #     GOLDEN VALLEY
+  Int  1: TH 169 & Betty Crocker Dr WR
+  Int  2: TH 169 & Betty Crocker Dr ER
+ Zone 129: TH 41 & TH 212  #                     CHASKA
+  Int  1: TH 212/Chestnut & TH 41-RR exempt
+  Int  2: TH 212 & (12) Walnut St-RR exempt
+  Int  3: TH 41 & 4th St  (Radio)
+  Int  4: TH 41 & Crosstown/Victoria
+  Int  5: TH 41 & (10) Engler
+  Int  6: TH 41& Canyon Road/The park-n-ride
+  Int  7: TH 41 & 212  SR
+  Int  8: TH 41 & 212  NR
+  Int  9: TH 41 & Hundertmark Rd #
+  Int 10: TH 41* & Pioneer Tr
+  Int 11: TH 41* & Hazeltine
+ Zone 130: TH 169 & 494 NR   #            BLOOMINGTON
+  Int  1: TH 169 & Highwood Dr
+  Int  2: TH 169 & 494 SR
+  Int  3: TH 169 & 494 NR
+ Zone 131: TH 100 & 36th Ave N   #           CRYSTAL
+  Int  1: TH 100 & 36th Ave N  WR*
+  Int  2: TH 100 & 36th Ave N  ER
+  Int  3: 36th Ave N & Cub Ent
+ Zone 132: TH 169 & (17)  NR   #          SHAKOPEE
+  Int  1: TH 169 & (17) SR
+  Int  2: TH 169 & (17) NR
+ Zone 133: TH 169 & (83)  NR  #           SHAKOPEE
+  Int  1: (83) & CSAH 16 East\Eagle Creek Blv
+  Int  2: (83) & CSAH 16 West\Corp Cntr Dr
+  Int  3: (83) & 169 SR
+  Int  4: (83) & 169 NR
+  Int  5: (83) & 12th St SE
+ Zone 134: I-494 & Carlson Pkwy  ER  #    PLYMOUTH
+  Int  1: I-494 & Carlson Pkwy  WR
+  Int  2: I-494 & Carlson Pkwy  ER
+  Int  3: I-494 & Carlson Pkwy/Cheshire La
+ Zone 135: TH 10 & CSAH 7   #                 ANOKA
+  Int  1: TH 10 & CSAH 7 SR
+  Int  2: TH 10 & CSAH 7 NR
+ Zone 136: TH 5/312 NR & Prairie Ctr Dr # EDEN PRAIRIE
+  Int  1: Prairie Ctr Dr & Tech Dr
+  Int  2: Prairie Ctr Dr & TH 5 SR/W 78th
+  Int  3: Prairie Ctr Dr & TH 5 NR/Plaza Dr
+  Int  4: Tech Dr & SW Station (EP oper)
+  Int  5: Prairie Ctr Dr & Singletree La (EP)
+  Int  6: Prairie Ctr Dr & Columbine (EP
+ Zone 137: TH 212 & Shady Oak Rd WR # EDEN PRAIRIE
+  Int  1: TH 212 & Shady Oak Rd/Bryant LK
+  Int  2: TH 212 & Shady Oak Rd WR
+  Int  3: TH 212 & Shady Oak Rd ER
+  Int  4: TH 212 & Shady Oak/Flying Cloud
+ Zone 138: TH 169 & 49th Ave N ER      # NEW HOPE
+  Int  1: TH 169 & Schmidt Lk Rd WR
+  Int  2: TH 169 & 49th Ave N ER
+ Zone 139: TH 212 & Reform St     #            NORWOOD
+  Int  1: TH 212 & Reform St/TH25 (33)
+  Int  2: TH 212 & Faxon Rd
+ Zone 140: TH 10/610 & University Ave  #     BLAINE
+  Int  1: TH 10/610 & University Ave SR
+  Int  2: TH 10/610 & University Ave NR
+ Zone 141: TH 13 & Duluth St     #            PRIOR LAKE
+  Int  1: TH 13 & *Duluth St/1st Ave Conn
+  Int  2: TH 13 & (21) Eagle Creek/Credit Ri
+  Int  3: TH 13 & (44) 160th St/Main Ave
+  Int  4: TH 13 & Fish Point Rd
+  Int  5: Five Hawks & CSAH 23
+ Zone 142: TH 169 & Valley View WR     #       EDINA
+  Int  1:  Valley View & Washington Ave
+  Int  2:  Valley View & TH 169 WR
+  Int  3:  Valley View & TH 169 ER
+ Zone 143: 494 & Valley View WR    #      EDEN PRAIRIE
+  Int  1: Valley View & Plaza/Top View
+  Int  2: Valley View & 494 WR
+  Int  3: Valley View & 494 ER
+  Int  4: Valley View & Market PL Dr  Henn Co
+  Int  5: ValleyView & P Ctr/HOMDEP  Henn Co
+ Zone 144: TH 13 & (16) McColl Rd #            SAVAGE
+  Int  1: TH 13 & South Park
+  Int  2: TH 13 & CoRd 42-Scott Co oper video
+  Int  3: TH 13 & Conelly
+  Int  4: TH 13 & McColl
+  Int  5: TH 13 & 128th (future)
+  Int  6: TH 13 & 126th
+  Int  7: TH 13 & 101*
+ Zone 161: 494 & Portland Ave S (N & S ramps)  BLOOMINGTON
+  Int  1: I-494 & Portland Ave S  SR
+  Int  2: I-494 & Portland Ave N  NR
+ Zone 162: TH 280 & Larpenteur Ave  ER   FALCON HTS
+  Int  1: TH 280 & Larpenteur Ave  WR*
+  Int  2: TH 280 & Larpenteur Ave  ER*
+ Zone 163: TH 3 & TH 50 S Jct   #           FARMINGTON
+  Int  1: TH 3 & TH 50 S Jct
+  Int  2: TH 3 & TH 50 N Jct
+ Zone 164: TH 52 & 117th St  WR  #       INVER GROVE
+  Int  1: TH 52 & 117th / Clark Rd*
+  Int  2: TH 52 & 117th St WR*
+  Int  3: TH 52 & 117th St ER*
+ Zone 165: I-35 & (5) / CSAH 50 ER  #      LAKEVILLE
+  Int  1: CSAH 50/5 & I-35 WR
+  Int  2: CSAH 50 & I-35 ER
+  Int  3: CSAH 50 & 176th St/Kenrick Ave
+  Int  4: Junelle Path, Dak Co owned/oper
+ Zone 166: I-35 & (46) / Kenrick Ave         LAKEVILLE
+  Int  1: I-35 & (46)/162nd  WR
+  Int  2: I-35 & (46)/162nd  ER
+  Int  3: I-35 & (46)/162nd St/Kenrick Ave
+ Zone 167: TH 36 & Manning  #
+  Int  1: TH 36 & Lake Elmo Ave
+  Int  2: TH 36 & Manning
+ Zone 168: ISOLATED SIGNALS - No Comm
+  Int  1: TH 55 & CSAH 42  Temp
+  Int  2: TH 77 & Old Shakopee Rd  ER
+  Int  3: TH 3 & Connemara Trail
+  Int  4: TH 3 & (38)/McAndrews Rd
+  Int  5: TH 149 & Smith Ave/Dodd Rd
+  Int  6: TH 5 & TH 120 S Jct/Stillwater Rd
+ Zone 169: TH 100 & 77th  #                      EDINA
+  Int  1: 77th & Metro/Industrial  (NOT OURS)
+  Int  2: 77th & TH 100   WR
+  Int  3: 77th & TH 100   ER
+  Int  4: 77th & Pentagon Ent
+ Zone 170: TH 13 & Yankee Doodle Rd  #      EAGAN
+  Int  1: TH 13 & Silver Bell Rd
+  Int  2: TH 13 & Black Hawk Rd
+  Int  3: TH 13 & Yankee Doodle Rd
+  Int  4: Silver Bell Rd & Cedervale
+ Zone 171: TH 36 & Dale St        #           ROSEVILLE
+  Int  1: TH 36 & Dale St SR
+  Int  2: TH 36 & Dale St NR
+ Zone 172: I-35 & TH 61 @ (22)Viking  WR (no phone) WYOMING
+  Int  1: I-35 & TH 61 @ (22) Viking WR
+  Int  2: I-35 & TH 61 @ (22) Viking ER
+  Int  3: I-35 & TH 61 @ (22) Viking
+ Zone 173: TH 61 & I-694 SR        #        MAPLEWOOD
+  Int  1: TH 61 & CoRd C *
+  Int  2: TH 61 & Beam Ave
+  Int  3: TH 61 & CoRd D
+  Int  4: TH 61 & I-694 SR
+  Int  5: TH 61 & I-694 NR
+  Int  6: TH 61 & Buerkle Rd*
+  Int  7: TH 61 & Willow Blvd*
+  Int  8: TH 61 & (E) TH 244
+  Int  9: TH 61 & Cedar Ave *
+  Int 10: TH 61 & CoRd F*
+ Zone 174: TH 61 & CoRd B/(25)   #       MAPLEWOOD
+  Int  1: TH 61 & Frost/Parkway*
+  Int  2: TH 61 & Roselawn Ave*
+  Int  3: TH 61 & CoRd B *
+ Zone 175: I-494 & Pilot Knob Rd NR   #        EAGAN
+  Int  1: Pilot Knob & Corporate Center-Co.Op
+  Int  2: I-494 & Pilot Knob Rd SR  *
+  Int  3: I-494 & Pilot Knob Rd NR  *
+  Int  4: Pilot Knob & Mendota Hgts Rd
+ Zone 177: TH 120 & TH 5  N Jct    #            OAKDALE
+  Int  1: TH 120 & Larpenteur Ave*
+  Int  2: TH 120 & TH 5 N Jct *
+ Zone 178: TH 52 & Blaine/Upper 55th #   INVER GROVE HEIGHTS
+  Int  1: TH 52 & Upper 55th St WR*
+  Int  2: TH 52 & Upper 55th ER*
+  Int  3: TH 52 & Upper 55th/Blaine Ave
+ Zone 179: TH 5 & Hadley    #                     OAKDALE
+  Int  1: TH 5 & Hadley
+  Int  2: TH 5 & I-694 W - WR/ER
+  Int  3: TH 5 & Imation Place
+  Int  4: TH 5 & Ideal Ave
+  Int  5: TH 5 & Granada Ave
+ Zone 180: I-694 & TH 65/47th Ave   #    COLUMBIA HTS
+  Int  1: TH 65 & 40th Ave NE
+  Int  2: TH 65 & 41st Ave NE *
+  Int  3: TH 65 & 44th Ave NE *
+  Int  4: TH 65 & 45th Ave NE
+  Int  5: TH 65 & 47th Ave NE
+  Int  6: TH 65 & 49th Ave NE
+  Int  7: TH 65 & 50th Ave NE
+  Int  8: TH 65 & 52nd Ave NE
+  Int  9: TH 65 & 53rd Ave NE
+  Int 10: TH 65 & I-694  SR
+  Int 11: TH 65 & I-694 NR
+  Int 12: TH 65 & Medtronic Pky/Central Ave
+ Zone 181: TH 65 & (6) Mississippi St   #      FRIDLEY
+  Int  1: TH 65 & E/W Moore Lk-Rice Creek
+  Int  2: TH 65 & Mississippi St*
+  Int  3: TH 65 & 73rd Ave NE*
+  Int  4: TH 65 & Osborn Rd
+  Int  5: TH 65 & 81st Ave NE*
+ Zone 182: TH 65 & 105th #                      BLAINE
+  Int  1: TH 65 & 85th Ave NE
+  Int  2: TH 65 & 89th Ave NE
+  Int  3: TH 65 & TH 10 SR
+  Int  4: TH 65 & TH 10 NR
+  Int  5: TH 65 & 93rd Ave/Cloverleaf Pkwy
+  Int  6: TH 65 & 99th Ave *
+  Int  7: TH 65 & 105th Ave
+  Int  8: TH 65 & 109th Ave *
+  Int  9: TH 65 & 117th Ave/Cloud Dr *
+  Int 10: TH 65 & 121st Ave/Paul Pkwy* remove
+  Int 11: TH 65 & (14)/CoRd 242 (Removed)
+  Int 12: TH 65 & 129th Ave *removed
+ Zone 183: I-494 & Lake Rd  ER  #           WOODBURY
+  Int  1: I-494 & Lake Rd  WR
+  Int  2: I-494 & Lake Rd  ER
+ Zone 184: TH 65 & Constance #              HAM LAKE
+  Int  1: TH 65 & Bunker Lake Boulevard
+  Int  2: TH 65 & (16) 147th/Andover Blvd
+  Int  3: TH 65 & (60) Constance Blvd
+  Int  4: TH 65 & (18) Crosstown Blvd
+  Int  5: TH 65 & (22) Viking Blvd
+  Int  6: TH 65 & (86) 213th/Sims Rd
+  Int  7: TH 65 & (24) 237th Ave NE
+ Zone 185: TH 97 & Everton Ave              FOREST LAKE
+  Int  1: TH 97 & Everton Ave
+  Int  2: TH 97 & Fenway Ave
+ Zone 186: I-694 & (10)/10th St WR   #       OAKDALE
+  Int  1: (10) & Greenway   (County Oper)
+  Int  2: (10) & Hadley        (County Oper)
+  Int  3: (10) & I-694 WR
+  Int  4: (10) & I-694 ER
+  Int  5: (10) & Helmo Ave  (County Oper)
+ Zone 187: TH 3 & (32) Cliff Rd    #               EAGAN
+  Int  1: TH 3 & Red Pine La*      [R/R]
+  Int  2: TH 3 & (32) Cliff Rd     [R/R]
+ Zone 188: I-35 & (2)Broadway ER  #        FOREST LAKE
+  Int  1: (2)Broadway & Everton N St-Co Owned
+  Int  2: (2)Broadway & Everton S St-Co Owned
+  Int  3: (2)Broadway & 19th St-Co Owned
+  Int  4: (2)Broadway & I-35 WR
+  Int  5: (2)Broadway & I-35 ER
+  Int  6: (2)Broadway & 12th St
+  Int  7: (2)Broadway & 4th St (ISOLATED)
+ Zone 189: 35W & Burnsville Pkwy  ER  #    BURNSVILLE
+  Int  1: 35W & Burnsville Pkwy  WR
+  Int  2: 35W & Burnsville Pkwy  ER
+ Zone 190: 35E & Little Canada Rd   #       LITTLE CANADA
+  Int  1: 35E & Little Canada Rd  WR*
+  Int  2: 35E & Little Canada Rd ER*
+  Int  3: Little Canada Rd & Centerville Rd
+ Zone 191: 149 & Blue Gentian #           MENDOTA HEIGHTS
+  Int  1: TH 149 & Lone Oak Pkwy *
+  Int  2: TH 149 & Northwest Pky/Blue G *
+  Int  3: TH 149 & I-494   SR *
+  Int  4: TH 149 & I-494   NR *
+  Int  5: TH 149 & Mendota Hts Rd *
+ Zone 192: I-94 & TH 120 & 3M Road   #       MAPLEWOOD
+  Int  1: TH 120 & I-94 SR*
+  Int  2: TH 120 & I-94 NR
+  Int  3: TH 120 & 3M Road
+  Int  4: TH 120 & Conway Ave *
+  Int  5: TH 120 & 7th St
+  Int  6: TH 120 & 10th/Minnehaha*
+  Int  7: 10th St & Gershwin (County Oper)
+ Zone 193: I-35W & CoRd I  WR   #            SHOREVIEW
+  Int  1: I-35W & CoRd I  WR
+  Int  2: I-35W & CoRd I  ER
+ Zone 194: TH 61 & TH 97  N Jct   #          FOREST LAKE
+  Int  1: TH 61 & TH 97 S Jct
+  Int  2: TH 61 & TH 97 N Jct
+  Int  3: TH 61 & 11th Ave
+  Int  4: TH 61 & 8th Ave
+ Zone 195: TH 55  & River St  #                 HASTINGS
+  Int  1: TH 55 & General Sieben Dr
+  Int  2: TH 55 & Pleasant Dr
+  Int  3: TH 55 & Westview Dr
+  Int  4: TH 55 & River St
+  Int  5: TH 55 & Pine St
+ Zone 196: I-35 & 185th St @ Kenrick  #      LAKEVILLE
+  Int  1: (60) & Kenyon/Knollwood
+  Int  2: I-35 & 185th St WR
+  Int  3: 185th St & Kenrick
+ Zone 197: TH 62 & Portland  NR   (Future)    RICHFIELD
+  Int  1: TH 62 & Portland Ave  NR
+  Int  2: TH 62 & Portland Ave  SR
+ Zone 198: I-494 NR & TH 156/Concord  #    S.ST.PAUL
+  Int  1: TH 156 & Richmond/Dale
+  Int  2: TH 156 & I-494 SR
+  Int  3: TH 156 & I-494 NR*
+  Int  4: TH 156 & Villaume*
+  Int  5: TH 156* & Armour
+  Int  6: TH 156 & Grand Ave
+  Int  7: TH 156 & Wentworth
+ Zone 199: TH 77 & (30)/Diffley & Nicols Rd #  EAGAN
+  Int  1: (30)/Diffley & TH 77  WR
+  Int  2: (30)/Diffley & TH 77  ER
+  Int  3: (30)/Diffley & Nicols Rd
+ Zone 200: TH 36 & TH 95/Nelson St  #         STILLWATER
+  Int  1: TH 36 & TH 95/Nelson St
+  Int  2: Chestnut & Main*
+  Int  3: TH 95 & Myrtle
+ Zone 201: TH 55 & TH 149 @ N Jct  #          EAGAN
+  Int  1: TH 55 & TH 149 @ N Jct *
+  Int  2: TH 55 & Lone Oak Rd  *
+  Int  3: TH 55 & TH 149   S Jct
+ Zone 202: COUNTY OPERATED-494 & Valley Creek/Plaza Dr
+  Int  1: Valley Creek Rd/TH 120 & Wier Dr
+  Int  2: Valley Creek Rd/TH 120 & I 494 WR
+  Int  3: Valley Creek Rd/TH 120 & I 494 ER
+  Int  4: ValleyCrk Rd & Woodlane Dr (County)
+  Int  5: Valley Creek Rd & Plaza Dr
+  Int  6: Valley Creek Rd & Queens Dr
+  Int  7: Valley Creek Rd & Bielenberg Dr
+  Int  8: Valley Creek Rd & Tower Rd
+  Int  9: Valley Creek Rd & Radio Dr
+ Zone 203: TH 61 & 80th/Grange   #         COTTAGE GROVE
+  Int  1: 80th St/Grange Blvd & Hadley Ave
+  Int  2: 80th St/Grange Blvd & TH 61 WR
+  Int  3: 80th St/Grange Blvd & TH 61 ER
+ Zone 204: TH 36 & Washington  Ave   #      OAK PARK HTS
+  Int  1: TH 36 & Washington Ave
+  Int  2: TH 36 & Greeley Ave/Oakgreen
+  Int  3: TH 36 & Osgood Ave/4th St
+ Zone 205: TH 110 & TH 149/Dodd Rd  #  MENDOTA HEIGHTS
+  Int  1: TH 110 & TH 13 NB Connection
+  Int  2: TH 110 & Lexington Ave
+  Int  3: TH 110 & I-35E  WR
+  Int  4: TH 110 & I-35E  ER
+  Int  5: TH 110 & TH 149/Dodd Rd
+  Int  6: TH 110 & Delaware Ave
+  Int  7: TH 110 & Mendota Rd
+ Zone 206: TH 36 & Hadley Ave  #            NORTH ST. PAUL
+  Int  4: TH 36 & TH 120
+  Int  5: TH 36 & Hadley Ave
+  Int  6: TH 120 & 7th Ave E/47th St N
+ Zone 207: TH 55 & Mendota Hgts Rd    #          EAGAN
+  Int  1: TH 55 & Mendota Hgts Rd
+  Int  2: TH 55 & Eagandale Blvd
+  Int  3: TH 55 & Lexington Ave/Blue Gentian
+ Zone 208: TH 61 & (8) Frenchman Rd   #           HUGO
+  Int  1: TH 61 & 140th St N
+  Int  2: TH 61 & (8) Frenchman Rd
+ Zone 209: TH 51 & (30) Larpenteur Ave #    FALCON HEIGHTS
+  Int  1: Midway Pkwy & Dan Patch Ave
+  Int  2: Hoyt Ave & Snelling Ave*
+  Int  3: Larpenteur Ave & Snelling Ave
+  Int  4: Roselawn Ave & Snelling Ave
+  Int  5: Har Mar Entrance & Snelling Ave
+  Int  6: CoRd B & Snelling Ave*
+  Int  7: HARMAR TEMP
+ Zone 210: TH 952 & Butler Ave & Robert St  #  WEST ST. PAUL
+  Int  1: Robert St/TH 952 & 494/54th
+  Int  2: Robert St/TH 952 & TH 110 SR
+  Int  3: Robert St & TH 110 NR*
+  Int  4: Robert St & 50th St*
+  Int  5: Robert St* & Mendota/Southview
+  Int  6: Robert St* & Marie Ave
+  Int  7: Robert St & Lothenbach*
+  Int  8: Robert St & Wentworth*
+  Int  9: Robert St* & Thompson Ave
+  Int 10: Robert St & Emerson Ave*
+  Int 11: Robert St & Moreland Ave
+  Int 12: Robert St* & Butler Ave
+  Int 13: Robert St & Bernard St
+  Int 14: Robert St & Annapolis St
+ Zone 211: TH 5 & 58th St     #                  STILLWATER
+  Int  1: TH 5 & 58th St
+  Int  2: TH 5 & TH 36 SR
+  Int  3: TH 5 & TH 36 NR
+ Zone 212: I-35 & TH 95  WR  #               NORTH BRANCH
+  Int  1: TH 95 & Tangier / Flink
+  Int  2: TH 95 & I-35 WR
+  Int  3: TH 95 & I-35 ER
+  Int  4: TH 95 & Oakview Ave*
+  Int  5: TH 95 & Flink realignment
+ Zone 213: TH 13 & Portland Ave    #         BURNSVILLE
+  Int  1: TH 13 & Nicollet Ave
+  Int  2: TH 13 & Portland Ave
+  Int  3: TH 13 & 12th/Parkwood
+  Int  4: TH 13 & (11) West River Hills
+  Int  5: TH 13 & (32) Cliff Rd
+  Int  6: TH 13 & River Hills Dr*
+  Int  7: TH 13 & (30) Diffley*
+ Zone 214: TH 61/Driveway Ent & TH 55   #    HASTINGS
+  Int  1: TH 61 & 15th St*
+  Int  2: TH 61/Driveway Ent & TH 55
+  Int  3: TH 61 & 10th St
+ Zone 215: TH 51/Snelling & CoRd C  #          ROSEVILLE
+  Int  1: TH 51/Snelling & CoRd C   [R/R]*
+  Int  2: TH 51/Snelling Ave & CoRd C2
+  Int  3: TH 51/Snelling Ave* & Lydia Ave
+  Int  4: CoRd C & Lincoln Dr (County signal)
+  Int  5: CoRd C & Snelling Ct (County signal
+ Zone 216: ASC 8000/ASC 2  DIRECT CONNECT-EAST METRO
+  Int  1: TH 61 & (47)Vermillion St   HAST#
+  Int  2: 120th\J & TH 61* HUGO#
+  Int  3: TH 8 & TH 95   #    TAYLORS FALLS
+  Int  4: TH 97 & Goodview Ave/8th St #
+  Int  5: TH 61 & TH 8  NR
+  Int  6: TH 61 & (8) Buffalo St/6th St * #
+  Int  7: Blank
+  Int  8: Blank
+  Int  9: TH 3 & Diffley Rd   #     EAGAN*
+  Int 10: TH 36 & English St  #
+  Int 11: TH 5 & Manning Ave  #
+  Int 12: Blank
+  Int 13: Blank
+  Int 14: TH 5 WR/NW Dr & Post Rd #
+  Int 15: TH 95 & TH 61*   #   COTTAGE GROVE
+  Int 16: TH 61 & Glen Rd         Singlepoint
+  Int 17: TH 10 & TH 61 S Jct .5M N of Hast #
+  Int 18: TH 55 & Argenta Tr  #
+  Int 19: TH 61 & Headwaters Parkway/Forest L
+  Int 20: TH 61 & 4th St   Hastings
+  Int 21: TH 61 & Lower Afton Rd  #
+  Int 22: TH 61 & Broadway/Forest Lake  #
+  Int 23: I-35W & W 76th St   WR  (Richfeild)
+  Int 24: Blank
+ Zone 217: ASC 8000/ASC 2  DIRECT CONNECT-EAST METRO
+  Int  1: TH 8 & (23) Green Lk/Pioneer #
+  Int  2: TH 8 & (24)/(77) Lofton/Old T  #
+  Int  3: TH 8 & (14)Lincoln Ave N #
+  Int  4: TH 8 & (20) Oak St/Lakes Ave  #
+  Int  5: TH 8 & (22)(36) Viking/Johnson #
+  Int  6: TH 8 & Greenway Ave  #
+  Int  7: TH 8 & Shoquist La/Stinson Blvd #
+  Int  8: TH 5 & (68)/(34) McKnight/MnHaHa #
+  Int  9: TH 5 & Stillwater/Lakewood  #
+  Int 10: TH 120 & 25/CoRd B/40th St N-no tel
+  Int 11: I-35W & (46)/Cleveland Ave #
+  Int 12: 35W & (46) Cleveland @ (25) CoRd B#
+  Int 13: I-35W & Long Lake Rd  #
+  Int 14: Blank
+  Int 15: TH 10 & (96) *#
+  Int 16: TH 3 & (46)/160th St W  #
+  Int 17: Blank
+  Int 18: TH 61 & 259th St/Fairview Blvd  #
+  Int 19: TH 156 & Bryant Ave     No Phone
+  Int 20: TH 55 & Eagandale Blvd    No Phone
+  Int 21: TH 95 & (30) Forest Blvd  #
+  Int 22: TH 36 & Hilton Tr  #
+  Int 23: TH 65 & 147th St/CSAH 16*
+  Int 24: TH 120 & Harvester Ave/15th St
+ Zone 218: TH 52 & (14) Southview Blvd  WR #    S.ST.PAUL
+  Int  1: TH 52 & (14)Southview Blvd WR*
+  Int  2: TH 52 & (14)Southview Blvd ER
+ Zone 219: I-494 & Tamarack Dr  WR             WOODBURY
+  Int  1: Tamarack Rd & Wier Dr (FUTURE)
+  Int  2: Tamarack Rd & I-494 WR
+  Int  3: Tamarack Rd & I-494 ER
+  Int  4: Tamarack Rd & Bielenberg Dr
+ Zone 220: I-35E & (30) Diffley Rd WR   #       EAGAN
+  Int  1: (30) Diffley Rd & Black Hawk Rd
+  Int  2: (30) Diffley Rd & I-35E WR
+  Int  3: (30) Diffley Rd & I-35E ER
+  Int  4: (30) Diffley Rd & Johnny Cake
+ Zone 221: I-35 & TH 97  WR #                    COLUMBUS
+  Int  1: I-35 & TH 97 WR*
+  Int  2: I-35 & TH 97 ER
+ Zone 222: TH 55 & TH 13  #                MENDOTA HEIGHTS
+  Int  1: TH 13 & Mendota Hgts Rd
+  Int  2: TH 13 & Pilot Knob Rd
+  Int  3: TH 13 & TH 55
+ Zone 223: I-94 & McKnight   SR #               ST. PAUL
+  Int  1: I-94 & McKnight @ Burns/SR   *
+  Int  2: I-94 & McKnight   NR
+ Zone 224: I-94 & TH 95   SR   #                 LAKELAND
+  Int  1: I-94 & TH 95   SR *
+  Int  2: I-94 & TH 95   NR *
+ Zone 225: TH 120 & (19)/CoRd D    #          MAHTOMEDI
+  Int  1: TH 120 & Joy Rd
+  Int  2: TH 120 & I-694   SR
+  Int  3: TH 120 & I-694   NR
+  Int  4: TH 120 & (19)/CoRd D/60th/Long
+ Zone 226: I-35E & (30) Larpenteur WR #      MAPLEWOOD
+  Int  1: I-35E & (30) Larpenteur  WR
+  Int  2: I-35E & (30) Larpenteur  ER
+ Zone 227: BLANK MASTER for COORD PROJECTS
+  Int  1: BLANK LOCAL
+ Zone 228: TH 36 & (50) Hamline Ave  NR   #      ROSEVILLE
+  Int  1: TH 36 & (50)Hamline Ave   SR
+  Int  2: TH 36 & (50)Hamline Ave   NR
+ Zone 229: TH 61 & 2nd St     R/R #          WHITE BEAR LAKE
+  Int  1: TH 61 & White Bear/Hoffman
+  Int  2: TH 61 & (96) Lake Ave
+  Int  3: TH 61 & 2nd St-w-R/R
+  Int  4: TH 61 & 4th St-w-R/R
+  Int  5: TH 61 & 7th St-w-R/R
+  Int  6: TH 61 & 12th St/TH 96 N Jct
+ Zone 230: I-35W & CoRd D  WR #                     ROSEVILLE
+  Int  1: I-35W & CoRd D  ER*
+  Int  2: I-35W & CoRd D  WR*
+ Zone 231: I-494/TH61 & Bailey Rd/Maxwell Ave #  NEWPORT
+  Int  1: TH 61 & Maxwell Ave/Bailey Rd
+  Int  2: I-494 & Bailey Rd WR
+  Int  3: I-494 & Bailey Rd ER
+ Zone 232: CSAH 56 & Cahill Ave #                INVER GROVE
+  Int  1: CSAH 56 & TH 52/Broderick Blvd NR
+  Int  2: CSAH 56 & Cahill Ave
+ Zone 233: 35W & 82nd St  WR  (no phone)    BLOOMINGTON
+  Int  1: 35W & 82nd St  WR
+  Int  2: 35W & 82nd St  ER
+ Zone 234: TH 120 & Woodland Dr/No Coll Ent #  MAPLEWOOD
+  Int  1: TH 120 & Woodland Dr/No Coll Ent
+  Int  2: TH 120 & Century College Ent
+ Zone 235: TH 149 & (73) Opperman/Becker Rd #      EAGAN
+  Int  1: TH 149 & Wescott Rd
+  Int  2: TH 149 & Opperman/Becker Rd
+  Int  3: TH 149 & (28)/Yankee Doodle Rd
+ Zone 236: 494 & 12th Ave NR                       RICHFIELD
+  Int  1: 494 & 12th Ave SR
+  Int  2: 494 & 12th Ave NR
+  Int  3: 77th St & 12th Ave
+ Zone 237: 494 & Nicollet Ave  NR             BLOOMINGTON
+  Int  1: Nicollet Ave & 79th St (City oper)
+  Int  2: I-494 & Nicollet Ave   SR
+  Int  3: I-494 & Nicollet Ave   NR
+  Int  4: Nicollet Ave & 77th St (City oper)
+  Int  5: Nicollet Ave & 76th St (City oper)
+ Zone 238: 494 & Lyndale Ave NR  #        BLOOMINGTON
+  Int  1: Lyndale Ave & 79th St (nic)
+  Int  2: Lyndale Ave & 494 SR
+  Int  3: Lyndale Ave & 494 NR
+  Int  4: Lyndale Ave & 77th St
+  Int  5: Lyndale Ave & 76th St
+ Zone 239: TH 55/Hiawatha Ave & TH 62 SR    RICHFIELD
+  Int  1: TH 55 & TH 62 SR
+  Int  2: TH 55 & TH 62 NR
+ Zone 240: TH 61 & (22) St. Paul Park Rd/Ramps-CO oper
+  Int  1: (22) St.Paul Park Rd & TH 61  ER
+  Int  2: (22) St.Paul Park Rd & Hasting Ave

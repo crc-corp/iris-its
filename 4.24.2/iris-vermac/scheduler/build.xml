@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+
+<!-- ant build file for scheduler project
+     Copyright (C) 2008-2013  Minnesota Department of Transportation
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 2 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.  -->
+
+<project default="jar" basedir=".">
+
+	<!-- Base directory configuration -->
+	<property name="src.dir" value="src"/>
+	<property name="test.dir" location="test"/>
+
+	<!-- Property configuration -->
+	<property file="project.properties"/>
+	<property file="${user.home}/.ant.properties"/>
+
+	<!-- Build directory configuration -->
+	<property name="build.dir" value="build"/>
+	<property name="build.lib" value="${build.dir}/lib"/>
+	<property name="build.src" value="${build.dir}/src"/>
+	<property name="build.classes" value="${build.dir}/classes"/>
+	<property name="build.docs" value="${build.dir}/docs"/>
+	<property name="build.test" location="${build.dir}/test"/>
+	<property name="build.reports" location="${build.dir}/reports"/>
+
+	<!-- Compiler configuration -->
+	<property name="build.compiler.pedantic" value="true"/>
+	<path id="junit.classpath">
+		<pathelement location="${build.dir}/classes"/>
+		<pathelement location="${build.dir}/test"/>
+	</path>
+
+	<!-- Prepare the build directory -->
+	<target name="prepare">
+		<tstamp/>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.lib}"/>
+		<mkdir dir="${build.src}"/>
+		<mkdir dir="${build.docs}"/>
+		<copy todir="${build.src}">
+			<fileset dir="${src.dir}">
+				<include name = "**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Compile the source code -->
+	<target name="compile"
+		depends="prepare"
+		description="Compile the source code">
+		<mkdir dir="${build.classes}"/>
+		<javac srcdir="${build.src}"
+		       destdir="${build.classes}"
+		       debug="${debug}"
+		       deprecation="on"
+		       includeantruntime="false"
+		       source="1.6"
+		       target="1.6">
+			<compilerarg value="-Xlint:unchecked"/>
+		</javac>
+	</target>
+
+	<!-- Create the jar file -->
+	<target name="jar"
+		depends="compile"
+		description="Generate the jar file">
+		<jar jarfile="${build.lib}/${name}-${version}.jar">
+			<fileset dir="${build.classes}">
+				<include name="us/mn/state/dot/sched/**"/>
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- Create API documentation -->
+	<target name="docs"
+		depends="prepare"
+		description="Create the javadocs">
+		<mkdir dir="${build.docs}"/>
+		<javadoc packagenames="${packages}"
+		         sourcepath="${basedir}/${build.src}"
+		         destdir="${build.docs}"
+		         author="true"
+		         version="true"
+		         windowtitle="${name} API"
+		         doctitle="${name}"
+		         bottom="Copyright &#169; Minnesota Department of
+				Transportation. All Rights Reserved.">
+		</javadoc>
+	</target>
+
+	<!-- Prepare junit test directories -->
+	<target name="prepare-junit"
+		depends="prepare">
+		<delete dir="${build.reports}" />
+		<mkdir dir="${build.test}" />
+		<mkdir dir="${build.reports}" />
+	</target>
+
+	<!-- Compile junit test cases -->
+	<target name="compile-junit"
+		depends="compile, prepare-junit">
+		<javac srcdir="${test.dir}"
+		       destdir="${build.test}"
+		       debug="true"
+		       includeantruntime="true"
+		       source="1.6"
+		       target="1.6">
+			<classpath refid="junit.classpath"/>
+		</javac>
+	</target>
+
+	<!-- Run junit test cases -->
+	<target name="test" depends="compile-junit"
+		description="Run junit test cases">
+		<junit printsummary="yes" 
+		       fork="yes" 
+		       haltonfailure="yes" 
+		       errorProperty="test.failed" 
+		       failureProperty="test.failed">
+			<assertions><enable/></assertions>
+			<classpath refid="junit.classpath"/>
+			<formatter type="plain" usefile="false"/>
+			<formatter type="xml" usefile="true"/>
+			<jvmarg value="-Ddebug=true"/>
+			<batchtest todir="${build.reports}">
+				<fileset dir="${build.test}"
+				         includes="**/*Test.class"/>
+			</batchtest>
+		</junit>
+		<fail message="Junit tests failed. Check log and/or reports."
+		       if="test.failed"/>
+	</target>
+
+	<!-- Clean up build and distribution directories -->
+	<target name="clean"
+		description="Clean up the created directories">
+		<delete dir="${build.dir}"/>
+	</target>
+</project>

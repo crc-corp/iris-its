@@ -1,0 +1,62 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.61 [en] (X11; U; Linux 2.2.13 i686) [Netscape]">
+</head>
+<body>
+
+<h1>
+MN/DOT Unified Traffic Data File Format</h1>
+For many years, MN/DOT has collected traffic data from sensors (detectors)
+embedded in the roadway. As of March, 2000, data is being collected every
+30 seconds from more than 3500 detectors in the Twin Cities metro area.
+This raw data consists of volume (number of vehicles, sometimes called
+"flow") and occupancy (percentage of time a detector is "occupied"). As
+you might guess, this adds up to a very large amount of data every day.
+There is so much data that the advantages of storing it in a traditional
+database are far outweighed by the complications. This data storage problem
+led to the development of the MN/DOT <b>Unified Traffic Data File Format</b>.
+<p>There are many benefits to the unified traffic data file format. Probably
+the most important benefit is simplicity. Earlier file formats had complicated
+bit field manipulation, which made it harder to develop data analysis tools.
+This problem has been eliminated, since all data is stored as either 8-bit
+or 16-bit binary integers. Another benefit is the compactness of the format.
+In earlier formats, this quantity of data would occupy 33 megabytes (MB)
+of disk space. In this format, the same data is compressed into about 13
+MB (with no loss of precision). Another problem with earlier formats was
+the distinction between 30-second, 5-minute, and station data made accessing
+the data more complex than it needed to be. This format unifies all the
+data into a single file, simplifying the software needed to access the
+data. Another key benefit of the format is extensibility. It will be possible
+in the future to add different types of data (such as speed) to the format
+without sacrificing backward compatibility.
+<p>Each traffic data file consists of one day's worth of traffic data.
+The files are conventionally named with an eight-digit date (four-digit
+year, two-digit month and two-digit day), plus an extension of ".traffic".
+For example, a file called "20000323.traffic" would contain all the detector
+data for March 23, 2000. The file itself is actually in the popular ZIP
+compression format, making it easy to extract data using tools such as
+WinZip. Within the traffic file, there are two files for each detector,
+one containing the detector volumes for the whole day, and the other containing
+occupancies. These files are named using the detector index number as the
+base file name, with an extension of ".v30" (for volume), or ".o30" (for
+occupancy). So, if there was a detector number 100, the traffic file would
+contain two files, "100.v30" and "100.o30", (in addition to all the other
+defined detectors).
+<p>The volume files (*.v30) are flat binary files of 2880 bytes each. Each
+byte is an 8-bit signed volume for the corresponding 30-second period in
+the day. A negative value (-1) indicates missing data. The first 8-bit
+value represents the first 30-seconds of the day (midnight to 12:00:30),
+and the last value is the last 30-seconds of the day (11:59:30 to midnight).
+<p>The occupancy files (*.o30) are in a very similar format as the volume
+files, except each value is a 16-bit signed occupancy. Each file is 5760
+bytes in length (2880 * 2). The occupancy values are fixed-point integers
+ranging from 0 to 1000 (tenth of a percent units). A negative value (-1)
+indicates missing data, as with the volume files. The 16-bit values are
+in high-byte first order.
+<br>&nbsp;
+<p>Last modified: 23 March 2000
+<br>&nbsp;
+</body>
+</html>

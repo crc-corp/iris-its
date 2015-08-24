@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+
+<!-- ant build file for datatools project
+     Copyright (C) 2005-2009  Minnesota Department of Transportation
+
+     This program is free software; you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation; either version 2 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.  -->
+
+<project name="DataTools" default="jar" basedir=".">
+	<property file="project.properties" />
+	<property file="${user.home}/.ant.properties" />
+	<property name="src.dir" value="src" />
+	<property name="etc.dir" value="etc" />
+	<property name="images.dir" value="images" />
+	<property name="lib.dir" value="lib" />
+	<property name="docs.dir" value="docs" />
+ 	<property name="spbase.dir" value="deps"/>
+	<property name="build.dir" value="build" />
+	<property name="build.docs.dir" value="${build.dir}/docs" />
+	<property name="build.lib" value="${build.dir}/lib" />
+	<property name="build.src.dir" value="${build.dir}/src" />
+	<property name="build.etc.dir" value="${build.dir}/etc" />
+	<property name="build.classes.dir" value="${build.dir}/classes" />
+	<property name="build.javadocs.dir" value="${build.dir}/javadocs" />
+	<property name="build.dist.dir"
+	          value="${build.dir}/${name}-${version}" />
+	<property name="TALK" value="true" />
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+	<property name="manifest" value="${etc.dir}/manifest.mf" />
+	<property name="build.compiler" value="modern" />
+	<property name="tms-log.jar" value="tms-log-${tms-log.version}.jar"/>
+
+	<!-- Check for one file dependancy -->
+	<target name="check-dep">
+		<available property="file.exists"
+			   file="${lib.dir}/${file.dep}" />
+		<fail unless="file.exists"
+		      message="Missing dependency: ${lib.dir}/${file.dep}" />
+	</target>
+
+	<!-- Check for dependancies -->
+	<target name="check">
+		<mkdir dir="${spbase.dir}"/>
+		<antcall target="check-dep">
+			<param name="file.dep" value="mail.jar" />
+		</antcall>
+		<antcall target="check-dep">
+			<param name="file.dep" value="jnlp.jar" />
+		</antcall>
+		<antcall target="check-subproject">
+			<param name="file.dep" value="${tms-log.jar}" />
+			<param name="repo.name" value="log"/>
+			<param name="repo.version"
+			       value="${tms-log.version}"/>
+		</antcall>
+	</target>
+
+	<!-- Check for one subproject dependancy -->
+	<target name="check-subproject">
+		<available property="file.exists"
+			   file="${lib.dir}/${file.dep}"/>
+		<antcall target="build-subproject"/>
+	</target>
+
+	<!-- Build a subproject -->
+	<target name="build-subproject" unless="file.exists">
+		<antcall target="hg-check"/>
+		<ant dir="${spbase.dir}/${repo.name}"
+		     target="jar" inheritAll="false"/>
+		<copy todir="${lib.dir}">
+			<fileset dir="${spbase.dir}/${repo.name}/build/lib/"/>
+		</copy>
+	</target>
+
+	<!-- Clone a mercurial subproject -->
+	<target name="hg-check" unless="file.exists">
+		<available property="dir.exists"
+		           file="${spbase.dir}/${repo.name}"/>
+		<antcall target="hg-clone"/>
+	</target>
+
+	<!-- Clone a mercurial subproject -->
+	<target name="hg-clone" unless="dir.exists">
+		<exec executable="hg" dir="${spbase.dir}" failonerror="true">
+			<arg value="clone"/>
+			<arg value="-r${repo.version}"/>
+			<arg value="${hgbase.url}${repo.name}"/>
+		</exec>
+	</target>
+
+	<!-- Check for unit test dependancies -->
+	<target name="check-test" depends="check">
+		<antcall target="check-dep">
+			<param name="file.dep" value="junit-4.4.jar" />
+		</antcall>
+	</target>
+
+	<!-- Prepare the build directory -->
+	<target name="prepare" description="Creates the build directory.">
+		<echo>Application host: "${datatools.webstart.host}"</echo>
+		<echo>Data host:        "${datatools.trafdat.host}"</echo>
+		<mkdir dir="${build.lib}" />
+		<mkdir dir="${build.classes.dir}" />
+		<mkdir dir="${build.src.dir}" />
+		<mkdir dir="${build.javadocs.dir}" />
+		<copy todir="${build.src.dir}" filtering="true">
+			<fileset dir="${src.dir}" />
+			<filterset begintoken="@@" endtoken="@@">
+				<filter token="VERSION" value="${version}" />
+				<filter token="NAME" value="${name}" />
+				<filter token="DATATOOLS.WEBSTART.HOST"
+					value="${datatools.webstart.host}" />
+				<filter token="DATATOOLS.TRAFDAT.HOST"
+					value="${datatools.trafdat.host}" />
+			</filterset>
+		</copy>
+		<copy todir="${build.etc.dir}" filtering="true">
+			<fileset dir="${etc.dir}" />
+			<filterset begintoken="@@" endtoken="@@">
+				<filter token="VERSION" value="${version}" />
+				<filter token="NAME" value="${name}" />
+				<filter token="DATATOOLS.WEBSTART.HOST"
+					value="${datatools.webstart.host}" />
+				<filter token="DATATOOLS.TRAFDAT.HOST"
+					value="${datatools.trafdat.host}" />
+				<filter token="TMSLOG.VERSION"
+					value="${tms-log.version}"/>
+			</filterset>
+		</copy>
+		<copy todir="${build.docs.dir}" filtering="true">
+			<fileset dir="${docs.dir}"/>
+			<filterset begintoken="@@" endtoken="@@">
+				<filter token="VERSION" value="${version}" />
+				<filter token="NAME" value="${name}" />
+				<filter token="DATATOOLS.WEBSTART.HOST"
+					value="${datatools.webstart.host}" />
+				<filter token="DATATOOLS.TRAFDAT.HOST"
+					value="${datatools.trafdat.host}" />
+				<filter token="TMSLOG.JAR"
+					value="${tms-log.jar}"/>
+			</filterset>
+		</copy>
+	</target>
+
+	<!-- Compile the source code -->
+	<target name="compile"
+	        depends="check,prepare"
+	        description="Compile all of the source files for the project.">
+		<javac destdir="${build.classes.dir}"
+		       excludes="us/mn/state/dot/data/test/**"
+		       debug="${debug}"
+		       deprecation="on"
+		       source="1.5"
+		       target="1.5"
+		       srcdir="${build.src.dir}">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<!-- Create the jar archive -->
+	<target name="jar"
+	        depends="compile"
+	        description="Create the jar file for the project.">
+		<jar jarfile="${build.lib}/${name}-${version}.jar"
+		     manifest="${build.etc.dir}/manifest.mf">
+			<fileset dir="${build.classes.dir}" includes="**/*.*" />
+			<fileset dir="${docs.dir}" includes="*.xml" />
+			<fileset dir="${docs.dir}" includes="*.dtd" />
+			<fileset dir="${images.dir}" includes="*.*" />
+		</jar>
+	</target>
+
+	<!-- Create the API documentation -->
+	<target name="javadocs"
+	        depends="prepare"
+	        description="Creates the javadocs for the project.">
+		<javadoc packagenames="${packages}"
+		         classpathref="classpath"
+		         sourcepath="${basedir}/${src.dir}"
+		         destdir="${build.javadocs}"
+		         author="true"
+		         version="true"
+		         windowtitle="${name} API"
+		         doctitle="${name}"
+		         bottom="Copyright &#169; Minnesota Department of
+				Transportation."/>
+	</target>
+
+	<!-- Check for dependancies -->
+	<target name="check-dist">
+		<antcall target="check-dep">
+			<param name="file.dep" value="dataplot.properties" />
+		</antcall>
+		<antcall target="check-dep">
+			<param name="file.dep" value="dataextract.properties" />
+		</antcall>
+	</target>
+
+	<!-- Create the distribution -->
+	<target name="dist" depends="check-dist,jar"
+	        description="Create the distribution directory and copy all
+			     needed files.">
+		<copy todir="${build.dist.dir}/lib">
+			<fileset dir="${lib.dir}">
+				<include name="mail.jar"/>
+				<include name="jnlp.jar"/>
+				<include name="${tms-log.jar}"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dist.dir}/lib">
+			<fileset dir="${build.lib}" />
+		</copy>
+		<copy todir="${build.dist.dir}">
+			<fileset dir="${build.docs.dir}">
+				<include name="**/*.html" />
+				<include name="**/*.jnlp" />
+				<include name="**/*.css" />
+			</fileset>
+			<fileset dir="${lib.dir}">
+				<include name="dataplot.properties" />
+				<include name="dataextract.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dist.dir}/images">
+			<fileset dir="${docs.dir}/images">
+				<include name="*" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dist.dir}">
+			<fileset dir="${etc.dir}">
+				<include name="**/*.bat" />
+			</fileset>
+		</copy>
+		<chmod perm="+x" dir="${build.dist.dir}" includes="*.bat" />
+		<signjar keystore="${sign.store}"
+		         storepass="${sign.store.pass}"
+		         alias="${sign.alias}"
+		         keypass="${sign.alias.pass}"
+		         lazy="true">
+			<fileset dir="${build.dist.dir}/lib">
+				<include name="*.jar" />
+			</fileset>
+		</signjar>
+		<zip basedir="."
+		     destfile="${build.dir}/${name}-${version}.zip"
+		     includes="${build.dist.dir}/**/*.*" />
+	</target>
+
+	<!-- Clean up generated stuff -->
+	<target name="clean"
+	        description="delete all compiled classes and the distribution
+                         directory.">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<!-- Compile the source code including unit test classes -->
+	<target name="compile-test"
+	        depends="check-test,prepare"
+	        description="Compiles all of the source files for the project.">
+		<javac destdir="${build.classes.dir}"
+		       debug="off"
+		       deprecation="on"
+		       optimize="on"
+		       source="1.5"
+		       target="1.5"
+		       srcdir="${build.src.dir}">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<!-- Run the unit tests -->
+	<target name="test" depends="compile-test">
+		<junit haltonfailure="true" printsummary="true">
+			<classpath refid="classpath"/>
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="${build.classes.dir}"
+				         includes="**/*Tests.class" />
+			</batchtest>
+		</junit>
+	</target>
+</project>

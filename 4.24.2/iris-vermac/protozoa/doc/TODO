@@ -1,0 +1,5 @@
+*	Perform some sort of check for wrong protocol.
+*	Add protocol driver for NTCIP camera control.
+*	Add "raw" driver which does not interpret protocol.
+*	Add "file" driver to read/write a disk file.
+*	Clean up driver API to allow coallescing deferred packets.

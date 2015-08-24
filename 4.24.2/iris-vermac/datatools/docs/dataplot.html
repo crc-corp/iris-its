@@ -1,0 +1,148 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>"Data Plot"</title>
+	<link rel="stylesheet" type="text/css" href="/datatools/standard.css" />
+</head>
+<body>
+<div class='mndot_body'>
+<!--#include virtual="/datatools/header.html" -->
+
+<h1>
+<center>
+Data Plot&nbsp;<img SRC="images/dataplot.png" NOSAVE height=64 width=64>
+</center>
+</h1
+<br><a href="#Detectors">1. Detectors</a>
+<br><a href="#Dates">2. Dates</a>
+<br><a href="#Axis">3. Axis</a>
+<br><a href="#Smoothing">4. Smoothing</a>
+<br><a href="#Printing">5. Printing</a>
+<br><a href="#Import/Export">6. Import/Export</a>
+<br>
+<hr WIDTH="100%">
+<a href="DataPlot.jnlp">Run DataPlot</a>
+<hr WIDTH="100%">
+<h2>
+<a NAME="Detectors"></a>1. Detectors</h2>
+Data Plot has access to data from over 4000 traffic detectors. To plot
+a graph, you must know the index numbers for the detectors you are interested
+in. At this time, there is no online reference; it is recommended that
+you obtain a current
+<a href="http://www.dot.state.mn.us/tmc/trafficinfo/downloads/adr.pdf">
+All Detector Report</a> for reference.
+<p><img SRC="images/edetector.png" HSPACE=2 NOSAVE BORDER=1 height=28
+width=238>You
+must select at least one detector to get DataPlot to make graphs. This
+is done by entering the detector index number at the bottom of the window,
+and pressing <b><i>[Enter]</i></b>. As many as ten individual detectors
+may be plotted at one time, although if more than one detector is selected
+then only one date may be plotted.
+<p>In addition to plotting individual detectors, Data Plot can also create
+<b>composite
+detectors</b>. A composite detector is a group of detectors which are averaged
+together and plotted as a single line on the graph. To create a composite
+detector, just enter two or more detector index numbers, with a space between
+each.&nbsp;<img SRC="images/composite1.png" HSPACE=2 NOSAVE BORDER=1
+height=28 width=422 align=RIGHT>This
+is useful for plotting mainline <b>stations </b>with multiple days.
+<p>An advanced feature of composite detectors is the ability to include
+ramp detectors in the composite. This is done by adding a plus "+" or minus
+"-" before a detector index.<img SRC="images/composite2.png" HSPACE=2
+NOSAVE BORDER=1 height=28 width=422 align=RIGHT>
+This has the effect of adding a ramp volume to the total before computing
+the average volume. Ramp detectors have no effect on the occupancy, density,
+or speed graphs. Note: all mainline detectors must be specified before
+any ramp detectors, because after a "+" or "-", all detectors are treated
+as ramp detectors.
+<hr WIDTH="100%">
+<h2>
+<a NAME="Dates"></a>2. Dates</h2>
+<img SRC="images/calendar.png" NOSAVE BORDER=1 height=214 width=378
+align=RIGHT>At
+least one date must be selected in addition to at least one detector. This
+is done using the date selection calendar in the lower left corner of the
+window. When the program is first started, the current month will be visible
+on the calendar. Each date on the calendar is a toggle button to select
+that date for plotting. Dates which do not have data available will be
+grayed out and cannot be selected. Up to ten different dates may be plotted
+for one detector (or composite detector). If more than one detector has
+been selected, then only one date may be selected.
+<p>At the top of the date selection calendar, there are four buttons for
+selecting the month and year to be displayed. The "&lt;&lt;" and ">>" buttons
+select the previous and next years. The "&lt;" and ">" buttons select the
+previous and next months.
+<hr WIDTH="100%">
+<h2>
+<a NAME="Axis"></a>3. Axis</h2>
+<img SRC="images/axis.png" HSPACE=2 NOSAVE BORDER=1 height=170 width=
+274 align=LEFT>To
+change the X and Y axis, select the View menu at the top of the window.
+One X-axis and up to five Y-axiseses may be plotted on the graph at one
+time. Either one may be set to any of Time, Flow, Headway, Occupancy, Density,
+or Speed. Time is simply the time of day, ranging from midnight to midnight
+of the selected date(s). Flow is the flow rate in vehicles per hour. Headway
+is the spacing between vehicles, in seconds. Occupancy is a measurement
+of the percent of time a detector is "occupied". Density is displayed as
+the number of vehicles per mile. Speed is displayed in miles per hour.
+Note: To compute density and speed, each detector must be assigned an
+appropriate <b>average field length</b>. These values are still being
+tweaked, so for now, density and speed may not be accurate for all detectors.
+For a somewhat more detailed description of this stuff, look
+<a href="Density.html">here</a>.
+<p>Once an axis has been selected, it is possible to "zoom in" on a smaller
+range of that axis. For a vertical axis, this is done by two buttons on
+the right side of the window, "+" and "-". The "+" button zooms in to a
+smaller range of values on the graph, and the "-" button zooms out to a
+larger range of values. Once zoomed in, the scroll bar next to those buttons
+may be used to select the actual range for the zoomed in view. There are
+also buttons and a scroll bar for controlling the horizontal axis just
+below the graph. They work in the same manner.
+<hr WIDTH="100%">
+<h2>
+<a NAME="Smoothing"></a>4. Smoothing</h2>
+<img SRC="images/smoothing.png" HSPACE=2 NOSAVE BORDER=1 height=28
+width=288 align=LEFT>The
+"smoothing" of the graph is the sampling period of each point plotted on
+the graph. Data is collected in 30 second intervals, so the sampling period
+must be a multiple of 30 seconds. There are 17 pre-selected sampling periods
+which may be chosen. Based on the zoom level of the time axis, only certain
+sampling periods are available for selection. Data Plot only makes available
+the sampling periods which would plot between 20 and 200 points. This range
+was chosen because less than 20 points is uninteresting, and more than
+200 points is too much information.
+<p>It is possible to see the points themselves, without lines connecting
+them. Simply right-click on the graph and de-select the "Connect points"
+check box that pops up.
+<hr WIDTH="100%">
+<h2>
+<a NAME="Printing"></a>5. Printing</h2>
+Printing is very simple in Data Plot. First, set up the graph exactly the
+way you want it to be printed, and then select the "Print" item from the
+"File" menu. The "Page Setup" dialog will come up. Select the paper size,
+orientation and margins and press "OK". Now, the print dialog will pop
+up. Select the printer and press "OK".
+<hr WIDTH="100%">
+<h2>
+<a NAME="Import/Export"></a>6. Import/Export</h2>
+DataPlot is capable of importing and exporting data.
+
+To export data, simply create the graphs you want to export and choose "Export"
+from the "File" menu.  If you are running DataPlot as a client, you will be prompted
+to allow access to your local file system.  After granting access, you are
+presented with a dialog where you can enter the location and filename you wish to
+save the data under.  Click save and that's it!  DataPlot is <b>not</b> capable of
+exporting Composite <a href="#Detectors">detectors</a>.
+<p>To import data, choose "Import" from the "File" menu.  Again, a client session
+ of DataPlot will prompt you for local file system access and after granting
+that access, you will be presented with an "Open" dialog.  Browse to the proper
+location and select the appropriate file.  Click "Open" and that's it!
+<p>A note about importing and exporting...  exporting will overwrite (not append)
+files.
+Importing requires the file to be in very specific layout. Although the file is simple
+ascii text format, it is recommended that you don't edit these files.
+<hr WIDTH="100%">
+</div>
+</body>
+</html>

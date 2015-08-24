@@ -1,0 +1,13 @@
+package us.mn.state.dot.video;
+
+public enum StreamStatus {
+
+	INITIALIZED,
+	INTERRUPTED,
+	STALE,
+	RECEIVE_TIMEOUT,
+	CLIENT_DISCONNECTED,
+	SOURCE_DISCONNECTED,
+	STREAMING,
+	FINISHED;
+}

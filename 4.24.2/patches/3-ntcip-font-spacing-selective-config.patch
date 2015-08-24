@@ -1,0 +1,45 @@
+# HG changeset patch
+# User Travis Swanston <trav@t-s.net>
+# Date 1438920407 25200
+# Node ID 6dcae604d876e5ddc3002184a394ca07971fdd6b
+# Parent  0be42d887cdd7b1b217457d3c73ae0db46124b14
+Don't configure NTCIP font char/line spacing parameters for some DMS types.
+
+diff -r 0be42d887cdd -r 6dcae604d876 src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java
+--- a/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java	Thu Aug 06 21:04:53 2015 -0700
++++ b/src/us/mn/state/dot/tms/server/comm/ntcip/OpSendDMSFonts.java	Thu Aug 06 21:06:47 2015 -0700
+@@ -24,6 +24,7 @@
+ import java.util.TreeSet;
+ import us.mn.state.dot.sched.TimeSteward;
+ import us.mn.state.dot.tms.DMSHelper;
++import us.mn.state.dot.tms.DMSType;
+ import us.mn.state.dot.tms.Font;
+ import us.mn.state.dot.tms.FontFinder;
+ import us.mn.state.dot.tms.FontHelper;
+@@ -414,13 +415,22 @@
+ 			addForStore(mess, number);
+ 			addForStore(mess, name);
+ 			addForStore(mess, height);
+-			addForStore(mess, char_spacing);
+-			addForStore(mess, line_spacing);
+ 			logStore(number);
+ 			logStore(name);
+ 			logStore(height);
+-			logStore(char_spacing);
+-			logStore(line_spacing);
++			// Don't configure char. spacing for char. matrix DMS,
++			// and don't configure line spacing for either char.
++			// matrix or line-matrix DMS.  This is needed for
++			// compatibility with a 2003 Ver-Mac PCMS-1210.
++			DMSType dt = DMSType.fromOrdinal(dms.getDmsType());
++			if (dt != DMSType.VMS_CHAR) {
++				addForStore(mess, char_spacing);
++				logStore(char_spacing);
++				if (dt != DMSType.VMS_LINE) {
++					addForStore(mess, line_spacing);
++					logStore(line_spacing);
++				}
++			}
+ 			mess.storeProps();
+ 			Collection<Glyph> glyphs =FontHelper.lookupGlyphs(font);
+ 			if (glyphs.isEmpty()) {

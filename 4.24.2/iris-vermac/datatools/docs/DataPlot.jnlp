@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <!-- JNLP File for DataPlot Application -->
+   <jnlp
+     spec="1.0"
+     codebase="http://@@DATATOOLS.WEBSTART.HOST@@/@@NAME@@"
+     href="DataPlot.jnlp">
+     <information>
+       <title>Data Plot</title>
+       <vendor>MN/DOT</vendor>
+       <homepage href="dataplot.html"/>
+       <description>Traffic data plotting program</description>
+       <icon href="images/dataplot.jpg"/>
+       <offline/>
+     </information>
+     <resources>
+       <j2se version="1.6+"/>
+       <jar href="lib/@@NAME@@-@@VERSION@@.jar"/>
+       <jar href="lib/mail.jar"/>
+       <jar href="lib/@@TMSLOG.JAR@@"/>
+     </resources>
+     <security>
+       <all-permissions/>
+     </security>
+     <application-desc main-class="us.mn.state.dot.data.Main">
+       <argument>http://@@DATATOOLS.WEBSTART.HOST@@/@@NAME@@/dataplot.properties</argument>
+     </application-desc>
+   </jnlp>

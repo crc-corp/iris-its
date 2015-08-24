@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta name="Author" content="Douglas Lau"/>
+	<link href="protozoa.css" rel="stylesheet" type="text/css"/>
+	<title>Manchester Camera Control Code</title>
+</head>
+
+<body>
+<h2>Manchester Camera Control Code</h2>
+
+<p>
+	The "manchester" PTZ camera control code is understood by receiver
+	drivers from American Dynamics, and probably other vendors. Each
+	command is a 24-bit (3 byte) sequence.
+</p>
+<p>
+	Receiver addresses are encoded zero-relative (0-1023). So, subtract 1
+	from the address before encoding, and add 1 after decoding.
+</p>
+<p>
+	The p/t speed ranges from 0-6, not 0-7 as expected. There are also
+	special full speed, or "turbo" commands for each direction. This makes
+	a total of eight pan/tilt speed settings. Note, speed 0 is the slowest
+	speed, but is not "stopped". There is no command to stop pan/tilt;
+	the last pan/tilt command will time out automatically if no pan/tilt
+	command is received after 80-100 milliseconds.
+</p>
+<div class="left">
+<table>
+<tr>
+	<th>BIT</th>
+	<th colspan="2">FUNCTION</th>
+</tr>
+<tr>
+	<td>0</td>
+	<td>receiver bit 6</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>receiver bit 7</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>receiver bit 8</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>receiver bit 9</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>???</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>???</td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>???</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>must be 1</td>
+</tr>
+<tr>
+	<td>8</td>
+	<td>receiver bit 5</td>
+</tr>
+<tr>
+	<td>9<br/>10<br/>11<br/>12<br/>13</td>
+	<td><a href="#extended">extended function</a>
+		<br/>or<br/>
+	<a href="#pan_tilt">pan/tilt command</a></td>
+</tr>
+<tr>
+	<td>14</td>
+	<td>???</td>
+</tr>
+<tr>
+	<td>15</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>16</td>
+	<td>must be 0</td>
+</tr>
+<tr>
+	<td>17</td>
+	<td>0:<a href="#extended">extended function</a><br/>
+	1:<a href="#extended">pan/tilt command</a></td>
+</tr>
+<tr>
+	<td>18</td>
+	<td>receiver bit 0</td>
+</tr>
+<tr>
+	<td>19</td>
+	<td>receiver bit 1</td>
+</tr>
+<tr>
+	<td>20</td>
+	<td>receiver bit 2</td>
+</tr>
+<tr>
+	<td>21</td>
+	<td>receiver bit 3</td>
+</tr>
+<tr>
+	<td>22</td>
+	<td>receiver bit 4</td>
+</tr>
+<tr>
+	<td>23</td>
+	<td>must be 0</td>
+</tr>
+</table>
+</div>
+
+<div class="right">
+<table id="lens">
+<tr>
+	<th rowspan="2">LENS<br/>FUNCTION</th>
+	<th colspan="5">BIT</th>
+</tr>
+<tr>
+	<th>11</th>
+	<th>10</th>
+	<th>09</th>
+</tr>
+<tr>
+	<td>full tilt down</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>iris open</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>focus far</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>zoom in</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>iris close</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>focus near</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>zoom out</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>full pan left</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+</table>
+
+<br/>
+
+<table id="aux">
+<tr>
+	<th rowspan="2">AUX<br/>FUNCTION</th>
+	<th colspan="5">BIT</th>
+</tr>
+<tr>
+	<th>11</th>
+	<th>10</th>
+	<th>09</th>
+</tr>
+<tr>
+	<td>full tilt up</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>full pan right</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>aux 1 (power off)</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>aux 4 (power on)</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>aux 2</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>aux 5</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>aux 3</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>aux 6 (wiper on)</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+</table>
+
+<br/>
+
+<table id="preset">
+<tr>
+	<th rowspan="2">PRESET</th>
+	<th colspan="5">BIT</th>
+</tr>
+<tr>
+	<th>11</th>
+	<th>10</th>
+	<th>09</th>
+</tr>
+<tr>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>8</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+</table>
+</div>
+
+<table id="extended">
+<tr>
+	<th rowspan="2">EXTENDED<br/>FUNCTION</th>
+	<th colspan="5">BIT</th>
+</tr>
+<tr>
+	<th>13</th>
+	<th>12</th>
+</tr>
+<tr>
+	<td><a href="#lens">lens function</a></td>
+	<td>0</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td><a href="#aux">auxiliary function</a></td>
+	<td>0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>recall <a href="#preset">preset</a></td>
+	<td>1</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>store <a href="#preset">preset</a></td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+</table>
+
+<br/>
+
+<table id="pan_tilt">
+<tr>
+	<th rowspan="2">PAN/TILT<br/>COMMAND</th>
+	<th colspan="5">BIT</th>
+</tr>
+<tr>
+	<th>13</th>
+	<th>12</th>
+	<th>11</th>
+	<th>10</th>
+	<th>09</th>
+</tr>
+<tr>
+	<td>tilt down</td>
+	<td>0</td>
+	<td>0</td>
+	<td colspan="3">speed (0-6?)</td>
+</tr>
+<tr>
+	<td>tilt up</td>
+	<td>0</td>
+	<td>1</td>
+	<td colspan="3">speed (0-6?)</td>
+</tr>
+<tr>
+	<td>pan left</td>
+	<td>1</td>
+	<td>0</td>
+	<td colspan="3">speed (0-6?)</td>
+</tr>
+<tr>
+	<td>pan right</td>
+	<td>1</td>
+	<td>1</td>
+	<td colspan="3">speed (0-6?)</td>
+</tr>
+</table>
+
+<p class="stamp">
+	2014 April 28
+</p>
+</body>
+</html>

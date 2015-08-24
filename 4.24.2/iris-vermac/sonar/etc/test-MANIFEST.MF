@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: scheduler-@@SCHEDULER.VERSION@@.jar sonar-server-@@VERSION@@.jar sonar-client-@@VERSION@@.jar
+Main-Class: us.mn.state.dot.sonar.test.Main
